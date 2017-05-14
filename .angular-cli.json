@@ -17,11 +17,16 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "lucky",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "site.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/uikit/dist/js/uikit.min.js",
+        "../node_modules/uikit/dist/js/uikit-icons.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
