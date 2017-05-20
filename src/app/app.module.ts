@@ -11,6 +11,12 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { AboutComponent } from './views/about/about.component';
 import { RulesComponent } from './views/rules/rules.component';
 import { ContactsComponent } from './views/contacts/contacts.component';
+import { CategoriesComponent } from './views/categories/categories.component';
+import { LotsComponent } from './views/lots/lots.component';
+import {AuthService} from "./auth/auth.service";
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import {AuthGuardService} from "./auth/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +26,11 @@ import { ContactsComponent } from './views/contacts/contacts.component';
     MainMenuComponent,
     AboutComponent,
     RulesComponent,
-    ContactsComponent
+    ContactsComponent,
+    CategoriesComponent,
+    LotsComponent,
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +38,7 @@ import { ContactsComponent } from './views/contacts/contacts.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
