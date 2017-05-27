@@ -14,10 +14,10 @@ import { ContactsComponent } from './views/contacts/contacts.component';
 import { CategoriesComponent } from './views/categories/categories.component';
 import { LotsComponent } from './views/lots/lots.component';
 import {AuthService} from "./auth/auth.service";
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import { SignInComponent } from './auth/sign-in/sign-in.component';
 import {AuthGuardService} from "./auth/auth-guard.service";
 import { SignInPopUpComponent } from './auth/sign-in-pop-up/sign-in-pop-up.component';
+import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
+import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 
 @NgModule({
   declarations: [
@@ -30,8 +30,8 @@ import { SignInPopUpComponent } from './auth/sign-in-pop-up/sign-in-pop-up.compo
     ContactsComponent,
     CategoriesComponent,
     LotsComponent,
-    SignUpComponent,
-    SignInComponent,
+    SignUpEmailComponent,
+    SignInEmailComponent,
     SignInPopUpComponent
   ],
   imports: [

@@ -3,11 +3,11 @@ import {AuthService} from "../auth.service";
 import {NgForm} from "@angular/forms";
 
 @Component({
-  selector: 'lucky-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css'],
+  selector: 'lucky-sign-in-email',
+  templateUrl: 'sign-in-email.component.html',
+  styleUrls: ['sign-in-email.component.css'],
 })
-export class SignInComponent implements OnInit {
+export class SignInEmailComponent implements OnInit {
 
   constructor(private authService: AuthService) {
   }

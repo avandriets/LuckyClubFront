@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
+import {SignInPopUpComponent} from "../auth/sign-in-pop-up/sign-in-pop-up.component";
 
 @Component({
   selector: 'lucky-header',
@@ -8,13 +9,19 @@ import {AuthService} from "../auth/auth.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService : AuthService) { }
+  @ViewChild(SignInPopUpComponent) authLoginDialog: SignInPopUpComponent;
+
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
   }
 
-  onLogOut(){
+  onLogOut() {
     this.authService.logOut();
   }
 
+  openAuthDialog() {
+    this.authLoginDialog.openDialog();
+  }
 }

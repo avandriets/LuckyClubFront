@@ -8,14 +8,8 @@ import {SignInPopUpComponent} from "../auth/sign-in-pop-up/sign-in-pop-up.compon
 })
 export class MainMenuComponent implements OnInit {
 
-  @ViewChild(SignInPopUpComponent) dialogTest: SignInPopUpComponent;
-
   constructor() { }
 
   ngOnInit() {
-  }
-
-  openDialog(){
-    this.dialogTest.openDialog();
   }
 }

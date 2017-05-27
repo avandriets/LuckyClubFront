@@ -1,3 +1,5 @@
+<lucky-sign-in-pop-up></lucky-sign-in-pop-up>
+
 <div class="uk-container uk-section-default uk-visible@s">
   <div class="uk-padding-small uk-flex uk-flex-middle uk-flex-between">
     <div class="uk-text-uppercase">New sale platform</div>
@@ -18,29 +20,18 @@
         <img class="uk-icon-avatar" src="assets/images/icons/logout.svg" alt="">
       </a>
 
-      <a class="uk-link-reset uk-width-auto" routerLink="/signup" title="Войти" *ngIf="!authService.isAuthenticated()">
+      <a *ngIf="!authService.isAuthenticated()" (click)="openAuthDialog()" class="uk-link-reset uk-width-auto" title="Войти">
         <div class="uk-flex-middle uk-grid">
           <div class="uk-width-auto uk-first-column">
             <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">
           </div>
           <div class="uk-width-auto">
-            <h5 class="uk-margin-remove">Зарегистрироваться</h5>
+            <h5 class="uk-margin-remove">Войти</h5>
           </div>
         </div>
       </a>
 
-      <a class="uk-link-reset uk-width-auto" routerLink="/signin" title="Войти" *ngIf="!authService.isAuthenticated()">
-        <div class="uk-flex-middle uk-grid">
-          <div class="uk-width-auto uk-first-column">
-            <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">
-          </div>
-          <div class="uk-width-auto">
-            <h5 class="uk-margin-remove">Войти в личный кабинет</h5>
-          </div>
-        </div>
-      </a>
-
-      <a class="uk-link-reset uk-width-auto" href="#" *ngIf="authService.isAuthenticated()" title="Войти">
+      <a *ngIf="authService.isAuthenticated()" class="uk-link-reset uk-width-auto" href="#" title="Войти">
         <div class="uk-flex-middle uk-grid">
           <div class="uk-width-auto uk-first-column">
             <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">
