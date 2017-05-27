@@ -35,6 +35,25 @@ export class AuthService {
       );
   }
 
+  signInByGooglePopUp(): void {
+
+    let provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+    firebase.auth().signInWithPopup(provider)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(
+        error => console.log(error)
+      );
+  }
+
+  signInByFacebookPopUp(): void {
+    //TODO implement facebook login
+    console.log("implement facebook login")
+  }
+
   getToken() {
     firebase.auth().currentUser.getToken().then(
       (token: string) => this.token = token

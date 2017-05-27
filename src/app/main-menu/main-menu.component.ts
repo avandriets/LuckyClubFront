@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {SignInPopUpComponent} from "../auth/sign-in-pop-up/sign-in-pop-up.component";
 
 @Component({
   selector: 'lucky-main-menu',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
 
+  @ViewChild(SignInPopUpComponent) dialogTest: SignInPopUpComponent;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  openDialog(){
+    this.dialogTest.openDialog();
+  }
 }

@@ -14,7 +14,7 @@
         </ul>
       </ng-template>
 
-      <a (click)="onLogOut()" class="uk-link-reset" title="Выйти" *ngIf="authService.isAuthenticated()">
+      <a *ngIf="authService.isAuthenticated()" (click)="onLogOut()" class="uk-link-reset" title="Выйти">
         <img class="uk-icon-avatar" src="assets/images/icons/logout.svg" alt="">
       </a>
 

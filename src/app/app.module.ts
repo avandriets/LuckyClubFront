@@ -17,6 +17,7 @@ import {AuthService} from "./auth/auth.service";
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import {AuthGuardService} from "./auth/auth-guard.service";
+import { SignInPopUpComponent } from './auth/sign-in-pop-up/sign-in-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {AuthGuardService} from "./auth/auth-guard.service";
     CategoriesComponent,
     LotsComponent,
     SignUpComponent,
-    SignInComponent
+    SignInComponent,
+    SignInPopUpComponent
   ],
   imports: [
     BrowserModule,
