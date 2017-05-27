@@ -8,8 +8,8 @@ import { ContactsComponent } from "app/views/contacts/contacts.component";
 import {CategoriesComponent} from "./views/categories/categories.component";
 import {LotsComponent} from "./views/lots/lots.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
-import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
-import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
+// import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
+// import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 
 
 const routes: Routes = [
