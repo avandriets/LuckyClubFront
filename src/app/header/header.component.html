@@ -1,4 +1,4 @@
-<lucky-sign-in-pop-up></lucky-sign-in-pop-up>
+<lucky-sign-in-pop-up (loginStatus)="loginProcessStateChange($event)"></lucky-sign-in-pop-up>
 
 <div class="uk-container uk-section-default uk-visible@s">
   <div class="uk-padding-small uk-flex uk-flex-middle uk-flex-between">
@@ -20,14 +20,24 @@
         <img class="uk-icon-avatar" src="assets/images/icons/logout.svg" alt="">
       </a>
 
-      <a *ngIf="!authService.isAuthenticated()" (click)="openAuthDialog()" class="uk-link-reset uk-width-auto" title="Войти">
+
+      <a *ngIf="!authService.isAuthenticated()" class="uk-link-reset uk-width-auto" title="Вход в систему">
         <div class="uk-flex-middle uk-grid">
-          <div class="uk-width-auto uk-first-column">
-            <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">
-          </div>
-          <div class="uk-width-auto">
-            <h5 class="uk-margin-remove">Войти</h5>
-          </div>
+
+          <ng-template [ngIf]="inProgress">
+            <div uk-spinner></div>
+            <p>Вход ...</p>
+          </ng-template>
+
+          <ng-template [ngIf]="!inProgress">
+            <div class="uk-width-auto uk-first-column">
+              <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">
+            </div>
+            <div (click)="openAuthDialog()" class="uk-width-auto">
+              <h5 class="uk-margin-remove">Войти</h5>
+            </div>
+          </ng-template>
+
         </div>
       </a>
 
