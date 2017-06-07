@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {AuthService} from "../auth.service";
-import {LoginStatusEnum} from "../auth.model";
+import {LoginStatusEnum, Users} from "../auth.model";
 declare var UIkit: any;
 
 @Component({
@@ -28,36 +28,14 @@ export class SignInPopUpComponent implements OnInit {
     //TODO optimize invoke chain of events
     this.loginStatus.emit(LoginStatusEnum.inProcess);
     this.modal.hide();
+
+
     this.authService.signInByGooglePopUp().subscribe(
-      (signInObservable) => {
-        signInObservable.subscribe(
-          (getTokenObservable) => {
-            console.log(getTokenObservable);
-            getTokenObservable.subscribe(
-              (signInToLuckyServer) => {
-                console.log(signInToLuckyServer);
-                signInToLuckyServer.subscribe(
-                  (data) => {
-                    console.log(data);
-                    this.loginStatus.emit(LoginStatusEnum.Finish);
-                  },
-                  (error) => {
-                    this.loginStatus.emit(LoginStatusEnum.Finish);
-                  }
-                )
-              },
-              (error) => {
-                this.loginStatus.emit(LoginStatusEnum.Finish);
-              }
-            )
-          },
-          (error) => {
-            this.loginStatus.emit(LoginStatusEnum.Finish);
-          }
-        );
+      (data: Users) => {
+        this.loginStatus.emit(LoginStatusEnum.Finish);
       },
       (error) => {
-        this.loginStatus.emit(LoginStatusEnum.Finish);
+        this.loginStatus.emit(LoginStatusEnum.FinishError);
       }
     );
   }

@@ -24,12 +24,12 @@
       <a *ngIf="!authService.isAuthenticated()" class="uk-link-reset uk-width-auto" title="Вход в систему">
         <div class="uk-flex-middle uk-grid">
 
-          <ng-template [ngIf]="inProgress">
-            <div uk-spinner></div>
-            <p>Вход ...</p>
-          </ng-template>
+          <div *ngIf="inProgress; else elsePart">
+            <div class="uk-display-inline" uk-spinner></div>
+            <p class="uk-display-inline">Вход ...</p>
+          </div>
 
-          <ng-template [ngIf]="!inProgress">
+          <ng-template #elsePart>
             <div class="uk-width-auto uk-first-column">
               <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">
             </div>

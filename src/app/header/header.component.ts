@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {SignInPopUpComponent} from "../auth/sign-in-pop-up/sign-in-pop-up.component";
-import {LoginStatusEnum} from "../auth/auth.model";
+import {LoginStatusEnum, Users} from "../auth/auth.model";
 
 @Component({
   selector: 'lucky-header',
@@ -10,6 +10,7 @@ import {LoginStatusEnum} from "../auth/auth.model";
 })
 export class HeaderComponent implements OnInit {
 
+  currentUser:Users = null;
   @ViewChild(SignInPopUpComponent) authLoginDialog: SignInPopUpComponent;
 
   inProgress: boolean = false;
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentUser = this.authService.current_user;
   }
 
   onLogOut() {
@@ -34,6 +36,7 @@ export class HeaderComponent implements OnInit {
       console.log('START');
     } else if (state == LoginStatusEnum.Finish) {
       this.inProgress = false;
+      this.currentUser = this.authService.current_user;
       console.log('FINISH');
     }
   }

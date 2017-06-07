@@ -9,5 +9,6 @@ export class Users {
 
 export enum LoginStatusEnum{
   inProcess,
-  Finish
+  Finish,
+  FinishError
 }

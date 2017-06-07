@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Http, RequestOptions, Headers, URLSearchParams, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {Users} from "./auth.model";
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,6 @@ export class AuthService {
   private client_id = 'W0q9nM5We3rKT8gyHIG1Mhmu8d7B7yqgoSPrDDTr';
   private client_secret = 'UbU2pLbXVRsjCbVR0e75o31jdGCJIcnEa1rkwRZ1gq7MwREJDX';
 
-  token: string;
   lucky_access_token: string;
   current_user: Users = null;
 
@@ -32,8 +32,8 @@ export class AuthService {
           this.route.navigate(['/']);
           firebase.auth().currentUser.getToken().then(
             (token: string) => {
-              this.token = token;
-              console.log(this.token);
+              //this.token = token;
+              //console.log(this.token);
             }
           )
         }
@@ -43,26 +43,29 @@ export class AuthService {
       );
   }
 
-  signInByGooglePopUp(): Observable<any> {
+  signInByGooglePopUp(): Observable<Users> {
     let provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
     return Observable.fromPromise(<Promise<any>>firebase.auth().signInWithPopup(provider))
-      .map(
+      .flatMap(
         () => {
-          return this.getToken().map(
-            (token: string) => {
-              this.token = token;
-              return this.loginToLuckyServer(token).map(
-                (dataLogInFromServer) => {
-                  this.lucky_access_token = dataLogInFromServer.access_token;
-                  return this.getUserInfoFromServer();
-                }
-              );
-            }
-          );
+          return this.getToken();
         }
-      ).catch((error: Response) => {
+      ).flatMap((token: string) => {
+        return this.loginToLuckyServer(token);
+      })
+      .map(
+        (dataLogInFromServer) => {
+          this.lucky_access_token = dataLogInFromServer.access_token;
+          localStorage.setItem('token', this.lucky_access_token);
+          return dataLogInFromServer.access_token;
+        }).flatMap(
+        (token: string) => {
+          return this.getUserInfoFromServer();
+        }
+      )
+      .catch((error: Response) => {
         console.log(error);
         return Observable.throw(error);
       });
@@ -128,21 +131,17 @@ export class AuthService {
 
   getToken(): Observable<any> {
     return Observable.fromPromise(<Promise<any>>firebase.auth().currentUser.getToken());
-
-    // firebase.auth().currentUser.getToken().then(
-    //   (token: string) => this.token = token
-    // );
-    //
-    // return this.token;
   }
 
-  isAuthenticated() {
-    return this.token != null;
+  isAuthenticated():boolean {
+    // return this.current_user != null;
+    return (localStorage.getItem("token") === null) ? false : true;
   }
 
   logOut() {
     firebase.auth().signOut();
-    this.token = null;
+    this.current_user = null;
+    localStorage.removeItem('token');
   }
 
 }
