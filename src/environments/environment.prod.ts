@@ -7,5 +7,6 @@ export const environment = {
     projectId: "luckyclub-897a7",
     storageBucket: "luckyclub-897a7.appspot.com",
     messagingSenderId: "424759080154"
-  }
+  },
+  hostUrl: 'http://127.0.0.1:8000'
 };

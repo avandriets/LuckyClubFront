@@ -32,7 +32,7 @@ export class SignInPopUpComponent implements OnInit {
 
     this.authService.signInByGooglePopUp().subscribe(
       (data: Users) => {
-        this.loginStatus.emit(LoginStatusEnum.Finish);
+        this.loginStatus.emit(LoginStatusEnum.LoggedIn);
       },
       (error) => {
         this.loginStatus.emit(LoginStatusEnum.FinishError);

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CategoriesServiceService} from "./categories-service.service";
+import {Category} from "./categories.model";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'lucky-categories',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+  categories: Category[] = [];
+  constructor(private catSrv: CategoriesServiceService, private router: Router, private route:ActivatedRoute) {
   }
 
+  ngOnInit() {
+    this.catSrv.getCategories().subscribe(
+      (data:Category[])=>{
+        this.categories = data;
+      }
+    );
+  }
+
+  onNewCategory(){
+    this.router.navigate(['new'], {relativeTo:this.route});
+  }
 }

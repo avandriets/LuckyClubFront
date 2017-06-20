@@ -1,7 +1,9 @@
 export class Users {
   id: number;
-  name: string;
-  description: string;
+  screen_name: string;
+  first_name: string;
+  last_name: string;
+  photo_url:string;
   user_id: number;
   created_at: string;
   updated_at: string;
@@ -10,5 +12,7 @@ export class Users {
 export enum LoginStatusEnum{
   inProcess,
   Finish,
-  FinishError
+  FinishError,
+  LoggedIn,
+  LoggedOut
 }

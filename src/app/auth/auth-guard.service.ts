@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
+import {LoginStatusEnum} from "./auth.model";
 
 @Injectable()
 export class AuthGuardService implements CanActivate{
@@ -11,7 +12,7 @@ export class AuthGuardService implements CanActivate{
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
-    return this.authService.isAuthenticated();
+    return this.authService.isAuthenticated() == LoginStatusEnum.LoggedIn;
   }
 
 }

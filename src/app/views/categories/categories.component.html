@@ -1,10 +1,14 @@
 <div class="uk-offcanvas-content">
   <div class="uk-container">
-    <div>
 
+    <div class="uk-button-group">
+      <button (click)="onNewCategory()" class="uk-button uk-button-default"><span uk-icon="icon: plus-circle"></span></button>
+    </div>
+
+    <div>
       <ul class="uk-nav-default uk-nav-parent-icon uk-nav" uk-nav="">
-        <li class="uk-active"><a href="#">Каталог </a></li>
-        <li class="uk-parent">
+        <li><h4>Categories</h4></li>
+        <li class="uk-parent uk-active">
           <a href="#"><span class="uk-margin-small-right" uk-icon="icon: laptop"></span>
             Электроника</a>
           <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
@@ -14,46 +18,11 @@
             <li><a href="#">Другое</a></li>
           </ul>
         </li>
-        <li class="uk-parent">
-          <a href="#"><span class="uk-margin-small-right" uk-icon="icon: laptop"></span> Транспорт</a>
-          <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
-            <li><a href="#">Транспорт1</a></li>
-            <li><a href="#">Транспорт2</a></li>
-          </ul>
-        </li>
-        <li class="uk-parent">
-          <a href="#"><span class="uk-margin-small-right" uk-icon="icon: home"></span>
-            Недвижимость</a>
-          <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
-            <li><a href="#">Транспорт1</a></li>
-            <li><a href="#">Транспорт2</a></li>
-          </ul>
-        </li>
-        <li class="uk-parent">
-          <a href="#"><span class="uk-margin-small-right" uk-icon="icon: home"></span>
-            Денежные</a>
-          <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
-            <li><a href="#">Транспорт1</a></li>
-            <li><a href="#">Транспорт2</a></li>
-          </ul>
-        </li>
-        <li class="uk-parent">
-          <a href="#"><span class="uk-margin-small-right" uk-icon="icon: home"></span> Luxury</a>
-          <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
-            <li><a href="#">Транспорт1</a></li>
-            <li><a href="#">Транспорт2</a></li>
-          </ul>
-        </li>
-        <li class="uk-parent">
-          <a href="#"><span class="uk-margin-small-right" uk-icon="icon: home"></span> Услуги</a>
-          <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
-            <li><a href="#">Транспорт1</a></li>
-            <li><a href="#">Транспорт2</a></li>
-          </ul>
-        </li>
-
       </ul>
+    </div>
 
+    <div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -18,6 +18,13 @@ import {AuthGuardService} from "./auth/auth-guard.service";
 import { SignInPopUpComponent } from './auth/sign-in-pop-up/sign-in-pop-up.component';
 import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
 import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
+import { AngularFireModule } from 'angularfire2';
+import {AngularFireAuthModule} from "angularfire2/auth/auth.module";
+import {CategoriesServiceService} from "./views/categories/categories-service.service";
+import {AuthHttpService} from "./helpers/auth-http.service";
+import { NewCategoryComponent } from './views/categories/new-category/new-category.component';
+import { EditCategoryComponent } from './views/categories/edit-category/edit-category.component';
+import { CategoryComponent } from './views/categories/category/category.component';
 
 @NgModule({
   declarations: [
@@ -32,15 +39,21 @@ import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component
     LotsComponent,
     SignUpEmailComponent,
     SignInEmailComponent,
-    SignInPopUpComponent
+    SignInPopUpComponent,
+    NewCategoryComponent,
+    EditCategoryComponent,
+    CategoryComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, CategoriesServiceService, AuthHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
