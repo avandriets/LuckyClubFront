@@ -1,0 +1,33 @@
+<nav class="uk-navbar-container uk-section-muted">
+  <div class="uk-container">
+    <div uk-navbar>
+      <div class="uk-navbar-left">
+
+        <a class="uk-navbar-item uk-logo" [routerLink]="['/main']">Logo</a>
+      </div>
+      <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav uk-subnav-divider uk-visible@m">
+          <li><a routerLink="/about">О Клубе</a></li>
+          <li><a routerLink="/rules">Правила</a></li>
+          <li><a [routerLink]="['/contacts']">Контакты</a></li>
+          <li><a [routerLink]="['/categories']">Категории</a></li>
+          <li><a [routerLink]="['/lots']">Лоты</a></li>
+        </ul>
+      </div>
+      <div class="uk-navbar-right">
+        <a class="uk-hidden@m uk-navbar-item" href="#offcanvas-overlay-flip-push" uk-toggle uk-icon="icon: menu"></a>
+        <form class="uk-visible@m uk-navbar-item">
+          <div class="uk-button-group">
+            <input class="uk-input uk-form-width-medium uk-form-small " type="text" placeholder="Search">
+            <select class="uk-select uk-form-width-small uk-form-small ">
+              <option>All caregories</option>
+              <option>Option 02</option>
+            </select>
+          </div>
+          <button (click)="openDialog()" class="uk-button uk-button-primary uk-button-small">Submit</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</nav>

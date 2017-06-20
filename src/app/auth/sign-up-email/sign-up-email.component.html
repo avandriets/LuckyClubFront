@@ -1,0 +1,27 @@
+<div class="uk-offcanvas-content">
+  <div class="uk-container">
+
+    <form class="uk-form-stacked" (ngSubmit)="onSignUp(f)" #f="ngForm">
+
+      <div>
+        <label class="uk-form-label">Email</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" id="email" name="email" type="email" placeholder="Email" ngModel>
+        </div>
+      </div>
+
+      <div>
+        <label class="uk-form-label" for="password">Password</label>
+        <div class="uk-form-controls">
+          <input class="uk-input" id="password" name="password" type="password" placeholder="Password" ngModel>
+        </div>
+      </div>
+
+      <div>
+        <button class="uk-button uk-button-primary" type="submit">Sign Up</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

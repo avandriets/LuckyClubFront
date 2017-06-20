@@ -1,23 +1,15 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import * as firebase from 'firebase/app';
-
-declare var UIkit: any;
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  user: Observable<firebase.User>;
+export class AppComponent implements OnInit{
 
   constructor(){
   }
 
-  login() {
-  }
-
-  logout() {
+  ngOnInit(): void {
   }
 }

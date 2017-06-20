@@ -1,0 +1,28 @@
+<div class="uk-offcanvas-content">
+  <div class="uk-container">
+
+    <div class="uk-button-group">
+      <button (click)="onNewCategory()" class="uk-button uk-button-default"><span uk-icon="icon: plus-circle"></span></button>
+    </div>
+
+    <div>
+      <ul class="uk-nav-default uk-nav-parent-icon uk-nav" uk-nav="">
+        <li><h4>Categories</h4></li>
+        <li class="uk-parent uk-active">
+          <a href="#"><span class="uk-margin-small-right" uk-icon="icon: laptop"></span>
+            Электроника</a>
+          <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
+            <li><a href="#">Аксессуары и запчасти</a></li>
+            <li><a href="#">Компьютерная техника</a></li>
+            <li><a href="#">Телефоны и аксессуары</a></li>
+            <li><a href="#">Другое</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

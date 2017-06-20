@@ -1,0 +1,57 @@
+<lucky-sign-in-pop-up (loginStatus)="loginProcessStateChange($event)"></lucky-sign-in-pop-up>
+
+<div class="uk-container uk-section-default uk-visible@s">
+  <div class="uk-padding-small uk-flex uk-flex-middle uk-flex-between">
+    <div class="uk-text-uppercase">New sale platform</div>
+    <div class="uk-grid">
+
+      <ng-template [ngIf]="currentLoginStatus==loginStatus.LoggedIn">
+        <ul class="uk-subnav uk-width-auto uk-flex-middle">
+          <li><a href="#"><span class="uk-label">Favorite</span> <span
+            class="uk-badge uk-text-top">3</span></a>
+          </li>
+          <li><a href="#"><span class="uk-label uk-label-success">Success</span> <span
+            class="uk-badge uk-text-top uk-label-success">4</span></a>
+          </li>
+        </ul>
+      </ng-template>
+
+      <a *ngIf="currentLoginStatus==loginStatus.LoggedIn" (click)="onLogOut()" class="uk-link-reset" title="Выйти">
+        <img class="uk-icon-avatar" src="assets/images/icons/logout.svg" alt="">
+      </a>
+
+
+      <a *ngIf="currentLoginStatus==loginStatus.LoggedOut || currentLoginStatus==loginStatus.inProcess" class="uk-link-reset uk-width-auto" title="Вход в систему">
+        <div class="uk-flex-middle uk-grid">
+
+          <div *ngIf="currentLoginStatus==loginStatus.inProcess; else elsePart">
+            <div class="uk-display-inline" uk-spinner></div>
+            <p class="uk-display-inline">Вход ...</p>
+          </div>
+
+          <ng-template #elsePart>
+            <div class="uk-width-auto uk-first-column">
+              <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">
+            </div>
+            <div (click)="openAuthDialog()" class="uk-width-auto">
+              <h5 class="uk-margin-remove">Войти</h5>
+            </div>
+          </ng-template>
+
+        </div>
+      </a>
+
+      <a *ngIf="currentLoginStatus==loginStatus.LoggedIn" class="uk-link-reset uk-width-auto" href="#" title="Войти">
+        <div class="uk-flex-middle uk-grid">
+          <div class="uk-width-auto uk-first-column">
+            <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">
+          </div>
+          <div class="uk-width-auto">
+            <h5 class="uk-margin-remove">{{currentUser?.screen_name}}</h5>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
