@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "docker": "ng serve --env=docker",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

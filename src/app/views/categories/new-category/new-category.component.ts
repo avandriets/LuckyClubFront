@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {CategoriesServiceService} from "../categories-service.service";
 import {Router, ActivatedRoute} from "@angular/router";
+import {Category} from "../categories.model";
 
 @Component({
   selector: 'lucky-new-category',
@@ -28,13 +29,18 @@ export class NewCategoryComponent implements OnInit {
       description: this.categoryCreateFG.get('description').value
     };
     this.catSrv.createCategory(data).subscribe(
-      (outputData) => {
-        console.log(outputData);
+      (outputData: Category) => {
+        console.log('outputData' + outputData.id);
+        // this.catSrv.createCategory(
+        //   id: outputData.id,
+        //   name: outputData.name,
+        //   description: outputData.description
+        // );
+        this.router.navigate(['../' + outputData.id], {relativeTo:this.route});
       },
       (error) =>{
         console.log(error)
       }
     );
   }
-
 }

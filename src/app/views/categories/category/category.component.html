@@ -1,10 +1,18 @@
 <div class="uk-offcanvas-content">
   <div class="uk-container">
+    <div class="uk-padding">
 
-    <div class="uk-button-group">
-      <button (click)="onEditCategory()" class="uk-button uk-button-default"><span uk-icon="icon: pencil"></span></button>
+      <h1 class="uk-background-primary">
+        {{id}}
+        <button (click)="onEditCategory()" class="uk-button uk-button-default"><span uk-icon="icon: pencil"></span></button>
       <button (click)="onDeleteCategory()" class="uk-button uk-button-default"><span uk-icon="icon: trash"></span></button>
-    </div>
+
+      </h1>
+      <div class="uk-background-muted uk-padding	">
+        <div>{{name}}</div>
+        <div>{{description}}</div>
+      </div>
+    </div>s
 
     <p>
       category works!

@@ -9,7 +9,8 @@
             class="uk-input"
             type="text"
             placeholder="Введите название категории"
-            formControlName="categoryName">
+            formControlName="categoryName"
+          >
         </div>
         <div *ngIf="!categoryCreateFG.get('categoryName').valid && categoryCreateFG.get('categoryName').touched">
           Необходимо внести название категрии.
@@ -22,7 +23,8 @@
             class="uk-input"
             type="text"
             placeholder="Введите описание категории"
-            formControlName="description">
+            formControlName="description"
+          >
         </div>
         <div *ngIf="!categoryCreateFG.get('description').valid && categoryCreateFG.get('description').touched">
           Необходимо внести описание категрии.

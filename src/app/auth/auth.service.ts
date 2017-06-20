@@ -8,6 +8,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {Subject} from 'rxjs/Subject';
 import {environment} from "../../environments/environment";
+import {Utils} from "../helpers/utilities";
 
 @Injectable()
 export class AuthService {
@@ -97,7 +98,7 @@ export class AuthService {
 
     let options = new RequestOptions({headers: headers});
 
-    return this.http.get('http://127.0.0.1:8000/api/profile/me', options)
+    return this.http.get(environment.hostUrl + Utils.profileMeUrl, options)
       .map((request: Response) => {
         console.log(request.json());
         return request.json() as Users;
@@ -126,7 +127,7 @@ export class AuthService {
 
     let options = new RequestOptions({headers: headers, params: params});
 
-    return this.http.post('http://127.0.0.1:8000/oauth/token', {},
+    return this.http.post(environment.hostUrl + Utils.tokenUrl, {},
       options
     ).map((request: Response) => {
         // console.log(request.json());

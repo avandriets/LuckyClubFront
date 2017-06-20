@@ -27,6 +27,23 @@ export class CategoriesServiceService {
       }
     );
   }
+  getCategoryById(id: number) {
+    return this.authService.get(environment.hostUrl + Utils.categoriesUrl + id).map(
+      (inputData: Response) => {
+        console.log(inputData.json());
+        // let catArray: Category[] = [];
+        // let catObj = (inputData.json()).Categories;
+        //
+        // for (let i of catObj) {
+        //   catArray.push(new Category(i));
+        // }
+        return inputData.json();
+      }
+    ).catch((error: Response) => {
+        console.log(error);
+        return Observable.throw(error);
+      });
+  }
 
   createCategory(newCategoryData): Observable<Category> {
     let headers = new Headers(
