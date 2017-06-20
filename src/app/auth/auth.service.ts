@@ -7,6 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {Subject} from 'rxjs/Subject';
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class AuthService {
@@ -17,8 +18,8 @@ export class AuthService {
     this.invokeEvent.next(value)
   }
 
-  private client_id = 'W0q9nM5We3rKT8gyHIG1Mhmu8d7B7yqgoSPrDDTr';
-  private client_secret = 'UbU2pLbXVRsjCbVR0e75o31jdGCJIcnEa1rkwRZ1gq7MwREJDX';
+  private client_id =  environment.client_id;//'W0q9nM5We3rKT8gyHIG1Mhmu8d7B7yqgoSPrDDTr';
+  private client_secret = environment.client_secret;//'UbU2pLbXVRsjCbVR0e75o31jdGCJIcnEa1rkwRZ1gq7MwREJDX';
 
   lucky_access_token: string;
   current_user: Users = null;
