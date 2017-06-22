@@ -1,25 +1,22 @@
-<p>edit</p>
+<p>edit  </p>
   <div class="uk-background-muted uk-padding ">
-    <form>
+    <form role="form" [formGroup]="categoryEditFG" (ngSubmit)="onSubmit()">
     <fieldset class="uk-fieldset">
+
       <div class="uk-margin">
-        <label class="uk-form-label" for="form-stacked-text">Text</label>
-        <div class="uk-form-controls">
-            <input class="uk-input" id="form-stacked-text" type="text" placeholder="Some text..." >
-        </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label1" for="form-stacked-text">Text</label>
-        <div class="uk-form-controls">
-            <input class="uk-input" id="form-stacked-text1" type="text" placeholder="Some text...">
-        </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label2" for="form-stacked-text">Text</label>
-        <div class="uk-form-controls">
-            <input class="uk-input" id="form-stacked-text2" type="text" placeholder="Some text...">
-        </div>
-    </div>
+          <label class="uk-form-label1" for="name">Name</label>
+          <div class="uk-form-controls">
+              <input class="uk-input" id="name" type="text" placeholder="Some text..." formControlName="categoryName">
+          </div>
+      </div>
+      <div class="uk-margin">
+          <label class="uk-form-label2" for="description">Description</label>
+          <div class="uk-form-controls">
+              <input class="uk-input" id="description" type="text" placeholder="Some text..." formControlName="description">
+          </div>
+      </div>
+      <button type="submit">save</button>
+      <button (click)="onCansel()">cansel</button>
     </fieldset>
     </form>
   </div>
