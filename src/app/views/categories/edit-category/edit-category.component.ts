@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Params, ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Params, ActivatedRoute, Router} from "@angular/router";
 import {CategoriesServiceService} from "../categories-service.service";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'lucky-edit-category',
@@ -10,37 +11,42 @@ import {CategoriesServiceService} from "../categories-service.service";
 export class EditCategoryComponent implements OnInit {
 
   id: number = null;
-  name: string = "";
-  description: string = "";
+  categoryEditFG: FormGroup = null;
 
   constructor(private route: ActivatedRoute,
-              private categoriesServiceService: CategoriesServiceService) { }
+              private router: Router,
+              private categoriesServiceService: CategoriesServiceService) {
+    this.categoryEditFG = new FormGroup({
+      categoryName: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required)
+    });
+  }
 
   ngOnInit() {
-    // this.route.params.subscribe(
-    //   (params: Params) => {
-    //     this.id = +params['id'];
-    //     this.categoriesServiceService.getCategoryById( +params['id'] )
-    //       .subscribe(
-    //         (data) => {
-    //           console.log('data:' + data);
-    //           //console.log('data.id:' + data.id);
-    //           //console.log('data.description:' + data.description);
-    //
-    //           //this.name = data.name;
-    //           //this.description = data.description;
-    //         //  this.id = data.id;
-    //         //  this.name = data.name;
-    //
-    //         },
-    //         (error) => {
-    //           console.log(error);
-    //         }
-    //       );
-    //     // console.log(this.id);
-    //     // console.log(this.categorie);
-    //   }
-    // );
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.categoriesServiceService.getCategoryById(+params['id'])
+          .subscribe(
+            (data) => {
+              this.categoryEditFG.setValue({categoryName: data.name, description: data.description});
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        // console.log(this.id);
+        // console.log(this.categorie);
+      }
+    );
+  }
+
+  onSubmit() {
+    //this.categoriesServiceService.updateCategory();
+  }
+
+  onCansel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
 }
