@@ -1,15 +1,21 @@
 <div id="modal-close-default" uk-modal>
-  <div class="uk-modal-dialog">
-    <button class="uk-modal-close-default" type="button" uk-close></button>
-    <div class="uk-modal-header">
-      <h2 class="uk-modal-title">Choose signin method </h2>
-    </div>
-    <div class="uk-modal-body">
-      <div>
-        <a (click)="onSignInByGoogle()" class="uk-button uk-button-default">Google</a>
-      </div>
-      <div>
-        <a (click)="onSignInByFacebook()" class="uk-button uk-button-default">Facebook</a>
+  <div class="uk-modal-dialog uk-modal-body uk-padding">
+    <button class="uk-modal-close-outside" type="button" uk-close></button>
+      <h2 class="uk-modal-title">Choose signin method</h2>
+      <div class="uk-flex uk-flex-wrap uk-flex-wrap-around">
+        <div class="uk-width-1-1 uk-width-1-2@s">
+          <div class="uk-text-center uk-margin">
+            <a (click)="onSignInByGoogle()" class="uk-signin-google">
+              <img src="../../../assets/images/google_signin_buttons/btn_google_light_normal_ios.svg ">
+              Sign in with Google</a>
+          </div>
+        </div>
+        <div class="uk-width-1-1 uk-width-1-2@s">
+          <div class="uk-text-center uk-margin">
+            <a (click)="onSignInByFacebook()" class="uk-signin-facebook disabled">
+              <img src="../../../assets/images/icons/facebook_in.svg">
+              Sign in with Facebook</a>
+          </div>
       </div>
     </div>
   </div>
