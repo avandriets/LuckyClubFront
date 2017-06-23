@@ -6,7 +6,7 @@ declare var UIkit: any;
 @Component({
   selector: 'lucky-sign-in-pop-up',
   templateUrl: './sign-in-pop-up.component.html',
-  styleUrls: ['./sign-in-pop-up.component.css']
+  styleUrls: ['./sign-in-pop-up.component.scss']
 })
 export class SignInPopUpComponent implements OnInit {
 
