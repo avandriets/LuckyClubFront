@@ -11,8 +11,7 @@ import {AuthGuardService} from "./auth/auth-guard.service";
 import {NewCategoryComponent} from "./views/categories/new-category/new-category.component";
 import {EditCategoryComponent} from "./views/categories/edit-category/edit-category.component";
 import {CategoryComponent} from "./views/categories/category/category.component";
-import {AuthViewComponent} from "./auth/auth-view/auth-view.component";
-import {AuthEditComponent} from "./auth/auth-edit/auth-edit.component";
+import {UserComponent} from "./views/user/user.component";
 // import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
 // import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 
@@ -28,8 +27,7 @@ const routes: Routes = [
     { path: ':id', component: CategoryComponent},
     { path: ':id/edit', component: EditCategoryComponent}
   ] },
-  { path: 'aunt-view', component: AuthViewComponent},
-  { path: 'aunt-edit', component: AuthEditComponent},
+  { path: 'user', component: UserComponent},
 
   { path: 'lots', component: LotsComponent, canActivate:[AuthGuardService] },
   // { path: 'signin', component: SignInEmailComponent },

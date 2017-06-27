@@ -41,7 +41,7 @@
         </div>
       </a>
 
-      <a *ngIf="currentLoginStatus==loginStatus.LoggedIn" class="uk-link-reset uk-width-auto" href="#" title="Войти">
+      <a *ngIf="currentLoginStatus==loginStatus.LoggedIn" class="uk-link-reset uk-width-auto" [routerLink]="['/user']" title="Войти">
         <div class="uk-flex-middle uk-grid">
           <div class="uk-width-auto uk-first-column">
             <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">

@@ -25,8 +25,7 @@ import {AuthHttpService} from "./helpers/auth-http.service";
 import { NewCategoryComponent } from './views/categories/new-category/new-category.component';
 import { EditCategoryComponent } from './views/categories/edit-category/edit-category.component';
 import { CategoryComponent } from './views/categories/category/category.component';
-import { AuthViewComponent } from './auth/auth-view/auth-view.component';
-import { AuthEditComponent } from './auth/auth-edit/auth-edit.component';
+import { UserComponent } from './views/user/user.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +44,7 @@ import { AuthEditComponent } from './auth/auth-edit/auth-edit.component';
     NewCategoryComponent,
     EditCategoryComponent,
     CategoryComponent,
-    AuthViewComponent,
-    AuthEditComponent
+    UserComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
