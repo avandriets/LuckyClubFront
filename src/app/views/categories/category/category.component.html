@@ -1,22 +1,23 @@
-<div class="uk-offcanvas-content">
-  <div class="uk-container">
-    <div class="uk-padding">
+<div class="uk-card uk-card-primary uk-card-body uk-margin">
+  <h3 class="">{{id}}
+    <button (click)="onEditCategory()" class="uk-button uk-button-default uk-margin-remove uk-align-right"><span uk-icon="icon: pencil"></span></button>
+    <button (click)="onDeleteCategory()" class="uk-button uk-button-default  uk-margin-remove  uk-align-right"><span uk-icon="icon: trash"></span></button>
+  </h3>
+</div>
 
-      <h1 class="uk-background-primary">
-        {{id}}
-        <button (click)="onEditCategory()" class="uk-button uk-button-default"><span uk-icon="icon: pencil"></span></button>
-      <button (click)="onDeleteCategory()" class="uk-button uk-button-default"><span uk-icon="icon: trash"></span></button>
-
-      </h1>
-      <div class="uk-background-muted uk-padding	">
-        <div>{{name}}</div>
-        <div>{{description}}</div>
+<div class="uk-card uk-card-body uk-background-muted">
+    <div class="uk-width-2-5@l">
+      <div class="uk-margin uk-grid-small" uk-grid>
+        <label class="uk-form-label uk-width-1-5@s">name</label>
+        <div class="uk-form-controls uk-width-4-5@s">
+          <input class="uk-input uk-form-blank" type="text" value={{name}}>
+        </div>
       </div>
-    </div>s
-
-    <p>
-      category works!
-    </p>
-
-  </div>
+      <div class="uk-margin uk-grid-small" uk-grid>
+        <label class="uk-form-label uk-width-1-5@s">description</label>
+        <div class="uk-form-controls uk-width-4-5@s">
+          <input class="uk-input uk-form-blank" type="text" value={{description}}>
+        </div>
+      </div>
+    </div>
 </div>
