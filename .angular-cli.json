@@ -19,9 +19,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "lucky",
       "styles": [
-        "styles.css",
-        "site.css"
+        "styles.scss"
       ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "assets/scss"
+        ]
+      },
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/uikit/dist/js/uikit.min.js",
