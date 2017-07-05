@@ -15,8 +15,29 @@
               <input class="uk-input" id="description" type="text" placeholder="Some text..." formControlName="description">
           </div>
       </div>
-      <button type="submit">save</button>
-      <button (click)="onCansel()">cansel</button>
+        <div class="uk-margin">
+            <div *ngFor="let subcategories of subcategories">
+                id: {{subcategories.id}}
+                name: {{subcategories.name}}
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label1" for="name">SubName</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="subname" type="text" placeholder="subname..." formControlName="subcategoryName">
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label2" for="description">SubDescription</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="subdescription" type="text" placeholder="subdescription..." formControlName="subdescription">
+            </div>
+        </div>
+
+        <div class="uk-margin">
+          <button class="uk-button uk-button-primary" type="submit">save</button>
+          <button class="uk-button uk-button-default" (click)="onCansel()">cansel</button>
+        </div>
     </fieldset>
     </form>
   </div>

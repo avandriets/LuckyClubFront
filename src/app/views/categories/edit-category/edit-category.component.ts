@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Params, ActivatedRoute, Router} from "@angular/router";
 import {CategoriesServiceService} from "../categories-service.service";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {Subcategory} from "../subcategories.model";
 
 @Component({
   selector: 'lucky-edit-category',
@@ -12,6 +13,10 @@ export class EditCategoryComponent implements OnInit {
 
   id: number = null;
   categoryEditFG: FormGroup = null;
+  subcategories: Subcategory[] = [
+    new Subcategory(1, '1ffgfgfc', '1iojojoiiihu'),
+    new Subcategory(2, '2ffgfgfc', '2iojojoiiihu')
+  ];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
