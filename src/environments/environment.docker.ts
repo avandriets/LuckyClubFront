@@ -9,6 +9,6 @@ export const environment = {
     messagingSenderId: "424759080154"
   },
   hostUrl: 'http://127.0.0.1:4000',
-  client_id: 'GoOUxO7EZNsH86WFXkjlInqQwHWpP3gn63QULm37',
-  client_secret: '2g5WJVOEjLsQXRpDhXfWF7e85mWJ8byZrV1xoFf4GaZ15zyQUD'
+  client_id: 'lKoWNvo6wqQpIMtVw1WpZ2m2xvRn60tPrk1b40ND',
+  client_secret: 'Pxxi1GeU9lVbBZxBsTRX38b3JsgRf4OXtbqbGDngeSYcC66FQz'
 };
