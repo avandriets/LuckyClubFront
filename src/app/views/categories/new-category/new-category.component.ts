@@ -3,6 +3,7 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {CategoriesServiceService} from "../categories-service.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Category} from "../categories.model";
+import {CategoriesCollection} from "../categories.model";
 
 @Component({
   selector: 'lucky-new-category',
@@ -12,35 +13,53 @@ import {Category} from "../categories.model";
 export class NewCategoryComponent implements OnInit {
 
   categoryCreateFG: FormGroup = null;
+  file:any = null;
+
+  parentCategoriesList: Category[] = [];
 
   constructor(private catSrv: CategoriesServiceService, private router: Router, private route: ActivatedRoute) {
     this.categoryCreateFG = new FormGroup({
+      parentCategory: new FormControl(null),
+      imageFile: new FormControl(null),
       categoryName: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required)
     });
   }
 
   ngOnInit() {
+    this.parentCategoriesList = new CategoriesCollection(this.catSrv.categories).getParentCategories();
+  }
+
+  onFileChange(event) {
+    this.file = event.target.files[0];
+  }
+
+  onImageClear(){
+    this.file = null;
+    this.categoryCreateFG.get('imageFile').setValue(null);
+  }
+
+  onParentClear(){
+    this.categoryCreateFG.get('parentCategory').setValue(null);
   }
 
   onSubmit() {
+
     let data = {
+      parent_id: this.categoryCreateFG.get('parentCategory').value,
+      file: this.file,
       name: this.categoryCreateFG.get('categoryName').value,
       description: this.categoryCreateFG.get('description').value
     };
+
     this.catSrv.createCategory(data).subscribe(
       (outputData: Category) => {
-        console.log('outputData' + outputData.id);
-        // this.catSrv.createCategory(
-        //   id: outputData.id,
-        //   name: outputData.name,
-        //   description: outputData.description
-        // );
-        this.router.navigate(['../' + outputData.id], {relativeTo:this.route});
+        this.router.navigate([`../${outputData.id}`], {relativeTo:this.route});
       },
       (error) =>{
         console.log(error)
       }
     );
   }
+
 }

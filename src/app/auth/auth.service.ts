@@ -19,8 +19,8 @@ export class AuthService {
     this.invokeEvent.next(value)
   }
 
-  private client_id =  environment.client_id;//'W0q9nM5We3rKT8gyHIG1Mhmu8d7B7yqgoSPrDDTr';
-  private client_secret = environment.client_secret;//'UbU2pLbXVRsjCbVR0e75o31jdGCJIcnEa1rkwRZ1gq7MwREJDX';
+  private client_id =  environment.client_id;
+  private client_secret = environment.client_secret;
 
   lucky_access_token: string;
   current_user: Users = null;

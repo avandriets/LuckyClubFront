@@ -18,8 +18,7 @@ export class CategoriesServiceService {
     this.invokeEvent.next();
   }
 
-   // private categories: Category[] = [];
-
+  categories: Category[] = [];
 
   getCategories(): Observable<Category[]> {
     return this.authService.get(environment.hostUrl + Utils.categoriesUrl).map(
@@ -31,49 +30,57 @@ export class CategoriesServiceService {
         for (let i of catObj) {
           catArray.push(new Category(i));
         }
-        // this.categories = catArray;
+
+        this.categories = catArray;
         return catArray;
       }
     );
   }
+
   getCategoryById(id: number) {
     return this.authService.get(environment.hostUrl + Utils.categoriesUrl + id).map(
       (inputData: Response) => {
-        console.log(inputData.json());
-        // let catArray: Category[] = [];
-        // let catObj = (inputData.json()).Categories;
-        //
-        // for (let i of catObj) {
-        //   catArray.push(new Category(i));
-        // }
         return inputData.json();
       }
     ).catch((error: Response) => {
-        console.log(error);
-        return Observable.throw(error);
-      });
+      console.log(error);
+      return Observable.throw(error);
+    });
   }
 
-  createCategory(newCategoryData): Observable<Category> {
+  createCategory(newCategoryData: {parent_id: string, file: any, name: string, description: string}): Observable<Category> {
+
+    let input = new FormData();
+
+    if(newCategoryData.file){
+      input.append("file", newCategoryData.file);
+    }
+
+    input.append("name", newCategoryData.name);
+    input.append("description", newCategoryData.description);
+
+    let urlString = environment.hostUrl + Utils.categoriesUrl;
+    if(newCategoryData.parent_id){
+      urlString = urlString + `${newCategoryData.parent_id}`;
+    }
+
     let headers = new Headers(
       {
-        'Content-Type': 'application/json',
         'Accept': '*/*'
       }
     );
 
     let options = new RequestOptions({headers: headers});
-    options.body = newCategoryData;
-    options.url = environment.hostUrl + Utils.categoriesUrl;
+    options.body = input;
+    options.url = urlString;
     options.method = RequestMethod.Post;
 
-    return this.authService.post(environment.hostUrl + Utils.categoriesUrl, newCategoryData,options).map(
-      (data:Response)=>{
+    return this.authService.post(urlString, input, options).map(
+      (data: Response) => {
         this.dataChange();
         return new Category(data.json());
       }
     ).catch((error: Response) => {
-      console.log(error);
       return Observable.throw(error);
     });
   }
@@ -102,13 +109,17 @@ export class CategoriesServiceService {
       return Observable.throw(error);
     });
 
-
     // this.category[index] = newCategory;
     // this.categoryChanged.next(this.category.slice());
   }
 
-  deleteCategory(index: number) {
-    // this.category.splice(index, 1);
-    // this.category.next(this.category.slice());
+  deleteCategory(categoryId: number) {
+    let urlString = `${environment.hostUrl}${Utils.categoriesUrl}${categoryId}`;
+    return this.authService.delete(urlString).map(
+      (data)=>{
+        this.dataChange();
+        return data;
+      }
+    );
   }
 }

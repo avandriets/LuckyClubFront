@@ -23,25 +23,17 @@ export class CategoryComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.categoriesServiceService.getCategoryById( +params['id'] )
+        this.categoriesServiceService.getCategoryById(+params['id'])
           .subscribe(
             (data) => {
-              console.log('data:' + data);
-              console.log('data.id:' + data.id);
-              console.log('data.description:' + data.description);
 
               this.name = data.name;
               this.description = data.description;
-            //  this.id = data.id;
-            //  this.name = data.name;
-
             },
             (error) => {
               console.log(error);
             }
           );
-        // console.log(this.id);
-        // console.log(this.categorie);
       }
     );
   }
@@ -51,10 +43,11 @@ export class CategoryComponent implements OnInit {
   }
 
   onDeleteCategory() {
-    console.log('Delete !!!');
-  }
-
-  onEdit(){
-
+    //TODO add check response functionality
+    this.categoriesServiceService.deleteCategory(this.id).subscribe(
+      (data)=>{
+        this.router.navigate(['categories']);
+      }
+    );
   }
 }

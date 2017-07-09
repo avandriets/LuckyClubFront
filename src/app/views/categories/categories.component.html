@@ -1,25 +1,26 @@
 <div class="uk-offcanvas-content">
   <div class="uk-container">
     <div class="uk-grid-collapse uk-child-width-1-4@m uk-child-width-1-5@l uk-grid-match uk-grid" uk-grid>
-      <div class="uk-first-column uk-section-default uk-visible@m" style="background: bisque">
+      <div class="uk-first-column uk-section-default uk-visible@m">
         <div>
           <ul class="uk-nav-default uk-nav-parent-icon uk-nav" uk-nav="">
             <li><h4>Categories</h4></li>
-            <li class="uk-parent ">
-              <a href="#"><span class="uk-margin-small-right" uk-icon="icon: laptop"></span> Электроника</a>
+
+            <li *ngFor="let category of getParentCategories()" class="uk-parent">
+              <a routerLink='{{category.id}}'>
+                <span class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{category.picture_url}});"></span>
+                {{category.name}}</a>
               <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
-                <li><a href="#">Аксессуары и запчасти</a></li>
-                <li><a href="#">Компьютерная техника</a></li>
-                <li><a href="#">Телефоны и аксессуары</a></li>
-                <li><a href="#">Другое</a></li>
+                <li *ngFor="let subCategory of getSubCategories(category)"><a routerLink='{{subCategory.id}}'>{{subCategory.name}}</a></li>
               </ul>
             </li>
+
           </ul>
           <ul class="uk-nav-default uk-nav-parent-icon uk-nav">
 
             <li *ngFor="let category of categories" class="">
-              <a routerLink='{{category.id}}' ><span class="uk-margin-small-right" uk-icon="icon: laptop"></span>
-                {{category.name}}///</a>
+              <a routerLink='{{category.id}}'><span class="uk-margin-small-right" uk-icon="icon: laptop"></span>
+                {{category.name}}</a>
             </li>
           </ul>
         </div>

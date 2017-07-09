@@ -2,6 +2,44 @@
   <div class="uk-container">
 
     <form role="form" [formGroup]="categoryCreateFG" (ngSubmit)="onSubmit()">
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Родительская категория</label>
+        <div class="uk-form-controls">
+
+          <div class="uk-inline">
+
+            <select class="uk-select uk-form-width-small uk-form-small"
+                    name="mappingvalues"
+                    formControlName="parentCategory">
+              <option *ngFor="let parentItem of parentCategoriesList" [value]="parentItem.id">
+                {{parentItem.name}}
+              </option>
+            </select>
+
+            <button type="button" (click)="onParentClear()" class="uk-button uk-button-default">
+              <span uk-icon="icon: close"></span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Изображение</label>
+        <div class="uk-form-controls">
+
+          <input
+            type="file"
+            placeholder="Картинка для представления категории"
+            formControlName="imageFile"
+            (change)="onFileChange($event)">
+          <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
+            <span uk-icon="icon: close"></span>
+          </button>
+        </div>
+      </div>
+
       <div class="uk-margin">
         <label class="uk-form-label">Название категории</label>
         <div class="uk-form-controls">
@@ -24,8 +62,8 @@
             class="uk-input"
             type="text"
             placeholder="Введите описание категории"
-            formControlName="description"
-          >
+            formControlName="description">
+
         </div>
         <div *ngIf="!categoryCreateFG.get('description').valid && categoryCreateFG.get('description').touched">
           Необходимо внести описание категрии.
