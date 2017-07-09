@@ -67,10 +67,12 @@ $ribbon-tail: 6px;
   width: 32px;
 }
 
-.kkk{
+.empty_circle{
   height: 10px;
-  background: blue;
-  background-image: url("assets/images/empty_circle.svg");
+  margin-top: -10px;
+  background-image: url("assets/images/backgrounds/empty_circle.svg");
   background-repeat: repeat-x;
 }
-
+.yyy *{
+  outline: 1px solid red;
+}

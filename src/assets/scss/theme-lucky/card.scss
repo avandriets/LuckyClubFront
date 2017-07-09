@@ -1,0 +1,7 @@
+.uk-post-card-small{
+  padding: $card-small-body-padding-vertical $card-small-body-padding-horizontal;
+  border-width: 0 $global-border-width $global-border-width $global-border-width;
+  border-style: solid;
+  border-color: $global-border;
+   // border: $global-border-width solid $global-border;
+}
