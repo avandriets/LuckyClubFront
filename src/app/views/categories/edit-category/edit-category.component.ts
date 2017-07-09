@@ -7,7 +7,7 @@ import {Subcategory} from "../subcategories.model";
 @Component({
   selector: 'lucky-edit-category',
   templateUrl: './edit-category.component.html',
-  styleUrls: ['./edit-category.component.css']
+  styleUrls: ['edit-category.component.scss']
 })
 export class EditCategoryComponent implements OnInit {
 

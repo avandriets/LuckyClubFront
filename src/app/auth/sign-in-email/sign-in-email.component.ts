@@ -5,7 +5,7 @@ import {NgForm} from "@angular/forms";
 @Component({
   selector: 'lucky-sign-in-email',
   templateUrl: 'sign-in-email.component.html',
-  styleUrls: ['sign-in-email.component.css'],
+  styleUrls: ['sign-in-email.component.scss'],
 })
 export class SignInEmailComponent implements OnInit {
 

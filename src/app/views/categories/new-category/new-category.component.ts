@@ -7,7 +7,7 @@ import {Category} from "../categories.model";
 @Component({
   selector: 'lucky-new-category',
   templateUrl: './new-category.component.html',
-  styleUrls: ['./new-category.component.css']
+  styleUrls: ['new-category.component.scss']
 })
 export class NewCategoryComponent implements OnInit {
 

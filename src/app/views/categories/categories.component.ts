@@ -6,7 +6,7 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 @Component({
   selector: 'lucky-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+  styleUrls: ['categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
 

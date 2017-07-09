@@ -5,7 +5,7 @@ import {AuthService} from "../auth.service";
 @Component({
   selector: 'lucky-sign-up',
   templateUrl: 'sign-up-email.component.html',
-  styleUrls: ['sign-up-email.component.css']
+  styleUrls: ['sign-up-email.component.scss']
 })
 export class SignUpEmailComponent implements OnInit {
 

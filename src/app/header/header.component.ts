@@ -7,7 +7,7 @@ declare var UIkit: any;
 @Component({
   selector: 'lucky-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 
