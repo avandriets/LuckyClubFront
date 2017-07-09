@@ -1,0 +1,53 @@
+.uk-post-card-small{
+  padding: $card-small-body-padding-vertical $card-small-body-padding-horizontal;
+  border-width: 0 $global-border-width $global-border-width $global-border-width;
+  border-style: solid;
+  border-color: $global-border;
+   // border: $global-border-width solid $global-border;
+}
+
+$prise-width: 3.6rem;
+.uk-panel-lot {
+  .uk-lot-name-card{
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 20px;
+
+  }
+  .uk-card-footer {
+    div {
+      width: calc((100% - 3.6rem)/2);
+    }
+    .uk-lot-tagline{
+      line-height: 30px;
+      white-space: nowrap;
+    }
+    .uk-lot-logo-sm{
+      height: 30px;
+      text-align: right;
+      img{
+        height: 100%;
+      }
+    }
+    .uk-lot-prise {
+      background: $global-primary-background;
+      text-shadow: 2px 2px 2px $global-primary-dark-background;
+      height: $prise-width;
+      width: $prise-width;
+      line-height: $prise-width - .4rem;
+      text-align: center;
+      border-radius: 50%;
+      margin-top: -36px;
+      color: $global-inverse-color;
+      border: 3px solid $global-background;
+      font-size: 2rem;
+      z-index: 1;
+    }
+  }
+}
+
+
+.uk-margin-xsmall-top{
+  margin-top: 5px;
+}

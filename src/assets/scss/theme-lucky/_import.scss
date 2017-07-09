@@ -1,6 +1,6 @@
 // Base
 //@import "variables.scss";
-@import "card.scss";
+@import "card";
 
 /*
 .uk-join-in{
@@ -71,8 +71,17 @@ $ribbon-tail: 6px;
   height: 10px;
   margin-top: -10px;
   background-image: url("assets/images/backgrounds/empty_circle.svg");
-  background-repeat: repeat-x;
+  background-repeat: no-repeat;
+  //background-size: auto 100%;
+  background-size: cover;
+  background-position: center center;
 }
 .yyy *{
   outline: 1px solid red;
+}
+
+.uk-panel-lot{
+  width: 235px;
+  outline: red;
+  margin-bottom: $card-small-body-padding-vertical;
 }

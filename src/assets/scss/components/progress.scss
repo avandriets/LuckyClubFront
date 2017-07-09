@@ -53,7 +53,7 @@ $progress-bar-background-hot: $global-danger-background !default;
     background-color: $progress-background-hot;
 }
 
-.uk-progress-value-max{
+.uk-progress-value{
  // margin: -$progress-height 0 0 0;
  // line-height: $progress-height;
  // color: $global-inverse-color;
@@ -75,12 +75,12 @@ $progress-bar-background-hot: $global-danger-background !default;
  */
 
 .uk-progress::-webkit-progress-bar {
-  background-color: $progress-background;
+  background-color: $global-muted-background;//$progress-background;
   @if(mixin-exists(hook-progress)) {@include hook-progress();}
 }
 
 .uk-progress.uk-progress-hot::-webkit-progress-bar {
-    background-color: $progress-background-hot;
+    background-color: $global-muted-background; // $progress-background-hot;
 }
 
 /* 2 */
