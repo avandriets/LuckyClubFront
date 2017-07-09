@@ -1,6 +1,8 @@
 // Base
 //@import "variables.scss";
-//@import "base.scss";
+@import "card.scss";
+
+/*
 .uk-join-in{
   background: $overlay-primary-background;
   border: 1px solid white;
@@ -58,11 +60,11 @@ $ribbon-tail: 6px;
     box-shadow: 0px 0px 0px 4px $global-danger-background;
   }
 }
+*/
 
 .uk-icon-avatar{
   height: 32px;
   width: 32px;
-
 }
 
 

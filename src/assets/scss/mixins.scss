@@ -376,7 +376,7 @@
 @mixin hook-card-title(){}
 @mixin hook-card-badge(){}
 @mixin hook-card-hover(){}
-@mixin hook-card-default(){}
+@mixin hook-card-default(){ box-shadow: $card-default-box-shadow; }
 @mixin hook-card-default-title(){}
 @mixin hook-card-default-hover(){}
 @mixin hook-card-default-header(){}
