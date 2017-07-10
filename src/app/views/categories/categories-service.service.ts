@@ -85,32 +85,36 @@ export class CategoriesServiceService {
     });
   }
 
-  updateCategory(newCategory: Category) {
+  updateCategory(newCategoryData: {id: number, parent_id: number, file: any, name: string, description: string}): Observable<Category> {
 
-     let headers = new Headers(
-      {
-        'Content-Type': 'application/json',
-        'Accept': '*/*'
-      }
-    );
+    let input = new FormData();
+
+    if(newCategoryData.file){
+      input.append("file", newCategoryData.file);
+    }
+
+    input.append("parent_id", newCategoryData.parent_id);
+    input.append("name", newCategoryData.name);
+    input.append("description", newCategoryData.description);
+
+    let urlString = environment.hostUrl + Utils.categoriesUrl + `${newCategoryData.id}`;
+
+    let headers = new Headers({'Accept': '*/*'});
 
     let options = new RequestOptions({headers: headers});
-    options.body = newCategory;
-    options.url = environment.hostUrl + Utils.categoriesUrl;
-    options.method = RequestMethod.Post;
+    options.body = input;
+    options.url = urlString;
+    options.method = RequestMethod.Put;
 
-    return this.authService.put(environment.hostUrl + Utils.categoriesUrl + newCategory.id, newCategory,options).map(
+    return this.authService.put(urlString, input, options).map(
       (data:Response)=>{
         this.dataChange();
         return new Category(data.json());
       }
     ).catch((error: Response) => {
-      console.log(error);
       return Observable.throw(error);
     });
 
-    // this.category[index] = newCategory;
-    // this.categoryChanged.next(this.category.slice());
   }
 
   deleteCategory(categoryId: number) {

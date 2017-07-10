@@ -2,28 +2,22 @@
   <div class="uk-container">
     <div class="uk-grid-collapse uk-child-width-1-4@m uk-child-width-1-5@l uk-grid-match uk-grid" uk-grid>
       <div class="uk-first-column uk-section-default uk-visible@m">
+
         <div>
           <ul class="uk-nav-default uk-nav-parent-icon uk-nav" uk-nav="">
             <li><h4>Categories</h4></li>
 
             <li *ngFor="let category of getParentCategories()" class="uk-parent">
               <a routerLink='{{category.id}}'>
-                <span class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{category.picture_url}});"></span>
+                <span class="uk-icon uk-icon-image uk-margin-small-right" [ngStyle]="{'background-image': 'url(' + category.picture_url + ')' }"></span>
                 {{category.name}}</a>
               <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
                 <li *ngFor="let subCategory of getSubCategories(category)"><a routerLink='{{subCategory.id}}'>{{subCategory.name}}</a></li>
               </ul>
             </li>
-
-          </ul>
-          <ul class="uk-nav-default uk-nav-parent-icon uk-nav">
-
-            <li *ngFor="let category of categories" class="">
-              <a routerLink='{{category.id}}'><span class="uk-margin-small-right" uk-icon="icon: laptop"></span>
-                {{category.name}}</a>
-            </li>
           </ul>
         </div>
+
       </div>
       <div class="uk-width-3-4@m  uk-width-4-5@l uk-section-default">
         <div class="uk-padding-small">
@@ -35,7 +29,6 @@
         </div>
       </div>
     </div>
-
 
   </div>
 </div>

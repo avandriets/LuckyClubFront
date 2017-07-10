@@ -4,39 +4,69 @@
     <fieldset class="uk-fieldset">
 
       <div class="uk-margin">
+        <label class="uk-form-label">Родительская категория</label>
+        <div class="uk-form-controls">
+
+          <div class="uk-inline">
+
+            <select class="uk-select uk-form-width-small uk-form-small"
+                    name="mappingvalues"
+                    formControlName="parentCategory">
+              <option *ngFor="let parentItem of parentCategoriesList" [value]="parentItem.id">
+                {{parentItem.name}}
+              </option>
+            </select>
+
+            <button type="button" (click)="onParentClear()" class="uk-button uk-button-default">
+              <span uk-icon="icon: close"></span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="uk-margin">
+
+        <img *ngIf="category && category.picture_url" class="uk-comment-avatar" src="{{category.picture_url}}" width="50" alt="">
+
+        <label class="uk-form-label">Изображение</label>
+        <div class="uk-form-controls">
+
+          <input
+            type="file"
+            placeholder="Картинка для представления категории"
+            formControlName="imageFile"
+            (change)="onFileChange($event)">
+          <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
+            <span uk-icon="icon: close"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="uk-margin">
           <label class="uk-form-label1" for="name">Name</label>
           <div class="uk-form-controls">
-              <input class="uk-input" id="name" type="text" placeholder="Some text..." formControlName="categoryName">
+              <input class="uk-input"
+                     id="name"
+                     type="text"
+                     placeholder="Category name"
+                     formControlName="categoryName">
           </div>
       </div>
       <div class="uk-margin">
           <label class="uk-form-label2" for="description">Description</label>
           <div class="uk-form-controls">
-              <input class="uk-input" id="description" type="text" placeholder="Some text..." formControlName="description">
+              <input class="uk-input"
+                     id="description"
+                     type="text"
+                     placeholder="Description"
+                     formControlName="description">
           </div>
       </div>
-        <div class="uk-margin">
-            <div *ngFor="let subcategories of subcategories">
-                id: {{subcategories.id}}
-                name: {{subcategories.name}}
-            </div>
-        </div>
-        <div class="uk-margin">
-            <label class="uk-form-label1" for="name">SubName</label>
-            <div class="uk-form-controls">
-                <input class="uk-input" id="subname" type="text" placeholder="subname..." formControlName="subcategoryName">
-            </div>
-        </div>
-        <div class="uk-margin">
-            <label class="uk-form-label2" for="description">SubDescription</label>
-            <div class="uk-form-controls">
-                <input class="uk-input" id="subdescription" type="text" placeholder="subdescription..." formControlName="subdescription">
-            </div>
-        </div>
 
         <div class="uk-margin">
-          <button class="uk-button uk-button-primary" type="submit">save</button>
-          <button class="uk-button uk-button-default" (click)="onCansel()">cansel</button>
+          <button class="uk-button uk-button-primary" type="submit">Save</button>
+          <button class="uk-button uk-button-default" (click)="onCancel()">Cancel</button>
         </div>
     </fieldset>
     </form>

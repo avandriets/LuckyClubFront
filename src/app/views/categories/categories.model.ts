@@ -35,10 +35,14 @@ export class CategoriesCollection{
     );
   }
 
-  getParentCategories():Category[]{
+  getParentCategories(currentCategory?: Category):Category[]{
     return this.categories.filter(
       (category: Category) =>{
-        return category.parent_id == null;
+        if(currentCategory){
+          return category.parent_id == null && category.id != currentCategory.id;
+        }else{
+          return category.parent_id == null;
+        }
       }
     );
   }

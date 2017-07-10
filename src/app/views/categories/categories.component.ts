@@ -27,6 +27,7 @@ export class CategoriesComponent implements OnInit {
     this.catSrv.getCategories().subscribe(
       (data:Category[])=>{
         this.categoriesCollection = new CategoriesCollection(data);
+        console.log(data);
       }
     );
   }

@@ -24,8 +24,8 @@ const routes: Routes = [
   { path: 'contacts', component: ContactsComponent },
   { path: 'categories', component: CategoriesComponent, canActivate:[AuthGuardService] , children:[
     { path: 'new', component: NewCategoryComponent},
-    { path: ':id', component: CategoryComponent},
-    { path: ':id/edit', component: EditCategoryComponent}
+    { path: ':id/edit', component: EditCategoryComponent},
+    { path: ':id', component: CategoryComponent}
   ] },
   { path: 'user', component: UserComponent},
 
