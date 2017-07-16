@@ -1,0 +1,83 @@
+<div class="uk-offcanvas-content">
+  <div class="uk-container">
+    <div class="uk-card uk-card-header uk-card-primary uk-card-body uk-margin">
+      <h3>Создание нового лота</h3>
+    </div>
+    <form role="form" [formGroup]="lotCreateFG" (ngSubmit)="onSubmit()">
+      <div class="uk-card uk-card-body uk-background-muted">
+        <div class="uk-form-grid-horizontal">
+          <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+            <label class="uk-form-label uk-width-1-5@s uk-first-column">Изображение</label>
+            <div class="uk-form-controls uk-width-4-5@s">
+              <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
+                <div class="uk-width-expand uk-first-column">
+                  <img *ngIf="file" class="uk-icon uk-icon-image" src="{{file.name}}"
+                       alt="">
+                  <div uk-form-custom="target: true">
+                    <input type="file">
+                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled formControlName="imageFile"
+                    (change)="onFileChange($event)">
+                  </div>
+
+                  <input
+                    type="file"
+                    placeholder="Картинка для представления лота"
+                    formControlName="imageFile"
+                    (change)="onFileChange($event)">
+                </div>
+                <div *ngIf="file" class="uk-width-auto uk-padding-remove">
+                  <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
+                    <span uk-icon="icon: close"></span>
+                  </button>
+                </div>
+              </div>
+
+
+              <!--              <input
+                              type="file"
+                              placeholder="Картинка для представления категории"
+                              formControlName="imageFile"
+                              (change)="onFileChange($event)">-->
+
+
+            </div>
+          </div>
+
+          <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+            <label class="uk-form-label uk-width-1-5@s uk-first-column">Название лота</label>
+            <div class="uk-form-controls uk-width-4-5@s">
+              <input
+                class="uk-input"
+                type="text"
+                placeholder="Введите название лота"
+                formControlName="lotName"
+              >
+            </div>
+            <div *ngIf="!lotCreateFG.get('lotName').valid && categoryCreateFG.get('lotName').touched">
+              Необходимо внести название категории.
+            </div>
+          </div>
+
+
+          <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+            <label class="uk-form-label uk-width-1-5@s uk-first-column">Описание категории</label>
+            <div class="uk-form-controls uk-width-4-5@s">
+              <input
+                class="uk-input"
+                type="text"
+                placeholder="Введите описание лота"
+                formControlName="description">
+
+            </div>
+            <div *ngIf="!lotCreateFG.get('description').valid && lotCreateFG.get('description').touched">
+              Необходимо внести описание категрии.
+            </div>
+          </div>
+          <div class="uk-text-right">
+            <button [disabled]="!lotCreateFG.valid" type="submit" class="uk-button uk-button-primary">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
