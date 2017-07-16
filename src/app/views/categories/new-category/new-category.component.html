@@ -37,16 +37,14 @@
                   <img *ngIf="file" class="uk-icon uk-icon-image" src="{{file}}"
                        alt="">
                   <div uk-form-custom="target: true">
-                    <input type="file" formControlName="imageFile"
-                    (change)="onFileChange($event)">
-                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled >
+                    <input type="file"
+                           (change)="onFileChange($event)"
+                           accept="image/*">
+                    <input class="uk-input uk-form-width-medium"
+                           formControlName="imageFile"
+                           type="text" placeholder="Select file" disabled>
                   </div>
 
-                  <input
-                    type="file"
-                    placeholder="Картинка для представления категории"
-                    formControlName="imageFile"
-                    (change)="onFileChange($event)">
                 </div>
                 <div class="uk-width-auto uk-padding-remove">
                   <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
@@ -54,14 +52,6 @@
                   </button>
                 </div>
               </div>
-
-
-              <!--              <input
-                              type="file"
-                              placeholder="Картинка для представления категории"
-                              formControlName="imageFile"
-                              (change)="onFileChange($event)">-->
-
 
             </div>
           </div>
