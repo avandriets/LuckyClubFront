@@ -81,7 +81,10 @@ $ribbon-tail: 6px;
 }
 
 .uk-panel-lot{
-  width: 235px;
-  outline: red;
+  width: 220px;
+  outline: 1px solid red;
   margin-bottom: $card-small-body-padding-vertical;
+}
+.uk-form-grid-horizontal .uk-grid{
+  align-items: center;
 }

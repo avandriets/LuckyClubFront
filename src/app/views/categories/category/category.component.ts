@@ -18,6 +18,8 @@ export class CategoryComponent implements OnInit {
   id: number = null;
   name: string = "";
   description: string = "";
+  parent_id: number = null;
+  picture_url: string = "";
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -29,6 +31,8 @@ export class CategoryComponent implements OnInit {
 
               this.name = data.name;
               this.description = data.description;
+              this.parent_id = data.parent_id;
+              this.picture_url = data.picture_url;
             },
             (error) => {
               console.log(error);

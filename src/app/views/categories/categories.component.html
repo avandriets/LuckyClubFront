@@ -3,9 +3,12 @@
     <div class="uk-grid-collapse uk-child-width-1-4@m uk-child-width-1-5@l uk-grid-match uk-grid" uk-grid>
       <div class="uk-first-column uk-section-default uk-visible@m">
 
-        <div>
+        <div class="uk-padding-small">
           <ul class="uk-nav-default uk-nav-parent-icon uk-nav" uk-nav="">
-            <li><h4>Categories</h4></li>
+            <li class="uk-flex uk-flex-middle uk-flex-between">Каталог
+            <button (click)="onNewCategory()" class="uk-button uk-button-default"><span
+              uk-icon="icon: plus-circle"></span></button>
+            </li>
 
             <li *ngFor="let category of getParentCategories()" class="uk-parent">
               <a routerLink='{{category.id}}'>
@@ -21,10 +24,6 @@
       </div>
       <div class="uk-width-3-4@m  uk-width-4-5@l uk-section-default">
         <div class="uk-padding-small">
-          <div class="uk-button-group">
-            <button (click)="onNewCategory()" class="uk-button uk-button-default"><span
-              uk-icon="icon: plus-circle"></span></button>
-          </div>
           <router-outlet></router-outlet>
         </div>
       </div>

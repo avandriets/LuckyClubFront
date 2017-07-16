@@ -12,6 +12,9 @@ import {NewCategoryComponent} from "./views/categories/new-category/new-category
 import {EditCategoryComponent} from "./views/categories/edit-category/edit-category.component";
 import {CategoryComponent} from "./views/categories/category/category.component";
 import {UserComponent} from "./views/user/user.component";
+import {NewLotComponent} from "./views/lots/new-lot/new-lot.component";
+import {EditLotComponent} from "./views/lots/edit-lot/edit-lot.component";
+import {LotComponent} from "./views/lots/lot/lot.component";
 // import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
 // import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 
@@ -27,9 +30,13 @@ const routes: Routes = [
     { path: ':id/edit', component: EditCategoryComponent},
     { path: ':id', component: CategoryComponent}
   ] },
+  { path: 'lots', component: LotsComponent, canActivate:[AuthGuardService] , children:[
+    { path: 'new', component: NewLotComponent},
+    { path: ':id/edit', component: EditLotComponent},
+    { path: ':id', component: LotComponent}
+  ] },
   { path: 'user', component: UserComponent},
 
-  { path: 'lots', component: LotsComponent, canActivate:[AuthGuardService] },
   // { path: 'signin', component: SignInEmailComponent },
   // { path: 'signup', component: SignUpEmailComponent }
 ];

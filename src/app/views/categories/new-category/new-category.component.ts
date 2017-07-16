@@ -14,6 +14,7 @@ export class NewCategoryComponent implements OnInit {
 
   categoryCreateFG: FormGroup = null;
   file:any = null;
+  url;
 
   parentCategoriesList: Category[] = [];
 
@@ -31,7 +32,20 @@ export class NewCategoryComponent implements OnInit {
   }
 
   onFileChange(event) {
-    this.file = event.target.files[0];
+   // this.file = event.target.files[0];
+   // console.log( this.categoryCreateFG.imageFile.setValue());
+
+
+
+     if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event:any) => {
+        this.file = event.target.result;
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
   onImageClear(){

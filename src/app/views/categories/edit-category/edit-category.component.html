@@ -1,74 +1,94 @@
-<p>edit  </p>
-  <div class="uk-background-muted uk-padding ">
-    <form role="form" [formGroup]="categoryEditFG" (ngSubmit)="onSubmit()">
+<div class="uk-card uk-card-header uk-card-primary uk-margin">
+  <h3>Редактирование категории {{id}}</h3>
+</div>
+<div class="uk-background-muted uk-padding ">
+  <form role="form" [formGroup]="categoryEditFG" (ngSubmit)="onSubmit()">
     <fieldset class="uk-fieldset">
+      <div class="uk-form-grid-horizontal">
+        <div class="uk-margin uk-grid-small uk-grid">
+          <label class="uk-form-label uk-width-1-5@s uk-first-column">Родительская категория</label>
+          <div class="uk-form-controls uk-width-4-5@s">
+            <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
+              <div class="uk-width-expand uk-first-column">
+                <select class="uk-select"
+                        name="mappingvalues"
+                        formControlName="parentCategory">
+                  <option *ngFor="let parentItem of parentCategoriesList" [value]="parentItem.id">
+                    {{parentItem.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="uk-width-auto uk-padding-remove">
+                <button type="button" (click)="onParentClear()" class="uk-button uk-button-default uk-margin-remove">
+                  <span uk-icon="icon: close"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="uk-margin uk-grid-small uk-grid">-->
+        <!--<label class="uk-form-label uk-width-1-5@s uk-first-column">Изображение</label>-->
+        <!--<div class="uk-form-controls uk-width-4-5@s">-->
+        <!--<img *ngIf="file" class="uk-icon uk-icon-image" src="{{category.picture_url}}" alt="">-->
+        <!--<input-->
+        <!--type="file"-->
+        <!--placeholder="Картинка для представления категории"-->
+        <!--formControlName="imageFile"-->
+        <!--(change)="onFileChange($event)">-->
 
-      <div class="uk-margin">
-        <label class="uk-form-label">Родительская категория</label>
-        <div class="uk-form-controls">
+        <!--&lt;!&ndash;<div class="uk-child-width-1-1" uk-form-custom>&ndash;&gt;-->
+        <!--&lt;!&ndash;<input type="file"  formControlName="imageFile" (change)="onFileChange($event)">&ndash;&gt;-->
+        <!--&lt;!&ndash;<input class="uk-input uk-form-width-medium" type="text" placeholder="Картинка для представления категории" disabled>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<button *ngIf="file" type="button" (click)="onImageClear()" class="uk-button uk-button-default">-->
+        <!--<span uk-icon="icon: close"></span>-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="uk-margin uk-grid-small uk-grid">
 
-          <div class="uk-inline">
 
-            <select class="uk-select uk-form-width-small uk-form-small"
-                    name="mappingvalues"
-                    formControlName="parentCategory">
-              <option *ngFor="let parentItem of parentCategoriesList" [value]="parentItem.id">
-                {{parentItem.name}}
-              </option>
-            </select>
+          <label class="uk-form-label uk-width-1-5@s uk-first-column">Изображение</label>
+          <div class="uk-form-controls uk-width-4-5@s">
+            <img *ngIf="category && category.picture_url" class="uk-icon uk-icon-image" src="{{category.picture_url}}"
+                 alt="">
 
-            <button type="button" (click)="onParentClear()" class="uk-button uk-button-default">
+            <input
+              type="file"
+              placeholder="Картинка для представления категории"
+              formControlName="imageFile"
+              (change)="onFileChange($event)">
+            <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
               <span uk-icon="icon: close"></span>
             </button>
           </div>
-
         </div>
-      </div>
-
-      <div class="uk-margin">
-
-        <img *ngIf="category && category.picture_url" class="uk-comment-avatar" src="{{category.picture_url}}" width="50" alt="">
-
-        <label class="uk-form-label">Изображение</label>
-        <div class="uk-form-controls">
-
-          <input
-            type="file"
-            placeholder="Картинка для представления категории"
-            formControlName="imageFile"
-            (change)="onFileChange($event)">
-          <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
-            <span uk-icon="icon: close"></span>
-          </button>
-        </div>
-      </div>
-
-      <div class="uk-margin">
-          <label class="uk-form-label1" for="name">Name</label>
-          <div class="uk-form-controls">
-              <input class="uk-input"
-                     id="name"
-                     type="text"
-                     placeholder="Category name"
-                     formControlName="categoryName">
+        <div class="uk-margin uk-grid-small uk-grid">
+          <label class="uk-form-label uk-width-1-5@s uk-first-column" for="name">Name</label>
+          <div class="uk-form-controls uk-width-4-5@s">
+            <input class="uk-input"
+                   id="name"
+                   type="text"
+                   placeholder="Category name"
+                   formControlName="categoryName">
           </div>
-      </div>
-      <div class="uk-margin">
-          <label class="uk-form-label2" for="description">Description</label>
-          <div class="uk-form-controls">
-              <input class="uk-input"
-                     id="description"
-                     type="text"
-                     placeholder="Description"
-                     formControlName="description">
-          </div>
-      </div>
-
-        <div class="uk-margin">
-          <button class="uk-button uk-button-primary" type="submit">Save</button>
-          <button class="uk-button uk-button-default" (click)="onCancel()">Cancel</button>
         </div>
+        <div class="uk-margin uk-grid-small uk-grid">
+          <label class="uk-form-label uk-width-1-5@s uk-first-column" for="description">Description</label>
+          <div class="uk-form-controls uk-width-4-5@s">
+            <input class="uk-input"
+                   id="description"
+                   type="text"
+                   placeholder="Description"
+                   formControlName="description">
+          </div>
+        </div>
+      </div>
+      <div class="uk-text-right">
+        <button class="uk-button uk-button-primary" type="submit">Save</button>
+        <button class="uk-button uk-button-default" (click)="onCancel()">Cancel</button>
+      </div>
     </fieldset>
-    </form>
-  </div>
+  </form>
+</div>
 

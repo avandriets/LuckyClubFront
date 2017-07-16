@@ -365,6 +365,10 @@ $internal-form-checkbox-indeterminate-image: "data:image/svg+xml;charset=UTF-8,%
 
 .uk-form-blank {
     background: none;
+    border-color: transparent;
+    &:disabled{
+      color: $base-body-color;
+    }
     @if(mixin-exists(hook-form-blank)) {@include hook-form-blank();}
 }
 

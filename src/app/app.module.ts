@@ -26,6 +26,10 @@ import { NewCategoryComponent } from './views/categories/new-category/new-catego
 import { EditCategoryComponent } from './views/categories/edit-category/edit-category.component';
 import { CategoryComponent } from './views/categories/category/category.component';
 import { UserComponent } from './views/user/user.component';
+import { LotComponent } from './views/lots/lot/lot.component';
+import { NewLotComponent } from './views/lots/new-lot/new-lot.component';
+import { EditLotComponent } from './views/lots/edit-lot/edit-lot.component';
+import {LotsServiseService} from "./views/lots/lots-servise.service";
 
 @NgModule({
   declarations: [
@@ -44,7 +48,10 @@ import { UserComponent } from './views/user/user.component';
     NewCategoryComponent,
     EditCategoryComponent,
     CategoryComponent,
-    UserComponent
+    UserComponent,
+    LotComponent,
+    NewLotComponent,
+    EditLotComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -55,7 +62,7 @@ import { UserComponent } from './views/user/user.component';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuardService, CategoriesServiceService, AuthHttpService],
+  providers: [AuthService, AuthGuardService, CategoriesServiceService, LotsServiseService, AuthHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

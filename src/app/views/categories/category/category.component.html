@@ -1,23 +1,38 @@
-<div class="uk-card uk-card-primary uk-card-body uk-margin">
+<div class="uk-card uk-card-header uk-card-primary uk-margin">
   <h3 class="">{{id}}
-    <button (click)="onEditCategory()" class="uk-button uk-button-default uk-margin-remove uk-align-right"><span uk-icon="icon: pencil"></span></button>
-    <button (click)="onDeleteCategory()" class="uk-button uk-button-default  uk-margin-remove  uk-align-right"><span uk-icon="icon: trash"></span></button>
+    <button (click)="onEditCategory()" class="uk-button uk-button-primary uk-margin-remove  uk-align-right">
+      <span uk-icon="icon: pencil"></span>
+    </button>
+    <button (click)="onDeleteCategory()" class="uk-button uk-button-default  uk-margin-remove  uk-align-right"><span
+      uk-icon="icon: trash"></span></button>
   </h3>
 </div>
 
 <div class="uk-card uk-card-body uk-background-muted">
-    <div class="uk-width-2-5@l">
-      <div class="uk-margin uk-grid-small" uk-grid>
-        <label class="uk-form-label uk-width-1-5@s">name</label>
-        <div class="uk-form-controls uk-width-4-5@s">
-          <input class="uk-input uk-form-blank" type="text" value={{name}}>
-        </div>
-      </div>
-      <div class="uk-margin uk-grid-small" uk-grid>
-        <label class="uk-form-label uk-width-1-5@s">description</label>
-        <div class="uk-form-controls uk-width-4-5@s">
-          <input class="uk-input uk-form-blank" type="text" value={{description}}>
-        </div>
+  <div class="uk-form-grid-horizontal">
+    <div *ngIf="picture_url" class="uk-margin uk-grid-small" uk-grid>
+      <label class="uk-form-label uk-width-1-5@s">Изображение категории</label>
+      <div class="uk-form-controls uk-width-4-5@s">
+          <img src="{{picture_url}}" class="uk-icon uk-icon-image" alt="">
       </div>
     </div>
+    <div *ngIf="parent_id" class="uk-margin uk-grid-small" uk-grid>
+      <label class="uk-form-label uk-width-1-5@s">Категория родителя</label>
+      <div class="uk-form-controls uk-width-4-5@s">
+        <input class="uk-input uk-form-blank" type="text" value={{parent_id}} disabled>
+      </div>
+    </div>
+    <div class="uk-margin uk-grid-small" uk-grid>
+      <label class="uk-form-label uk-width-1-5@s">Название категории</label>
+      <div class="uk-form-controls uk-width-4-5@s">
+        <input class="uk-input uk-form-blank" type="text" value={{name}} disabled>
+      </div>
+    </div>
+    <div class="uk-margin uk-grid-small" uk-grid>
+      <label class="uk-form-label uk-width-1-5@s">Описание категории</label>
+      <div class="uk-form-controls uk-width-4-5@s">
+        <input class="uk-input uk-form-blank" type="text" value={{description}} disabled>
+      </div>
+    </div>
+  </div>
 </div>
