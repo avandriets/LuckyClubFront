@@ -9,7 +9,7 @@
           <form role="form" [formGroup]="lotEditFG" (ngSubmit)="onSubmit()">
 
             <div class="uk-margin uk-grid-small uk-grid">
-              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="name">Name</label>
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="name">Название</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <input class="uk-input"
                        id="name"
@@ -19,17 +19,17 @@
               </div>
             </div>
             <div class="uk-margin uk-grid-small uk-grid">
-              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="description">Description</label>
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="description">Описание</label>
               <div class="uk-form-controls uk-width-4-5@s">
-                <input class="uk-input"
-                       id="description"
-                       type="text"
-                       placeholder="Description"
-                       formControlName="description">
+                <textarea class="uk-textarea"
+                          id="description"
+                          type="text"
+                          placeholder="Description"
+                          formControlName="description"></textarea>
               </div>
             </div>
             <div class="uk-margin uk-grid-small uk-grid">
-              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="description">category_id</label>
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="category_id">Категория</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <input class="uk-input"
                        id="category_id"
@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="uk-margin uk-grid-small uk-grid">
-              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="description">count_participants</label>
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="count_participants">Число участников</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <input class="uk-input"
                        id="count_participants"
@@ -49,7 +49,7 @@
               </div>
             </div>
             <div class="uk-margin uk-grid-small uk-grid">
-              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="description">price</label>
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="price">Цена</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <input class="uk-input"
                        id="price"
@@ -62,6 +62,25 @@
               <button class="uk-button uk-button-primary" type="submit">Save</button>
               <button class="uk-button uk-button-default" (click)="onCancel()">Cancel</button>
             </div>
+          </form>
+        </div>
+        <div class="uk-background-muted uk-padding ">
+          <form role="form" [formGroup]="lotEditImgFG" (ngSubmit)="onSubmit()">
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="img">Изображение</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <input class="uk-input"
+                       id="img"
+                       type="text"
+                       placeholder="Description"
+                       formControlName="price">
+              </div>
+            </div>
+            <div class="uk-text-right">
+              <button class="uk-button uk-button-primary" type="submit">Save</button>
+              <button class="uk-button uk-button-default" (click)="onCancel()">Cancel</button>
+            </div>
+
           </form>
         </div>
       </div>
