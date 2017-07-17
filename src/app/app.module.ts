@@ -30,6 +30,7 @@ import { LotComponent } from './views/lots/lot/lot.component';
 import { NewLotComponent } from './views/lots/new-lot/new-lot.component';
 import { EditLotComponent } from './views/lots/edit-lot/edit-lot.component';
 import {LotsServiseService} from "./views/lots/lots-servise.service";
+import { LotPanelComponent } from './views/lot-item/lot-item.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {LotsServiseService} from "./views/lots/lots-servise.service";
     UserComponent,
     LotComponent,
     NewLotComponent,
-    EditLotComponent
+    EditLotComponent,
+    LotPanelComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

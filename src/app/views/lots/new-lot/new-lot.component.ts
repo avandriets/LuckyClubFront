@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {LotsServiseService} from "../lots-servise.service";
+import {Router, ActivatedRoute} from "@angular/router";
+import {Lot} from "../lots.model";
+import {Category, CategoriesCollection} from "../../categories/categories.model";
+import {CategoriesServiceService} from "../../categories/categories-service.service";
 
 @Component({
   selector: 'lucky-new-lot',
@@ -8,22 +13,46 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 })
 export class NewLotComponent implements OnInit {
   lotCreateFG: FormGroup = null;
-  file:any = null;
+  file: any = null;
+  categoriesCollection: Category[] = [];
 
-  constructor(  ) {
-
-     this.lotCreateFG = new FormGroup({
-        name: new FormControl(null, Validators.required),
-        description: new FormControl(null, Validators.required),
-        category_id: new FormControl(null, Validators.required),
-        price:  new FormControl(null, Validators.required)
+  constructor(private lotSrv: LotsServiseService, private catSrv: CategoriesServiceService, private router: Router, private route: ActivatedRoute) {
+    this.lotCreateFG = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      category_id: new FormControl(null, Validators.required),
+      count_participants: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required)
     })
   }
 
   ngOnInit() {
+    this.catSrv.getCategories().subscribe(
+      (dataCat: Category[]) => {
+        this.categoriesCollection = new CategoriesCollection(dataCat).getParentCategories();
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
+    console.log('6:' + this.categoriesCollection);
   }
-  onSubmit(){
 
+  onSubmit() {
+    let data: Lot = new Lot();
+    data.name = this.lotCreateFG.get('name').value;
+    data.description = this.lotCreateFG.get('description').value;
+    data.category_id = this.lotCreateFG.get('category_id').value;
+    data.count_participants = this.lotCreateFG.get('count_participants').value;
+    data.price = this.lotCreateFG.get('price').value;
+
+    this.lotSrv.createLot(data).subscribe(
+      (outputData: Lot) => {
+        this.router.navigate([`../${outputData.id}`], {relativeTo: this.route});
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
   }
-
 }

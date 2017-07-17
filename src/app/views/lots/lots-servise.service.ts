@@ -23,6 +23,8 @@ export class LotsServiseService {
     return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}/page/${pageNumber}`).map(
       (inputData: Response) => {
 
+        console.log(inputData.json());
+
         let lotsArray: Lot[] = [];
         let lotObj = (inputData.json()).objects;
 
@@ -47,6 +49,25 @@ export class LotsServiseService {
     });
   }
 
+  getDrafts(): Observable<Lot[]>{
+    return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}get-drafts`, {}).map(
+      (inputData: Response) => {
+
+        console.log(inputData.json());
+
+        let lotsArray: Lot[] = [];
+        let lotObj = inputData.json();
+
+        for (let i of lotObj) {
+          lotsArray.push(new Lot(i));
+        }
+
+        this.lots = lotsArray;
+        return lotsArray;
+      }
+    );
+  }
+
   createLot(data: Lot): Observable<Lot> {
 
     // Input dta example
@@ -63,6 +84,7 @@ export class LotsServiseService {
     return this.authService.post(urlString, data).map(
       (data: Response) => {
         this.dataChange();
+        console.log(data.json());
         return new Lot(data.json());
       }
     ).catch((error: Response) => {
@@ -113,6 +135,7 @@ export class LotsServiseService {
       return Observable.throw(error);
     });
   }
+
 }
 
 //TODO edit lot, delete undelete lot, favorite, publish unpublish, getUsersLots, join lot
