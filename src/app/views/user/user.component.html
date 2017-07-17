@@ -1,9 +1,7 @@
 <div class="uk-container">
   <div class="uk-grid-collapse uk-child-width-1-4@m uk-child-width-1-5@l uk-grid-match uk-grid">
-    <div class="uk-first-column uk-section-default uk-visible@m" style="background: red">
-      <p>
-        menю
-      </p>
+    <div class="uk-first-column uk-section-default uk-visible@m">
+      <lucky-categories-filter></lucky-categories-filter>
     </div>
     <div class="uk-width-3-4@m  uk-width-4-5@l uk-section-default">
       <div class="uk-padding-small">
@@ -69,7 +67,7 @@
                     </div>
                   </div>
                   <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
-                    <label class="uk-margin-right">Смс-уведомления  </label>
+                    <label class="uk-margin-right">Смс-уведомления </label>
 
                     <label class="switch switch-3d switch-primary">
                       <input type="checkbox" class="switch-input" checked>
@@ -84,7 +82,8 @@
                     <label class="uk-form-label uk-margin">Количество игр <strong>50</strong></label>
                   </div>
                   <div class="uk-margin">
-                    <label class="uk-form-label"> Процент побед <span class="uk-text-success"><strong>20% </strong></span></label>
+                    <label class="uk-form-label"> Процент побед <span
+                      class="uk-text-success"><strong>20% </strong></span></label>
                   </div>
                 </div>
                 <div class="uk-width-5-5@l uk-text-right">
@@ -103,14 +102,23 @@
         </ul>
         <ul class="uk-switcher uk-margin">
           <li>
-                  <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
-                    <lucky-lot></lucky-lot>
-                    <lucky-lot></lucky-lot>
-                    <lucky-lot></lucky-lot>
-                    <lucky-lot></lucky-lot>
-                  </div>
+            Коллекция
+            <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
+              <lucky-lot-item></lucky-lot-item>
+              <lucky-lot-item></lucky-lot-item>
+              <lucky-lot-item></lucky-lot-item>
+              <lucky-lot-item></lucky-lot-item>
+            </div>
           </li>
-          <li>Hello again!</li>
+          <li>
+                         Избранное
+            <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
+              <lucky-lot-item></lucky-lot-item>
+              <lucky-lot-item></lucky-lot-item>
+              <lucky-lot-item></lucky-lot-item>
+              <lucky-lot-item></lucky-lot-item>
+            </div>
+          </li>
         </ul>
 
       </div>
