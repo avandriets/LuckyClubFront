@@ -9,8 +9,8 @@
               <th class="uk-table-shrink">id</th>
               <th class="uk-table-shrink">img</th>
               <th class="uk-table-expand">Название</th>
-              <th class="uk-width-small">Описание</th>
-              <th class="uk-width-medium">Категория</th>
+              <th class="uk-table-expand">Описание</th>
+              <th class="uk-width-small">Категория</th>
               <th class="uk-table-shrink">Число участников</th>
               <th class="uk-table-shrink uk-text-nowrap">Цена</th>
               <th class="uk-table-shrink uk-text-nowrap">Дата с по</th>
@@ -26,11 +26,11 @@
               <td class="uk-table-link">
                   <a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a>
               </td>
-              <td class="uk-text-truncate">{{lot.description}}
+              <td>{{lot.description}}
               </td>
               <td>{{lot.category_id}}</td>
-              <td class="uk-text-nowrap">{{lot.count_participants}}</td>
-              <td class="uk-text-nowrap">{{lot.price}}</td>
+              <td>{{lot.count_participants}}</td>
+              <td>{{lot.price}}</td>
               <td>{{lot.created_at | date: 'dd.MM.yyyy'}} - {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>
               <td class="uk-text-nowrap">{{lot.price}}</td>
               <td class="uk-text-nowrap">{{lot.deleted}}</td>

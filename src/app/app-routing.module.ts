@@ -30,11 +30,11 @@ const routes: Routes = [
     { path: ':id/edit', component: EditCategoryComponent},
     { path: ':id', component: CategoryComponent}
   ] },
-  { path: 'lots', component: LotsComponent, canActivate:[AuthGuardService] , children:[
-    { path: 'new', component: NewLotComponent},
-    { path: ':id/edit', component: EditLotComponent},
-    { path: ':id', component: LotComponent}
-  ] },
+  { path: 'lots', component: LotsComponent, canActivate:[AuthGuardService] },
+  { path: 'lots/new', component: NewLotComponent, canActivate:[AuthGuardService]},
+  { path: 'lots/:id/edit', component: EditLotComponent, canActivate:[AuthGuardService]},
+  { path: 'lots/:id', component: LotComponent, canActivate:[AuthGuardService]},
+
   { path: 'user', component: UserComponent},
 
   // { path: 'signin', component: SignInEmailComponent },

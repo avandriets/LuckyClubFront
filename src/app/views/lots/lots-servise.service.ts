@@ -38,9 +38,10 @@ export class LotsServiseService {
     );
   }
 
-  getCategoryById(id: number) {
+  getLotById(id: number) {
     return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}${id}`).map(
       (inputData: Response) => {
+        console.log('44' + inputData.json());
         return inputData.json();
       }
     ).catch((error: Response) => {

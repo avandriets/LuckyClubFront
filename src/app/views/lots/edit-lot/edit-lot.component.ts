@@ -31,7 +31,7 @@ export class EditLotComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.lotSrv.getCategoryById(this.id)
+        this.lotSrv.getLotById(this.id)
           .subscribe(
             (data) => {
               this.lot = data;
@@ -55,6 +55,13 @@ export class EditLotComponent implements OnInit {
           );
       }
     );
+  }
+  onSubmit() {
+        console.log("save");
+  }
+  onCancel() {
+    console.log(this.id);
+    this.router.navigate(['lots', this.id]);
   }
 
 }

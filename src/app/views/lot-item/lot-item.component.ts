@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lucky-lot-panel',
+  selector: 'lucky-lot-item',
   templateUrl: 'lot-item.component.html',
   styleUrls: ['lot-item.component.scss']
 })
