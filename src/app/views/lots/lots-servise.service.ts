@@ -39,7 +39,7 @@ export class LotsServiseService {
   }
 
   getLotById(id: number) {
-    return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}${id}`).map(
+    return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}${id}`, {}).map(
       (inputData: Response) => {
         console.log('44' + inputData.json());
         return inputData.json();
