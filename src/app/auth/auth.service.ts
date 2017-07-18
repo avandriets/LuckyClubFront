@@ -100,7 +100,6 @@ export class AuthService {
 
     return this.http.get(environment.hostUrl + Utils.profileMeUrl, options)
       .map((request: Response) => {
-        console.log(request.json());
         return request.json() as Users;
       })
       .catch((error: Response) => {
@@ -162,7 +161,6 @@ export class AuthService {
 
   getCurrentUser(): Users {
     let UserJSON = localStorage.getItem("current_user");
-    console.log(localStorage.getItem("current_user"));
     if (UserJSON != null) {
       return JSON.parse(UserJSON) as Users;
     } else {

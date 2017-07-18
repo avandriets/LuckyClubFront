@@ -8,7 +8,7 @@ import {Response, RequestOptionsArgs, RequestOptions, Headers, RequestMethod} fr
 
 
 @Injectable()
-export class CategoriesServiceService {
+export class CategoriesService {
 
   invokeEvent: Subject<any> = new Subject();
   constructor(private authService: AuthHttpService) {

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, Params} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {Category} from "../categories.model";
-import {CategoriesServiceService} from "../categories-service.service";
+import {CategoriesService} from "../categories-service.service";
 
 @Component({
   selector: 'lucky-category',
@@ -12,7 +12,7 @@ import {CategoriesServiceService} from "../categories-service.service";
 export class CategoryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private categoriesServiceService: CategoriesServiceService) {
+              private categoriesServiceService: CategoriesService) {
   }
 
   id: number = null;

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Params, ActivatedRoute, Router} from "@angular/router";
-import {CategoriesServiceService} from "../categories-service.service";
+import {CategoriesService} from "../categories-service.service";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Category, CategoriesCollection} from "../categories.model";
 
@@ -19,7 +19,7 @@ export class EditCategoryComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private categoriesServiceService: CategoriesServiceService) {
+              private categoriesServiceService: CategoriesService) {
 
     this.categoryEditFG = new FormGroup({
       parentCategory: new FormControl(null),

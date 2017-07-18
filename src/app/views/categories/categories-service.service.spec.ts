@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CategoriesServiceService } from './categories-service.service';
+import { CategoriesService } from './categories-service.service';
 
-describe('CategoriesServiceService', () => {
+describe('CategoriesService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CategoriesServiceService]
+      providers: [CategoriesService]
     });
   });
 
-  it('should ...', inject([CategoriesServiceService], (service: CategoriesServiceService) => {
+  it('should ...', inject([CategoriesService], (service: CategoriesService) => {
     expect(service).toBeTruthy();
   }));
 });

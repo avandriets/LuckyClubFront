@@ -4,7 +4,7 @@ import {LotsServiseService} from "../lots-servise.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Lot} from "../lots.model";
 import {Category, CategoriesCollection} from "../../categories/categories.model";
-import {CategoriesServiceService} from "../../categories/categories-service.service";
+import {CategoriesService} from "../../categories/categories-service.service";
 
 @Component({
   selector: 'lucky-new-lot',
@@ -16,7 +16,7 @@ export class NewLotComponent implements OnInit {
   file: any = null;
   categoriesCollection: Category[] = [];
 
-  constructor(private lotSrv: LotsServiseService, private catSrv: CategoriesServiceService, private router: Router, private route: ActivatedRoute) {
+  constructor(private lotSrv: LotsServiseService, private catSrv: CategoriesService, private router: Router, private route: ActivatedRoute) {
     this.lotCreateFG = new FormGroup({
       name: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
@@ -35,7 +35,6 @@ export class NewLotComponent implements OnInit {
         console.log(error)
       }
     );
-    console.log('6:' + this.categoriesCollection);
   }
 
   onSubmit() {

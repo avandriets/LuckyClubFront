@@ -20,7 +20,7 @@ import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component
 import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 import { AngularFireModule } from 'angularfire2';
 import {AngularFireAuthModule} from "angularfire2/auth/auth.module";
-import {CategoriesServiceService} from "./views/categories/categories-service.service";
+import {CategoriesService} from "./views/categories/categories-service.service";
 import {AuthHttpService} from "./helpers/auth-http.service";
 import { NewCategoryComponent } from './views/categories/new-category/new-category.component';
 import { EditCategoryComponent } from './views/categories/edit-category/edit-category.component';
@@ -66,7 +66,7 @@ import { CategoriesFilterComponent } from './views/filter/categories-filter/cate
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuardService, CategoriesServiceService, LotsServiseService, AuthHttpService],
+  providers: [AuthService, AuthGuardService, CategoriesService, LotsServiseService, AuthHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

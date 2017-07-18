@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoriesServiceService} from "../../categories/categories-service.service";
+import {CategoriesService} from "../../categories/categories-service.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Category, CategoriesCollection} from "../../categories/categories.model";
 
@@ -12,7 +12,7 @@ export class CategoriesFilterComponent implements OnInit {
 
   categoriesCollection: CategoriesCollection = new CategoriesCollection();
 
-  constructor(private catSrv: CategoriesServiceService,
+  constructor(private catSrv: CategoriesService,
               private router: Router,
               private route:ActivatedRoute) {
     this.catSrv.invokeEvent.subscribe(() => this.getDataFromServer());
@@ -25,7 +25,6 @@ export class CategoriesFilterComponent implements OnInit {
     this.catSrv.getCategories().subscribe(
       (data:Category[])=>{
         this.categoriesCollection = new CategoriesCollection(data);
-        console.log(data);
       }
     );
   }

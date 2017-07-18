@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Lot} from "../lots.model";
 import {Params, ActivatedRoute, Router} from "@angular/router";
 import {LotsServiseService} from "../lots-servise.service";
@@ -9,28 +9,23 @@ import {LotsServiseService} from "../lots-servise.service";
   styleUrls: ['./lot.component.scss']
 })
 export class LotComponent implements OnInit {
-    id: number = null;
-      lot: Lot = null;
 
-
+  id: number = 0;
+  lot: Lot = new Lot();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private lotSrv: LotsServiseService) { }
+              private lotSrv: LotsServiseService) {
+  }
 
-ngOnInit() {
+  ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.lotSrv.getLotById(this.id)
+        this.lotSrv.getLotByIdForAdmin(this.id)
           .subscribe(
             (data) => {
               this.lot = data;
-              console.log(this.lot);
-              // this.name = data.name;
-              // this.description = data.description;
-
-
             },
             (error) => {
               console.log(error);

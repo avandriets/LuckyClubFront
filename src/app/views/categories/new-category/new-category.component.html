@@ -34,8 +34,7 @@
             <div class="uk-form-controls uk-width-4-5@s">
               <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
                 <div class="uk-width-expand uk-first-column">
-                  <img *ngIf="file" class="uk-icon uk-icon-image" src="{{file}}"
-                       alt="">
+                  <img *ngIf="fileToShow" class="uk-icon uk-icon-image" src="{{fileToShow}}" alt="">
                   <div uk-form-custom="target: true">
                     <input type="file"
                            (change)="onFileChange($event)"

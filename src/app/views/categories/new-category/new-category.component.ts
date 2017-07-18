@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {CategoriesServiceService} from "../categories-service.service";
+import {CategoriesService} from "../categories-service.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Category} from "../categories.model";
 import {CategoriesCollection} from "../categories.model";
@@ -14,11 +14,11 @@ export class NewCategoryComponent implements OnInit {
 
   categoryCreateFG: FormGroup = null;
   file:any = null;
-  url;
 
   parentCategoriesList: Category[] = [];
+  private fileToShow: any;
 
-  constructor(private catSrv: CategoriesServiceService, private router: Router, private route: ActivatedRoute) {
+  constructor(private catSrv: CategoriesService, private router: Router, private route: ActivatedRoute) {
     this.categoryCreateFG = new FormGroup({
       parentCategory: new FormControl(null),
       imageFile: new FormControl(null),
@@ -31,25 +31,36 @@ export class NewCategoryComponent implements OnInit {
     this.parentCategoriesList = new CategoriesCollection(this.catSrv.categories).getParentCategories();
   }
 
-  onFileChange(event) {
-   // this.file = event.target.files[0];
-   // console.log( this.categoryCreateFG.imageFile.setValue());
+  onFileChange(e) {
 
+    let upFile = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
 
-
-     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.onload = (event:any) => {
-        this.file = event.target.result;
-      }
-
-      reader.readAsDataURL(event.target.files[0]);
+    if(!upFile){
+      return;
     }
+
+    let pattern = /image-*/;
+    let reader = new FileReader();
+
+    if (!upFile.type.match(pattern)) {
+      alert('invalid format');
+      this.categoryCreateFG.get('imageFile').setValue('');
+      return;
+    }
+
+    reader.onload = this._handleReaderLoaded.bind(this);
+    reader.readAsDataURL(upFile);
+    this.file = upFile;
+  }
+
+  _handleReaderLoaded(e) {
+    var reader = e.target;
+    this.fileToShow = reader.result;
   }
 
   onImageClear(){
     this.file = null;
+    this.fileToShow = null;
     this.categoryCreateFG.get('imageFile').setValue(null);
   }
 
@@ -58,7 +69,6 @@ export class NewCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-
     let data = {
       parent_id: this.categoryCreateFG.get('parentCategory').value,
       file: this.file,

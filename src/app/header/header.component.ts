@@ -35,7 +35,6 @@ export class HeaderComponent implements OnInit {
   }
 
   loginProcessStateChange(state: LoginStatusEnum) {
-    console.log(state);
 
     if(state != LoginStatusEnum.FinishError){
       this.currentLoginStatus = state;

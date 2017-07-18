@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoriesServiceService} from "./categories-service.service";
+import {CategoriesService} from "./categories-service.service";
 import {Category, CategoriesCollection} from "./categories.model";
 import {Router, ActivatedRoute, Params} from "@angular/router";
 
@@ -12,7 +12,7 @@ export class CategoriesComponent implements OnInit {
 
   categoriesCollection: CategoriesCollection = new CategoriesCollection();
 
-  constructor(private catSrv: CategoriesServiceService,
+  constructor(private catSrv: CategoriesService,
               private router: Router,
               private route:ActivatedRoute) {
 
@@ -27,7 +27,6 @@ export class CategoriesComponent implements OnInit {
     this.catSrv.getCategories().subscribe(
       (data:Category[])=>{
         this.categoriesCollection = new CategoriesCollection(data);
-        console.log(data);
       }
     );
   }

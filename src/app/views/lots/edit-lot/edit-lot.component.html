@@ -29,35 +29,40 @@
               </div>
             </div>
             <div class="uk-margin uk-grid-small uk-grid">
-              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="category_id">Категория</label>
+              <label class="uk-form-label uk-width-1-5@s uk-first-column">Категория</label>
               <div class="uk-form-controls uk-width-4-5@s">
-                <input class="uk-input"
-                       id="category_id"
-                       type="text"
-                       placeholder="Description"
-                       formControlName="category_id">
+                <select class="uk-select"
+                        name="category_id"
+                        formControlName="category_id">
+                  <option *ngFor="let parentItem of categoriesList" [value]="parentItem.id">
+                    {{parentItem.name}}
+                  </option>
+                </select>
               </div>
             </div>
+
             <div class="uk-margin uk-grid-small uk-grid">
               <label class="uk-form-label uk-width-1-5@s uk-first-column" for="count_participants">Число участников</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <input class="uk-input"
                        id="count_participants"
                        type="text"
-                       placeholder="Description"
+                       placeholder="Count participants"
                        formControlName="count_participants">
               </div>
             </div>
+
             <div class="uk-margin uk-grid-small uk-grid">
               <label class="uk-form-label uk-width-1-5@s uk-first-column" for="price">Цена</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <input class="uk-input"
                        id="price"
-                       type="text"
-                       placeholder="Description"
+                       type="number"
+                       placeholder="Price"
                        formControlName="price">
               </div>
             </div>
+
             <div class="uk-text-right">
               <button class="uk-button uk-button-primary" type="submit">Save</button>
               <button class="uk-button uk-button-default" (click)="onCancel()">Cancel</button>
@@ -65,23 +70,53 @@
           </form>
         </div>
         <div class="uk-background-muted uk-padding ">
-          <form role="form" [formGroup]="lotEditImgFG" (ngSubmit)="onSubmit()">
-            <div class="uk-margin uk-grid-small uk-grid">
-              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="img">Изображение</label>
+
+
+          <form role="form" [formGroup]="lotImgFG" (ngSubmit)="onSubmitImage()">
+
+            <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+              <label class="uk-form-label uk-width-1-5@s uk-first-column">Изображение</label>
               <div class="uk-form-controls uk-width-4-5@s">
-                <input class="uk-input"
-                       id="img"
-                       type="text"
-                       placeholder="Description"
-                       formControlName="price">
+                <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
+                  <div class="uk-width-expand uk-first-column">
+                    <img *ngIf="fileToShow" class="uk-icon uk-icon-image" src="{{fileToShow}}" alt="">
+                    <div uk-form-custom="target: true">
+                      <input type="file"
+                             (change)="onFileChange($event)"
+                             accept="image/*">
+                      <input class="uk-input uk-form-width-medium"
+                             formControlName="imageFile"
+                             type="text" placeholder="Select file" disabled>
+                    </div>
+                  </div>
+                  <div class="uk-width-auto uk-padding-remove">
+                    <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
+                      <span uk-icon="icon: close"></span>
+                    </button>
+                  </div>
+                </div>
+
               </div>
             </div>
+
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="descriptionImage">Описание</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <textarea class="uk-textarea"
+                          id="descriptionImage"
+                          type="text"
+                          placeholder="Description"
+                          formControlName="description"></textarea>
+              </div>
+            </div>
+
             <div class="uk-text-right">
               <button class="uk-button uk-button-primary" type="submit">Save</button>
-              <button class="uk-button uk-button-default" (click)="onCancel()">Cancel</button>
             </div>
 
           </form>
+
+
         </div>
       </div>
     </div>

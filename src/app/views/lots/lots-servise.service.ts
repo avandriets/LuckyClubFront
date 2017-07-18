@@ -19,11 +19,31 @@ export class LotsServiseService {
     this.invokeEvent.next();
   }
 
+  getLotByIdForAdmin(id: number): Observable<Lot> {
+    return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}${id}`, {}).map(
+      (inputData: Response) => {
+        return new Lot(inputData.json());
+      }
+    ).catch((error: Response) => {
+      console.log(error);
+      return Observable.throw(error);
+    });
+  }
+
+  getLotByIdForUser(id: number) {
+    return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}${id}`, {}).map(
+      (inputData: Response) => {
+        return inputData.json();
+      }
+    ).catch((error: Response) => {
+      console.log(error);
+      return Observable.throw(error);
+    });
+  }
+
   getLots(pageNumber: number = 1): Observable<Lot[]> {
     return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}/page/${pageNumber}`).map(
       (inputData: Response) => {
-
-        console.log(inputData.json());
 
         let lotsArray: Lot[] = [];
         let lotObj = (inputData.json()).objects;
@@ -38,23 +58,43 @@ export class LotsServiseService {
     );
   }
 
-  getLotById(id: number) {
-    return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}${id}`, {}).map(
+  getFavorites(): Observable<Lot[]> {
+    return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}get-favorites`).map(
       (inputData: Response) => {
-        console.log('44' + inputData.json());
-        return inputData.json();
+
+        let lotsArray: Lot[] = [];
+        let lotObj = inputData.json();
+
+        for (let i of lotObj) {
+          lotsArray.push(new Lot(i));
+        }
+
+        this.lots = lotsArray;
+        return lotsArray;
       }
-    ).catch((error: Response) => {
-      console.log(error);
-      return Observable.throw(error);
-    });
+    );
   }
 
   getDrafts(): Observable<Lot[]>{
     return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}get-drafts`, {}).map(
       (inputData: Response) => {
 
-        console.log(inputData.json());
+        let lotsArray: Lot[] = [];
+        let lotObj = inputData.json();
+
+        for (let i of lotObj) {
+          lotsArray.push(new Lot(i));
+        }
+
+        this.lots = lotsArray;
+        return lotsArray;
+      }
+    );
+  }
+
+  getDeleted(): Observable<Lot[]>{
+    return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}get-deleted`, {}).map(
+      (inputData: Response) => {
 
         let lotsArray: Lot[] = [];
         let lotObj = inputData.json();
@@ -71,21 +111,11 @@ export class LotsServiseService {
 
   createLot(data: Lot): Observable<Lot> {
 
-    // Input dta example
-    // lot_data = dict(
-    //             name='Lot',
-    //             description='Lot description',
-    //             category_id=child_id,
-    //             count_participants=10,
-    //             price=20.20
-    //         )
-
     let urlString = environment.hostUrl + Utils.lotsUrl;
 
     return this.authService.post(urlString, data).map(
       (data: Response) => {
         this.dataChange();
-        console.log(data.json());
         return new Lot(data.json());
       }
     ).catch((error: Response) => {
@@ -93,14 +123,14 @@ export class LotsServiseService {
     });
   }
 
-  addPicture(lot: Lot, picture: any): Observable<Picture>{
+  addPicture(lot: Lot, pictureData: {description: string, file: any}): Observable<Picture>{
     let input = new FormData();
 
-    if(picture.file){
-      input.append("file", picture.file);
+    if(pictureData.file){
+      input.append('file', pictureData.file);
     }
 
-    input.append("description", picture.description);
+    input.append('description', pictureData.description);
 
     let urlString = `${environment.hostUrl}${Utils.addPictureUrl}${lot.id}`;
 
@@ -129,6 +159,104 @@ export class LotsServiseService {
     let urlString = `${environment.hostUrl}${Utils.deletePictureUrl}${picture.id}`;
 
     return this.authService.delete(urlString).map(
+      (data: Response) => {
+        return data.json();
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  updateLot(editedLot: Lot): Observable<Lot> {
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${editedLot.id}`;
+
+    return this.authService.put(urlString, editedLot).map(
+      (data: Response) => {
+        this.dataChange();
+        return new Lot(data.json());
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  deleteLot(id: number): Observable<any> {
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${id}`;
+
+    return this.authService.delete(urlString).map(
+      (data: Response) => {
+        const retData = data.json();
+        return retData.success;
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  unDeleteLot(id: number): Observable<any> {
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${id}/undelete`;
+
+    return this.authService.post(urlString, {}).map(
+      (data: Response) => {
+        return data.json();
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  publishLot(id: number): Observable<any> {
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${id}/publish-lot`;
+
+    return this.authService.post(urlString, {}).map(
+      (data: Response) => {
+        return data.json();
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  unPublishLot(id: number): Observable<any> {
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${id}/un-publish-lot`;
+
+    return this.authService.post(urlString, {}).map(
+      (data: Response) => {
+        return data.json();
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  joinLot(id: number): Observable<any>{
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${id}/join-lot`;
+
+    return this.authService.post(urlString, {}).map(
+      (data: Response) => {
+        return data.json();
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  leaveLot(id: number): Observable<any>{
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${id}/leave-lot`;
+
+    return this.authService.post(urlString, {}).map(
+      (data: Response) => {
+        return data.json();
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  setFavorite(id: number): Observable<any>{
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${id}/set-favorite`;
+
+    return this.authService.post(urlString, {}).map(
       (data: Response) => {
         return data.json();
       }

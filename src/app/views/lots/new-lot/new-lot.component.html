@@ -15,8 +15,7 @@
                     class="uk-input"
                     type="text"
                     placeholder="Введите название лота"
-                    formControlName="name"
-                  >
+                    formControlName="name">
                 </div>
                 <div *ngIf="!lotCreateFG.get('name').valid && lotCreateFG.get('name').touched">
                   Необходимо внести название лота.
@@ -46,7 +45,7 @@
                   <!--formControlName="category_id">-->
 
                   <select class="uk-select"
-                          name="mappingvalues"
+                          name="category_id"
                           formControlName="category_id">
                     <option *ngFor="let parentItem of categoriesCollection" [value]="parentItem.id">
                       {{parentItem.name}}
