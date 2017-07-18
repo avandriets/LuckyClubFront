@@ -26,6 +26,7 @@ export class LotComponent implements OnInit {
           .subscribe(
             (data) => {
               this.lot = data;
+              console.log(this.lot.pictures);
             },
             (error) => {
               console.log(error);

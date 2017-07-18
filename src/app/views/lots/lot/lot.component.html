@@ -8,7 +8,7 @@
         <div class="uk-grid-medium uk-grid" uk-grid>
 
           <div class="uk-width-auto@m uk-first-column">
-            <lucky-lot-item></lucky-lot-item>
+            <lucky-lot-item [lot]="lot"></lucky-lot-item>
           </div>
           <div class="uk-width-expand@m">
             <div class="uk-card uk-background-muted uk-card-body ">
@@ -32,11 +32,10 @@
                 </div>
               </div>
             </div>
-            <p>Apple iPhone 7 128GB RED Screen (4.7 ", IPS, 1334x750) Apple A10 Fusion / main camera: 12 megapixels,
-              front camera: 7 megapixels / RAM 2 GB / 128 GB of internal memory / 3G / LTE / GPS / Nano-SIM / iOS 10
-              megapixels / RAM 2 GB / 128 GB of internal memory
-            </p>
-
+            <p>{{lot.description}}</p>
+            <div *ngFor="let picture of lot.getGallery()">
+              <img alt="{{picture.description}}" src="{{picture.picture_url}}">
+            </div>
           </div>
         </div>
       </div>

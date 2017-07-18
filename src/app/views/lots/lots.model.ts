@@ -15,6 +15,20 @@ export class Lot {
   pictures: Picture[];
   owner_profile: number;
 
+  getFirstPicture() {
+    if (!this.pictures || this.pictures.length==0 ) {
+      return null;
+    }
+    return this.pictures[0];
+  }
+
+  getGallery() {
+    if (this.pictures && this.pictures.length > 1) {
+      return this.pictures.slice(1, this.pictures.length);
+    }
+    return null;
+  }
+
 constructor(parameter?: Lot) {
     if (parameter) {
       this.id = parameter.id;

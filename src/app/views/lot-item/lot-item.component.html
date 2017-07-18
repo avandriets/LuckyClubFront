@@ -12,7 +12,8 @@
         <div class="empty_circle"></div>
       </div>
       <div class="uk-background-cover uk-position-relative uk-light"
-           style="background-image: url('assets/images/lots/lot_1.png');">
+           *ngIf="current_lot.pictures"
+           [ngStyle]="{'background-image': 'url(' + current_lot.getFirstPicture().picture_url + ')' }">
         <img alt="" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
       </div>
     </div>
@@ -20,7 +21,7 @@
       <div class="uk-lot-tagline">
         <small>Drems come true</small>
       </div>
-      <div class="uk-lot-prise">50</div>
+      <div class="uk-lot-prise">{{current_lot.price}}</div>
       <div class="uk-lot-logo-sm">
         <img src="assets/images/luckymarket.svg" alt="">
       </div>

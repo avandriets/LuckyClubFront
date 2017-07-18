@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+import {Lot} from "../lots/lots.model";
 
 @Component({
   selector: 'lucky-lot-item',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LotPanelComponent implements OnInit {
 
+  @Input('lot') current_lot: Lot = new Lot();
   constructor() { }
 
   ngOnInit() {
   }
-
 }
