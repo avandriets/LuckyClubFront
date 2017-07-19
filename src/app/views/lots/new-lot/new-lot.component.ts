@@ -47,7 +47,7 @@ export class NewLotComponent implements OnInit {
 
     this.lotSrv.createLot(data).subscribe(
       (outputData: Lot) => {
-        this.router.navigate([`../${outputData.id}`], {relativeTo: this.route});
+        this.router.navigate([`../${outputData.id}/edit`], {relativeTo: this.route});
       },
       (error) => {
         console.log(error)

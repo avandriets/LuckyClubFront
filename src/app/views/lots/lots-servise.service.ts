@@ -186,6 +186,7 @@ export class LotsServiseService {
     return this.authService.delete(urlString).map(
       (data: Response) => {
         const retData = data.json();
+        this.dataChange();
         return retData.success;
       }
     ).catch((error: Response) => {

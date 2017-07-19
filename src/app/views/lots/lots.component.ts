@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, Params} from "@angular/router";
 import {LotsServiseService} from "./lots-servise.service";
 import {Lot} from "./lots.model";
 import {Subscription} from "rxjs";
@@ -11,6 +11,7 @@ import {CategoriesCollection, Category} from "../categories/categories.model";
   styleUrls: ['./lots.component.scss']
 })
 export class LotsComponent implements OnInit {
+  id: number = 0;
   lots: Lot[] = [];
   private subscription: Subscription;
 
@@ -35,5 +36,20 @@ export class LotsComponent implements OnInit {
 
   onNewLot() {
     this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  onDestroy(kkk) {
+    //console.log('kkk: ' + kkk);
+    this.lotSrv.deleteLot(kkk).subscribe(
+      (data) => {
+
+          //this.lots[kkk].deleted = data;
+        console.log(data);
+
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
   }
 }
