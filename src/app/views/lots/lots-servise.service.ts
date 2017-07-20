@@ -19,6 +19,7 @@ export class LotsServiseService {
     this.invokeEvent.next();
   }
 
+
   getLotByIdForAdmin(id: number): Observable<Lot> {
     return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}${id}`, {}).map(
       (inputData: Response) => {

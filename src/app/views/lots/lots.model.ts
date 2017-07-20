@@ -28,6 +28,13 @@ export class Lot {
     }
     return null;
   }
+  getPrice(){
+    return Number(this.price);
+  }
+
+  getFinished_at(){
+    return this.updated_at;
+  }
 
 constructor(parameter?: Lot) {
     if (parameter) {

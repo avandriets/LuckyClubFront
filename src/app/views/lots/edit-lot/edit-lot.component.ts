@@ -68,7 +68,6 @@ export class EditLotComponent implements OnInit {
                       price: data.price
                     }
                   );
-
                 },
                 (error) => {
                   console.log(error);

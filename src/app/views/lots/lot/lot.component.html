@@ -24,9 +24,8 @@
                       розыгрыша
                     </div>
                     <div class="uk-card-footer uk-background-primary uk-light uk-padding uk-panel">
-                      <p class="uk-h1">25</p>
-                      Июня
-                      2017
+                      <p class="uk-h1">{{lot.getFinished_at() | date: 'dd'}}</p>
+                      {{lot.getFinished_at() | date: 'MMMM y'}}
                     </div>
                   </div>
                 </div>

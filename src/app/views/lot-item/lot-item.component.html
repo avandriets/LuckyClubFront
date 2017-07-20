@@ -21,7 +21,7 @@
       <div class="uk-lot-tagline">
         <small>Drems come true</small>
       </div>
-      <div class="uk-lot-prise">{{current_lot.price}}</div>
+      <div class="uk-lot-prise">{{current_lot.getPrice()}}</div>
       <div class="uk-lot-logo-sm">
         <img src="assets/images/luckymarket.svg" alt="">
       </div>
@@ -30,6 +30,6 @@
   </div>
   <div class="uk-post-card-small">
     <span class="uk-text-muted">Ожидаемая дата розыгрыша:</span><br>
-    <strong>22.06.2017</strong>
+    <strong>{{current_lot.getFinished_at() | date: 'dd.MM.yyyy'}}</strong>
   </div>
 </div>

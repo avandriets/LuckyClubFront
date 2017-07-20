@@ -44,6 +44,7 @@ export class NewLotComponent implements OnInit {
     data.category_id = this.lotCreateFG.get('category_id').value;
     data.count_participants = this.lotCreateFG.get('count_participants').value;
     data.price = this.lotCreateFG.get('price').value;
+  console.log(data.price);
 
     this.lotSrv.createLot(data).subscribe(
       (outputData: Lot) => {
@@ -54,4 +55,5 @@ export class NewLotComponent implements OnInit {
       }
     );
   }
+
 }
