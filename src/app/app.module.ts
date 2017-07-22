@@ -33,6 +33,7 @@ import {LotsServiseService} from "./views/lots/lots-servise.service";
 import { LotPanelComponent } from './views/lot-item/lot-item.component';
 import { CategoriesFilterComponent } from './views/filter/categories-filter/categories-filter.component';
 import { LuckyBoardComponent } from './views/lucky-board/lucky-board.component';
+import { LotItemGroupComponent } from './views/lot-item-group/lot-item-group.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { LuckyBoardComponent } from './views/lucky-board/lucky-board.component';
     EditLotComponent,
     LotPanelComponent,
     CategoriesFilterComponent,
-    LuckyBoardComponent
+    LuckyBoardComponent,
+    LotItemGroupComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

@@ -6,7 +6,7 @@
         <a class="uk-navbar-item uk-logo" [routerLink]="['/main']"><img class="" src="assets/images/luckymarket.svg" alt=""></a>
       </div>
       <div class="uk-navbar-left">
-        <ul class="uk-navbar-nav uk-subnav-divider uk-visible@m">
+        <ul class="uk-navbar-nav uk-visible@m">
           <li><a routerLink="/about">О Клубе</a></li>
           <li><a routerLink="/rules">Правила</a></li>
           <li><a [routerLink]="['/contacts']">Контакты</a></li>
@@ -25,7 +25,6 @@
             </select>
           </div>
           <button (click)="openDialog()" class="uk-button uk-button-primary uk-button-small">Submit</button>
-
         </form>
       </div>
     </div>

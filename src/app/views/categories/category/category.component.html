@@ -1,11 +1,13 @@
-<div class="uk-card uk-card-header uk-card-primary uk-margin">
-  <h3 class="">{{id}}
-    <button (click)="onEditCategory()" class="uk-button uk-button-primary uk-margin-remove  uk-align-right">
+<div class="uk-card uk-card-header uk-card-primary uk-margin uk-flex uk-flex-between uk-flex-middle ">
+  <h3 class="uk-margin-remove">Элемент каталога №{{id}} </h3>
+  <div class="uk-card-media uk-margin-remove">
+    <button (click)="onEditCategory()" class="uk-button uk-button-primary uk-margin-remove">
       <span uk-icon="icon: pencil"></span>
     </button>
-    <button (click)="onDeleteCategory()" class="uk-button uk-button-default  uk-margin-remove  uk-align-right"><span
-      uk-icon="icon: trash"></span></button>
-  </h3>
+    <button (click)="onDeleteCategory()" class="uk-button uk-button-primary uk-margin-remove">
+      <span uk-icon="icon: trash"></span>
+    </button>
+  </div>
 </div>
 
 <div class="uk-card uk-card-body uk-background-muted">
