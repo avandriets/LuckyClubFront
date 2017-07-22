@@ -84,7 +84,7 @@ export class EditCategoryComponent implements OnInit {
 
     this.categoriesServiceService.updateCategory(data).subscribe(
       (data: Category)=>{
-        this.router.navigate(['categories', this.id]);
+        this.router.navigate(['admin-categories', this.id]);
       },
       (error)=>{
         console.log('Error');
@@ -93,7 +93,7 @@ export class EditCategoryComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['categories', this.id]);
+    this.router.navigate(['admin-categories', this.id]);
   }
 
 }

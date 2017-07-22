@@ -5,7 +5,7 @@
         <div class="uk-card uk-card-header uk-card-primary uk-margin">
           <h3>Редактирование лота {{id}}</h3>
         </div>
-        <div class="uk-background-muted uk-padding ">
+        <div class="uk-background-muted uk-padding uk-form-grid-horizontal">
           <form role="form" [formGroup]="lotEditFG" (ngSubmit)="onSubmit()">
 
             <div class="uk-margin uk-grid-small uk-grid">
@@ -28,16 +28,16 @@
                           formControlName="description"></textarea>
               </div>
             </div>
-<!--            <div class="uk-margin uk-grid-small uk-grid">
-              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="description">Детальное описание</label>
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="full_description">Детальное описание</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <textarea class="uk-textarea"
-                          id="det_description"
+                          id="full_description"
                           type="text"
-                          placeholder="det_description"
-                          formControlName="det_description"></textarea>
+                          placeholder="full_description"
+                          formControlName="full_description"></textarea>
               </div>
-            </div>-->
+            </div>
             <div class="uk-margin uk-grid-small uk-grid">
               <label class="uk-form-label uk-width-1-5@s uk-first-column">Категория</label>
               <div class="uk-form-controls uk-width-4-5@s">
@@ -75,7 +75,7 @@
 
             <div class="uk-text-right">
               <button class="uk-button uk-button-primary" type="submit">Save</button>
-              <button class="uk-button uk-button-default" (click)="onCancel1112()">Cancel</button>
+              <a class="uk-button uk-button-default" (click)="onCancel()">Cancel</a>
             </div>
           </form>
         </div>
@@ -84,7 +84,7 @@
 
           <form role="form" [formGroup]="lotImgFG" (ngSubmit)="onSubmitImage()">
 
-            <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+            <div class="uk-margin uk-grid-small uk-grid uk-form-grid-horizontal" uk-grid>
               <label class="uk-form-label uk-width-1-5@s uk-first-column">Изображение</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
@@ -120,11 +120,27 @@
               </div>
             </div>
 
-            <div class="uk-text-right">
+            <div class="uk-text-right uk-margin ">
               <button class="uk-button uk-button-primary" type="submit">Save</button>
             </div>
 
           </form>
+
+          <!--<div class="uk-child-width-1-5" uk-grid>-->
+            <!--<div *ngFor="let picture of lot.pictures">-->
+              <!--<div class="uk-link-muted uk-text-center">-->
+                <!--<figure>-->
+                  <!--<img src="{{picture.picture_url}}" alt="{{picture.description}}">-->
+                  <!--<figcaption class="uk-flex uk-flex-between uk-flex-middle">-->
+                    <!--{{picture.description}}-->
+                    <!--<button type="button" (click)="onDeletePicture()" class="uk-button uk-button-default">-->
+                      <!--<span uk-icon="icon: close"></span>-->
+                    <!--</button>-->
+                  <!--</figcaption>-->
+                <!--</figure>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
 
         </div>

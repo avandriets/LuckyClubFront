@@ -1,12 +1,15 @@
 <div class="uk-card uk-card-header uk-card-primary uk-margin uk-flex uk-flex-between uk-flex-middle ">
   <h3 class="uk-margin-remove">Элемент каталога №{{id}} </h3>
   <div class="uk-card-media uk-margin-remove">
-    <button (click)="onEditCategory()" class="uk-button uk-button-primary uk-margin-remove">
+    <a (click)="onNewCategory()" class="uk-button uk-button-primary uk-margin-remove">
+      <span uk-icon="icon: plus"></span>
+    </a>
+    <a (click)="onEditCategory()" class="uk-button uk-button-primary uk-margin-remove">
       <span uk-icon="icon: pencil"></span>
-    </button>
-    <button (click)="onDeleteCategory()" class="uk-button uk-button-primary uk-margin-remove">
+    </a>
+    <a (click)="onDeleteCategory()" class="uk-button uk-button-primary uk-margin-remove">
       <span uk-icon="icon: trash"></span>
-    </button>
+    </a>
   </div>
 </div>
 

@@ -37,10 +37,13 @@ export class LotComponent implements OnInit {
     }
 
     onEditLot() {
-        this.router.navigate(['lot/edit'], {relativeTo: this.route});
+        this.router.navigate(['edit'], {relativeTo: this.route});
     }
 
     onDeleteLot() {
 
+    }
+    onNewLot(){
+        this.router.navigate(['../ttt'], {relativeTo: this.route});
     }
 }

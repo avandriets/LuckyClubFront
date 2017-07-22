@@ -5,12 +5,15 @@
         <div class="uk-card uk-card-header uk-card-primary uk-margin uk-flex uk-flex-between uk-flex-middle ">
           <h3 class="uk-margin-remove">Лот №{{id}} </h3>
           <div class="uk-card-media uk-margin-remove">
-            <button (click)="onEditLot()" class="uk-button uk-button-primary uk-margin-remove">
+            <a (click)="onNewLot()" class="uk-button uk-button-primary uk-margin-remove">
+              <span uk-icon="icon: plus"></span>
+            </a>
+            <a (click)="onEditLot()" class="uk-button uk-button-primary uk-margin-remove">
               <span uk-icon="icon: pencil"></span>
-            </button>
-            <button (click)="onDeleteLot()" class="uk-button uk-button-primary uk-margin-remove">
+            </a>
+            <a (click)="onDeleteLot()" class="uk-button uk-button-primary uk-margin-remove">
               <span uk-icon="icon: trash"></span>
-            </button>
+            </a>
           </div>
         </div>
         <div class="uk-grid-medium uk-grid" uk-grid>
@@ -39,18 +42,18 @@
               </div>
             </div>
             <p>{{lot.description}}</p>
-            <p>{{lot.det_description}}</p>
+            <p>{{lot.full_description}}</p>
 
-            <div class="uk-child-width-1-5" uk-grid uk-lightbox>
-              <div *ngFor="let picture of lot.getGallery()">
-                <a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}" type="image">
-                  <figure>
-                    <img src="{{picture.picture_url}}" width="400" alt="">
-                    <figcaption class="uk-margin-small">{{picture.description}}</figcaption>
-                  </figure>
-                </a>
-              </div>
-            </div>
+            <!--<div class="uk-child-width-1-5" uk-grid uk-lightbox>-->
+              <!--<div *ngFor="let picture of lot.getGallery()">-->
+                <!--<a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}" type="image">-->
+                  <!--<figure>-->
+                    <!--<img src="{{picture.picture_url}}" width="400" alt="">-->
+                    <!--<figcaption class="uk-margin-small">{{picture.description}}</figcaption>-->
+                  <!--</figure>-->
+                <!--</a>-->
+              <!--</div>-->
+            <!--</div>-->
 
           </div>
         </div>

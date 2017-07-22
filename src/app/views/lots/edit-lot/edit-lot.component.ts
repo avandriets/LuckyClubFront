@@ -30,6 +30,7 @@ export class EditLotComponent implements OnInit {
     this.lotEditFG = new FormGroup({
       name: new FormControl(null),
       description: new FormControl(null),
+      full_description: new FormControl(null),
       category_id: new FormControl(null, Validators.required),
       count_participants: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required)
@@ -63,6 +64,7 @@ export class EditLotComponent implements OnInit {
                     {
                       name: data.name,
                       description: data.description,
+                      full_description: data.full_description,
                       category_id: data.category_id,
                       count_participants: data.count_participants,
                       price: data.price
@@ -86,6 +88,7 @@ export class EditLotComponent implements OnInit {
     data.id = this.id;
     data.name = this.lotEditFG.get('name').value;
     data.description = this.lotEditFG.get('description').value;
+    data.full_description = this.lotEditFG.get('full_description').value;
     data.category_id = this.lotEditFG.get('category_id').value;
     data.count_participants = this.lotEditFG.get('count_participants').value;
     data.price = this.lotEditFG.get('price').value;
@@ -100,9 +103,8 @@ export class EditLotComponent implements OnInit {
     );
   }
 
-  onCancel1112() {
-   //this.router.navigate(['admin-lots/admin-lots', this.id]);
-    console.log("dfe");
+  onCancel() {
+   this.router.navigate(['admin-lots', this.id]);
   }
 
   onFileChange(e) {
@@ -151,6 +153,18 @@ export class EditLotComponent implements OnInit {
         console.log(error)
       }
     );
+  }
+  onDeletePicture(){
+    // this.lotSrv.deletePicture(this.lot.pictures).subscribe(
+    //     (outputData: Picture) => {
+    //       // this.router.navigate([`../${outputData.id}`], {relativeTo:this.route});
+    //       // console.log(outputData);
+    //     },
+    //     (error) =>{
+    //       console.log(error)
+    //     }
+    // );
+    console.log("ijoj");
   }
 
 }

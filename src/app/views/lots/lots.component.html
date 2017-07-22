@@ -3,19 +3,18 @@
         <div class="uk-section-default">
             <div class="uk-padding-small">
                 <div class="uk-overflow-auto">
-                    <table class="uk-table uk-table-divider uk-table-hover">
+                    <table class="uk-table uk-table-responsive uk-table-divider uk-table-hover">
                         <thead>
                         <tr>
                             <th class="uk-table-shrink">id</th>
                             <th class="uk-table-shrink">img</th>
-                            <th class="uk-table-expand">Название / Описание / Детальное описание</th>
+                            <th>Название / Описание / Детальное описание</th>
                             <th class="uk-table-shrink">Категория</th>
                             <th class="uk-table-shrink">Число участников</th>
                             <th class="uk-table-shrink uk-text-nowrap">Цена</th>
                             <th class="uk-table-shrink uk-text-nowrap">Дата с по</th>
                             <th class="uk-table-shrink uk-text-nowrap">Статус</th>
-                            <th class="uk-table-shrink uk-text-nowrap">Удалено</th>
-                            <th></th>
+                            <th class="uk-table-shrink uk-text-nowrap">Действия</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,11 +38,14 @@
                                 <div *ngIf="lot.deleted">Удалено</div>
                             </td>
                             <td>
-                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block"
-                                   routerLink='{{lot.id}}/edit'><span uk-icon="icon: pencil"></span> Редактироать</a>
-                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block">опубликовать</a>
-                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block"
-                                   (click)="onDestroy(lot.id)"><span uk-icon="icon: close"></span> Удалить</a>
+                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                                   routerLink='{{lot.id}}/edit'>
+                                    <span uk-icon="icon: pencil" class="uk-margin-small-right uk-icon"></span> Редактироать</a>
+                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left">
+                                    <span uk-icon="icon: laptop" class="uk-margin-small-right uk-icon"></span> Oпубликовать</a>
+                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                                   (click)="onDestroy(lot.id)">
+                                    <span uk-icon="icon: close" class="uk-margin-small-right uk-icon"></span> Удалить</a>
                             </td>
                         </tr>
                         </tbody>
