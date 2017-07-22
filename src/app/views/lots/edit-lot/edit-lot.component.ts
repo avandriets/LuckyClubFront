@@ -100,8 +100,9 @@ export class EditLotComponent implements OnInit {
     );
   }
 
-  onCancel() {
-    this.router.navigate(['lots', this.id]);
+  onCancel1112() {
+   //this.router.navigate(['admin-lots/admin-lots', this.id]);
+    console.log("dfe");
   }
 
   onFileChange(e) {

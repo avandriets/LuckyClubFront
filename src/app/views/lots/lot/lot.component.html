@@ -1,20 +1,18 @@
 <div class="uk-offcanvas-content">
   <div class="uk-container">
     <div class="uk-section-default">
-
-      <div class="uk-card uk-card-header uk-card-primary uk-margin uk-flex uk-flex-between uk-flex-middle ">
-        <h3 class="uk-margin-remove">Лот №{{id}} </h3>
-        <div class="uk-card-media uk-margin-remove">
-          <button (click)="onEditLot()" class="uk-button uk-button-primary uk-margin-remove">
-            <span uk-icon="icon: pencil"></span>
-          </button>
-          <button (click)="onDeleteLot()" class="uk-button uk-button-primary uk-margin-remove">
-            <span uk-icon="icon: trash"></span>
-          </button>
-        </div>
-      </div>
-
       <div class="uk-padding-small">
+        <div class="uk-card uk-card-header uk-card-primary uk-margin uk-flex uk-flex-between uk-flex-middle ">
+          <h3 class="uk-margin-remove">Лот №{{id}} </h3>
+          <div class="uk-card-media uk-margin-remove">
+            <button (click)="onEditLot()" class="uk-button uk-button-primary uk-margin-remove">
+              <span uk-icon="icon: pencil"></span>
+            </button>
+            <button (click)="onDeleteLot()" class="uk-button uk-button-primary uk-margin-remove">
+              <span uk-icon="icon: trash"></span>
+            </button>
+          </div>
+        </div>
         <div class="uk-grid-medium uk-grid" uk-grid>
           <div class="uk-width-auto@m uk-first-column">
             <lucky-lot-item [lot]="lot"></lucky-lot-item>
@@ -41,9 +39,19 @@
               </div>
             </div>
             <p>{{lot.description}}</p>
-            <div *ngFor="let picture of lot.getGallery()">
-              <img alt="{{picture.description}}" src="{{picture.picture_url}}">
+            <p>{{lot.det_description}}</p>
+
+            <div class="uk-child-width-1-5" uk-grid uk-lightbox>
+              <div *ngFor="let picture of lot.getGallery()">
+                <a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}" type="image">
+                  <figure>
+                    <img src="{{picture.picture_url}}" width="400" alt="">
+                    <figcaption class="uk-margin-small">{{picture.description}}</figcaption>
+                  </figure>
+                </a>
+              </div>
             </div>
+
           </div>
         </div>
       </div>

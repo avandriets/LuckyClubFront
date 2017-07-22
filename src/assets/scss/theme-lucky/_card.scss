@@ -6,8 +6,13 @@
    // border: $global-border-width solid $global-border;
 }
 
+$text-shadow: 2px 2px 2px rgba( 0, 0, 0, 0.75);
 $prise-width: 3.6rem;
 .uk-panel-lot {
+  h3{
+    text-shadow: $text-shadow;
+    line-height: 1.2;
+  }
   .uk-lot-name-card{
     text-transform: uppercase;
     font-size: 9px;
@@ -32,7 +37,7 @@ $prise-width: 3.6rem;
     }
     .uk-lot-prise {
       background: $global-primary-background;
-      text-shadow: 2px 2px 2px $global-primary-dark-background;
+      text-shadow: $text-shadow;
       height: $prise-width;
       width: $prise-width;
       line-height: $prise-width - .4rem;
