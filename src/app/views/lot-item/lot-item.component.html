@@ -14,7 +14,7 @@
         <div class="empty_circle"></div>
       </div>
       <div class="uk-background-cover uk-position-relative uk-light"
-           *ngIf="current_lot.pictures"
+           *ngIf="current_lot.getFirstPicture()"
            [ngStyle]="{'background-image': 'url(' + current_lot.getFirstPicture().picture_url + ')' }">
         <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{current_lot.name}}</h3>
         <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">

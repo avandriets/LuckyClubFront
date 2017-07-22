@@ -20,11 +20,12 @@
                         <tbody>
                         <tr *ngFor="let lot of lots">
                             <td>{{lot.id}}</td>
-                            <td><img class="uk-preserve-width" src="assets/images/lots/lot_1.png" width="40" alt="">
+                            <td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}" width="40" alt="">
                             </td>
                             <td class="uk-table-link">
                                 <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a></h2>
-                                {{lot.description}}
+                                <p>{{lot.description}}</p>
+                                {{lot.full-description}}
                             </td>
                             <td>{{lot.category_id}}</td>
                             <td>{{lot.count_participants}}</td>

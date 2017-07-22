@@ -43,18 +43,16 @@
             </div>
             <p>{{lot.description}}</p>
             <p>{{lot.full_description}}</p>
-
-            <!--<div class="uk-child-width-1-5" uk-grid uk-lightbox>-->
-              <!--<div *ngFor="let picture of lot.getGallery()">-->
-                <!--<a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}" type="image">-->
-                  <!--<figure>-->
-                    <!--<img src="{{picture.picture_url}}" width="400" alt="">-->
-                    <!--<figcaption class="uk-margin-small">{{picture.description}}</figcaption>-->
-                  <!--</figure>-->
-                <!--</a>-->
-              <!--</div>-->
-            <!--</div>-->
-
+            <div class="uk-child-width-1-5" uk-grid uk-lightbox>
+              <div *ngFor="let picture of lot.getGallery()">
+                <a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}" type="image">
+                  <figure>
+                    <img src="{{picture.picture_url}}" width="400" alt="">
+                    <figcaption class="uk-margin-small">{{picture.description}}</figcaption>
+                  </figure>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

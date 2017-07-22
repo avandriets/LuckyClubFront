@@ -26,7 +26,7 @@ export class LotComponent implements OnInit {
                     .subscribe(
                         (data) => {
                             this.lot = data;
-                            console.log(this.lot.pictures);
+                            //console.log(this.lot.pictures);
                         },
                         (error) => {
                             console.log(error);
@@ -44,6 +44,6 @@ export class LotComponent implements OnInit {
 
     }
     onNewLot(){
-        this.router.navigate(['../ttt'], {relativeTo: this.route});
+        this.router.navigate(['admin-lots/new']);
     }
 }

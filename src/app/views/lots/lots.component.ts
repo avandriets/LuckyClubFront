@@ -15,7 +15,10 @@ export class LotsComponent implements OnInit {
   lots: Lot[] = [];
   private subscription: Subscription;
 
-  constructor(private lotSrv: LotsServiseService, private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private lotSrv: LotsServiseService,
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -29,7 +32,7 @@ export class LotsComponent implements OnInit {
     this.lotSrv.getDrafts().subscribe(
       (data: Lot[]) => {
         this.lots = data;
-        console.log(this.lots);
+        //console.log(this.lots);
       }
     );
   }
