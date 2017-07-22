@@ -49,11 +49,12 @@ constructor(parameter?: Lot) {
       this.deleted = parameter.deleted;
       this.winner_id = parameter.winner_id;
       this.count_participants = parameter.count_participants;
-      this.price = parameter.price;
       this.owner_id = parameter.owner_id;
       this.created_at = parameter.created_at;
       this.updated_at = parameter.updated_at;
       this.owner_profile = parameter.owner_profile;
+
+      this.price = Number(parameter.price);
 
       this.pictures = [];
       for(let i of parameter.pictures){
