@@ -2,6 +2,7 @@ export class Lot {
   id: number;
   name: string;
   description: string;
+  det_description: string;
   category_id: number;
   published: boolean;
   finished: boolean;
@@ -41,6 +42,7 @@ constructor(parameter?: Lot) {
       this.id = parameter.id;
       this.name = parameter.name;
       this.description = parameter.description;
+      this.det_description = parameter.description;
       this.category_id = parameter.category_id;
       this.published = parameter.published;
       this.finished = parameter.finished;

@@ -4,36 +4,43 @@ import {Params, ActivatedRoute, Router} from "@angular/router";
 import {LotsServiseService} from "../lots-servise.service";
 
 @Component({
-  selector: 'lucky-lot',
-  templateUrl: './lot.component.html',
-  styleUrls: ['./lot.component.scss']
+    selector: 'lucky-lot',
+    templateUrl: './lot.component.html',
+    styleUrls: ['./lot.component.scss']
 })
 export class LotComponent implements OnInit {
 
-  id: number = 0;
-  lot: Lot = new Lot();
+    id: number = 0;
+    lot: Lot = new Lot();
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private lotSrv: LotsServiseService) {
-  }
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private lotSrv: LotsServiseService) {
+    }
 
-  ngOnInit() {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.lotSrv.getLotByIdForAdmin(this.id)
-          .subscribe(
-            (data) => {
-              this.lot = data;
-              console.log(this.lot.pictures);
-            },
-            (error) => {
-              console.log(error);
+    ngOnInit() {
+        this.route.params.subscribe(
+            (params: Params) => {
+                this.id = +params['id'];
+                this.lotSrv.getLotByIdForAdmin(this.id)
+                    .subscribe(
+                        (data) => {
+                            this.lot = data;
+                            console.log(this.lot.pictures);
+                        },
+                        (error) => {
+                            console.log(error);
+                        }
+                    );
             }
-          );
-      }
-    );
-  }
+        );
+    }
 
+    onEditLot() {
+        this.router.navigate(['lot/edit'], {relativeTo: this.route});
+    }
+
+    onDeleteLot() {
+
+    }
 }

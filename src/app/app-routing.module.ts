@@ -33,13 +33,18 @@ const routes: Routes = [
     ]
   },
   {
-      path: 'admin-lots', component: LotsComponent, canActivate: [AuthGuardService], children: [
-        {path: 'lots/new', component: NewLotComponent},
-        {path: 'lots/:id/edit', component: EditLotComponent},
-        {path: 'lots/:id', component: LotComponent}
-    ]
+      path: 'admin-lots', component: LotsComponent, canActivate: [AuthGuardService]
+    // , children: [
+    //     {path: 'lots/new', component: NewLotComponent},
+    //     {path: 'lots/:id/edit', component: EditLotComponent},
+    //     {path: 'lots/:id', component: LotComponent}
+    // ]
   },
-  { path: 'user', component: UserComponent},
+
+  {path: 'admin-lots/new', component: NewLotComponent},
+  {path: 'admin-lots/:id/edit', component: EditLotComponent},
+  {path: 'admin-lots/:id', component: LotComponent},
+  {path: 'user', component: UserComponent}
 
   // { path: 'signin', component: SignInEmailComponent },
   // { path: 'signup', component: SignUpEmailComponent }

@@ -3,18 +3,28 @@
     <div class="uk-card-header uk-grid-match uk-child-width-1-4 uk-grid uk-padding-remove-bottom">
       <p class="uk-progress-value uk-width-1-4 uk-text-muted">50/100</p>
       <p class="uk-width-1-2 uk-text-center uk-lot-name-card"><span>Collectible card</span></p>
-      <p class="uk-width-1-4 uk-text-right"><a class="uk-icon-link uk-icon" uk-icon="icon: star"></a>
+      <p class="uk-width-1-4 uk-text-right">
+        <!--<a class="uk-icon-link uk-icon" uk-icon="icon: star"></a>-->
+        <a class="uk-icon uk-icon-image uk-icon-full-star"></a>
       </p>
     </div>
     <div class="uk-card-body uk-padding-remove-top uk-padding-remove-bottom">
-      <div class="uk-margin-small-bottom uk-margin-xsmall-top">
+      <div class="uk-margin-small-bottom uk-margin-small-top">
         <progress class="uk-progress uk-margin-remove" value="50" max="100"></progress>
         <div class="empty_circle"></div>
       </div>
       <div class="uk-background-cover uk-position-relative uk-light"
            *ngIf="current_lot.pictures"
            [ngStyle]="{'background-image': 'url(' + current_lot.getFirstPicture().picture_url + ')' }">
-        <img alt="" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
+        <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{current_lot.name}}</h3>
+        <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
+        <img alt="won" class="uk-position-absolute uk-position-bottom-right " src="assets/images/stamp/won.png">
+      </div>
+      <div class="uk-background-cover uk-position-relative uk-light"
+           *ngIf="!current_lot.pictures">
+        <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{current_lot.name}}</h3>
+        <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
+        <img alt="played" class="uk-position-absolute uk-position-bottom-right " src="assets/images/stamp/played.png">
       </div>
     </div>
     <div class="uk-card-footer uk-flex">

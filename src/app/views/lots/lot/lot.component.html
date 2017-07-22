@@ -1,12 +1,21 @@
 <div class="uk-offcanvas-content">
   <div class="uk-container">
     <div class="uk-section-default">
+
+      <div class="uk-card uk-card-header uk-card-primary uk-margin uk-flex uk-flex-between uk-flex-middle ">
+        <h3 class="uk-margin-remove">Лот №{{id}} </h3>
+        <div class="uk-card-media uk-margin-remove">
+          <button (click)="onEditLot()" class="uk-button uk-button-primary uk-margin-remove">
+            <span uk-icon="icon: pencil"></span>
+          </button>
+          <button (click)="onDeleteLot()" class="uk-button uk-button-primary uk-margin-remove">
+            <span uk-icon="icon: trash"></span>
+          </button>
+        </div>
+      </div>
+
       <div class="uk-padding-small">
-        <p>lot component</p>
-        {{id}}
-
         <div class="uk-grid-medium uk-grid" uk-grid>
-
           <div class="uk-width-auto@m uk-first-column">
             <lucky-lot-item [lot]="lot"></lucky-lot-item>
           </div>
@@ -17,8 +26,8 @@
                   <p class="uk-text-lead">Обладатель данной коллекционной карты примет участие в бесплатном розыгыше</p>
                   <h2 class="uk-article-title uk-grid-margin">{{lot.name}}</h2>
                 </div>
-                <div class="uk-width-auto@m" style="width:200px;">
-                  <div class="uk-card uk-card-small uk-card-default  uk-text-center">
+                <div class="uk-width-auto@m">
+                  <div class="uk-width-small uk-card uk-card-small uk-card-default  uk-text-center">
                     <div class="uk-card-header">
                       Ожидаемая дата
                       розыгрыша
