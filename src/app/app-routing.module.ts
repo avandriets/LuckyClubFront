@@ -20,21 +20,25 @@ import {LotComponent} from "./views/lots/lot/lot.component";
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: 'main', component: MainComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'rules', component: RulesComponent },
-  { path: 'contacts', component: ContactsComponent },
-  { path: 'categories', component: CategoriesComponent, canActivate:[AuthGuardService] , children:[
-    { path: 'new', component: NewCategoryComponent},
-    { path: ':id/edit', component: EditCategoryComponent},
-    { path: ':id', component: CategoryComponent}
-  ] },
-  { path: 'lots', component: LotsComponent, canActivate:[AuthGuardService] },
-  { path: 'lots/new', component: NewLotComponent, canActivate:[AuthGuardService]},
-  { path: 'lots/:id/edit', component: EditLotComponent, canActivate:[AuthGuardService]},
-  { path: 'lots/:id', component: LotComponent, canActivate:[AuthGuardService]},
-
+  {path: '', redirectTo: 'main', pathMatch: 'full'},
+  {path: 'main', component: MainComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'rules', component: RulesComponent},
+  {path: 'contacts', component: ContactsComponent},
+  {
+      path: 'admin-categories', component: CategoriesComponent, canActivate: [AuthGuardService], children: [
+        {path: 'new', component: NewCategoryComponent},
+        {path: ':id/edit', component: EditCategoryComponent},
+        {path: ':id', component: CategoryComponent}
+    ]
+  },
+  {
+      path: 'admin-lots', component: LotsComponent, canActivate: [AuthGuardService], children: [
+        {path: 'lots/new', component: NewLotComponent},
+        {path: 'lots/:id/edit', component: EditLotComponent},
+        {path: 'lots/:id', component: LotComponent}
+    ]
+  },
   { path: 'user', component: UserComponent},
 
   // { path: 'signin', component: SignInEmailComponent },
