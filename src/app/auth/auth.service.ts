@@ -103,7 +103,6 @@ export class AuthService {
         return request.json() as Users;
       })
       .catch((error: Response) => {
-        // console.log(error);
         return Observable.throw(error);
       });
   }
