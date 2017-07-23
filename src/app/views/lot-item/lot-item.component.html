@@ -13,19 +13,20 @@
         <progress class="uk-progress uk-margin-remove" value="50" max="100"></progress>
         <div class="empty_circle"></div>
       </div>
-      <div class="uk-background-cover uk-position-relative uk-light"
+      <a class="uk-background-cover uk-position-relative uk-light uk-display-block"
            *ngIf="item_lot.getFirstPicture()"
-           [ngStyle]="{'background-image': 'url(' + item_lot.getFirstPicture().picture_url + ')' }">
+           [ngStyle]="{'background-image': 'url(' + item_lot.getFirstPicture().picture_url + ')' }"
+      (click)="onMore()">
         <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{item_lot.name}}</h3>
         <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
         <img alt="won" class="uk-position-absolute uk-position-bottom-right " src="assets/images/stamp/won.png">
-      </div>
-      <div class="uk-background-cover uk-position-relative uk-light"
+      </a>
+      <a class="uk-background-cover uk-position-relative uk-light"
            *ngIf="!item_lot.getFirstPicture()">
         <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{item_lot.name}}</h3>
         <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
         <img alt="played" class="uk-position-absolute uk-position-bottom-right " src="assets/images/stamp/played.png">
-      </div>
+      </a>
     </div>
     <div class="uk-card-footer uk-flex">
       <div class="uk-lot-tagline">

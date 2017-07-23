@@ -34,6 +34,7 @@ import { LotPanelComponent } from './views/lot-item/lot-item.component';
 import { CategoriesFilterComponent } from './views/filter/categories-filter/categories-filter.component';
 import { LuckyBoardComponent } from './views/lucky-board/lucky-board.component';
 import { LotItemGroupComponent } from './views/lot-item-group/lot-item-group.component';
+import { LotDetailViewComponent } from './views/lot-detail-view/lot-detail-view.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { LotItemGroupComponent } from './views/lot-item-group/lot-item-group.com
     LotPanelComponent,
     CategoriesFilterComponent,
     LuckyBoardComponent,
-    LotItemGroupComponent
+    LotItemGroupComponent,
+    LotDetailViewComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

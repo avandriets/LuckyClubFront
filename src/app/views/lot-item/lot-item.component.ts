@@ -33,4 +33,7 @@ export class LotPanelComponent implements OnInit {
   isFavorite():boolean {
     return this.lotSrv.isLotFavorite(this.item_lot);
   }
+  onMore(){
+    this.router.navigate(['lots', this.item_lot.id]);
+  }
 }

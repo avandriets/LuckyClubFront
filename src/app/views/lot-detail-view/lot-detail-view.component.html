@@ -1,0 +1,47 @@
+<div class="uk-offcanvas-content">
+  <div class="uk-container">
+    <div class="uk-section-default">
+      <div class="uk-padding-small">
+        <div class="uk-grid-medium uk-grid" uk-grid>
+          <div class="uk-width-auto@m uk-first-column">
+            <lucky-lot-item [lot]="lot"></lucky-lot-item>
+          </div>
+          <div class="uk-width-expand@m">
+            <div class="uk-card uk-background-muted uk-card-body ">
+              <div uk-grid>
+                <div class="uk-width-expand@m">
+                  <p class="uk-text-lead">Обладатель данной коллекционной карты примет участие в бесплатном розыгыше</p>
+                  <h2 class="uk-article-title uk-grid-margin">{{lot.name}}</h2>
+                </div>
+                <div class="uk-width-auto@m">
+                  <div class="uk-width-small uk-card uk-card-small uk-card-default  uk-text-center">
+                    <div class="uk-card-header">
+                      Ожидаемая дата
+                      розыгрыша
+                    </div>
+                    <div class="uk-card-footer uk-background-primary uk-light uk-padding uk-panel">
+                      <p class="uk-h1">{{lot.getFinished_at() | date: 'dd'}}</p>
+                      {{lot.getFinished_at() | date: 'MMMM y'}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p>{{lot.description}}</p>
+            <p>{{lot.full_description}}</p>
+            <div class="uk-child-width-1-5" uk-grid uk-lightbox>
+              <div *ngFor="let picture of lot.getGallery()">
+                <a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}" type="image">
+                  <figure>
+                    <img src="{{picture.picture_url}}" width="400" alt="">
+                    <figcaption class="uk-margin-small">{{picture.description}}</figcaption>
+                  </figure>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ import {UserComponent} from "./views/user/user.component";
 import {NewLotComponent} from "./views/lots/new-lot/new-lot.component";
 import {EditLotComponent} from "./views/lots/edit-lot/edit-lot.component";
 import {LotComponent} from "./views/lots/lot/lot.component";
+import {LotDetailViewComponent} from "./views/lot-detail-view/lot-detail-view.component";
 // import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
 // import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'rules', component: RulesComponent},
   {path: 'contacts', component: ContactsComponent},
+  {path: 'lots/:id', component: LotDetailViewComponent},
+
   {
       path: 'admin-categories', component: CategoriesComponent, canActivate: [AuthGuardService], children: [
         {path: 'new', component: NewCategoryComponent},
