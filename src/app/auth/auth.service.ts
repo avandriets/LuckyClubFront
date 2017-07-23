@@ -152,11 +152,11 @@ export class AuthService {
   }
 
   logOut() {
-    this.callComponent(LoginStatusEnum.LoggedOut);
     this.afAuth.auth.signOut();
     this.current_user = null;
     localStorage.removeItem('token');
     localStorage.removeItem('current_user');
+    this.callComponent(LoginStatusEnum.LoggedOut);
   }
 
   getCurrentUser(): Users {

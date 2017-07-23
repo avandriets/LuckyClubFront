@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {Lot} from "../views/lots/lots.model";
 import {Subscription} from "rxjs";
 import {LotsServiseService} from "../views/lots/lots-servise.service";
 import {Router, ActivatedRoute} from "@angular/router";
+import {AuthService} from "../auth/auth.service";
+import {LoginStatusEnum} from "../auth/auth.model";
 
 @Component({
   selector: 'lucky-main',
@@ -15,11 +17,15 @@ export class MainComponent implements OnInit {
   lots: Lot[] = [];
   recommend_lots: Lot[] = [];
   favorite_lots: Lot[] = [];
+
   private subscription: Subscription;
+  private authStatusSubscription: Subscription;
 
   constructor(private lotSrv: LotsServiseService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private authSrv: AuthService,
+              private changeDetection: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -29,6 +35,13 @@ export class MainComponent implements OnInit {
           this.getData();
         }
       );
+
+    this.authStatusSubscription = this.authSrv.invokeEvent.subscribe(
+      (statusValue: LoginStatusEnum) => {
+        this.getData();
+      }
+    );
+
     this.getData();
   }
 
@@ -48,11 +61,12 @@ export class MainComponent implements OnInit {
     this.lotSrv.getFavorites().subscribe(
       (data: Lot[]) => {
         this.favorite_lots = data;
-        console.log(this.favorite_lots);
+        this.changeDetection.detectChanges();
+      },
+      (error) => {
+        this.favorite_lots = [];
       }
     );
-
-
   }
 
   onMoreRecommend() {

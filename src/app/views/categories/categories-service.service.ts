@@ -93,7 +93,7 @@ export class CategoriesService {
       input.append("file", newCategoryData.file);
     }
 
-    input.append("parent_id", newCategoryData.parent_id);
+    input.append("parent_id", String(newCategoryData.parent_id));
     input.append("name", newCategoryData.name);
     input.append("description", newCategoryData.description);
 

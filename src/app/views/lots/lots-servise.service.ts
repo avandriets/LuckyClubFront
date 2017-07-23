@@ -73,22 +73,21 @@ export class LotsServiseService {
   getFavorites(): Observable<Lot[]> {
     return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}get-favorites`).map(
       (inputData: Response) => {
-
-        console.log(inputData.json());
         let lotsArray: Lot[] = [];
         let lotObj = inputData.json();
 
         for (let i of lotObj.objects) {
-          console.log(i);
           lotsArray.push(new Lot(i));
         }
 
         this.lotsFavorite = lotsArray;
 
-        console.log(lotsArray);
         return lotsArray;
       }
-    );
+    ).catch((error: Response) => {
+      this.lotsFavorite = [];
+      return Observable.throw(error);
+    });
   }
 
   getRecommend(): Observable<Lot[]> {

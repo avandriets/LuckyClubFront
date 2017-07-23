@@ -36,9 +36,9 @@ export class HeaderComponent implements OnInit {
 
   loginProcessStateChange(state: LoginStatusEnum) {
 
-    if(state != LoginStatusEnum.FinishError){
+    if (state != LoginStatusEnum.FinishError) {
       this.currentLoginStatus = state;
-    }else if(this.currentLoginStatus != LoginStatusEnum.FinishError && this.currentLoginStatus != LoginStatusEnum.LoggedOut){
+    } else if (this.currentLoginStatus != LoginStatusEnum.FinishError && this.currentLoginStatus != LoginStatusEnum.LoggedOut) {
       UIkit.notification("Cannot login to server", {status: 'danger'});
       this.currentLoginStatus = LoginStatusEnum.LoggedOut;
     }
