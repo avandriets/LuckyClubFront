@@ -16,6 +16,7 @@ import {NewLotComponent} from "./views/lots/new-lot/new-lot.component";
 import {EditLotComponent} from "./views/lots/edit-lot/edit-lot.component";
 import {LotComponent} from "./views/lots/lot/lot.component";
 import {LotDetailViewComponent} from "./views/lot-detail-view/lot-detail-view.component";
+import {AuthAsyncGuardGuard} from "./auth/auth-async-guard.guard";
 // import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
 // import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 
@@ -29,25 +30,20 @@ const routes: Routes = [
   {path: 'lots/:id', component: LotDetailViewComponent},
 
   {
-      path: 'admin-categories', component: CategoriesComponent, canActivate: [AuthGuardService], children: [
+      path: 'admin-categories', component: CategoriesComponent, canActivate: [ AuthAsyncGuardGuard], children: [
         {path: 'new', component: NewCategoryComponent},
         {path: ':id/edit', component: EditCategoryComponent},
         {path: ':id', component: CategoryComponent}
     ]
   },
   {
-      path: 'admin-lots', component: LotsComponent, canActivate: [AuthGuardService]
-    // , children: [
-    //     {path: 'lots/new', component: NewLotComponent},
-    //     {path: 'lots/:id/edit', component: EditLotComponent},
-    //     {path: 'lots/:id', component: LotComponent}
-    // ]
+      path: 'admin-lots', component: LotsComponent, canActivate: [ AuthAsyncGuardGuard]
   },
 
-  {path: 'admin-lots/new', component: NewLotComponent},
-  {path: 'admin-lots/:id/edit', component: EditLotComponent},
-  {path: 'admin-lots/:id', component: LotComponent},
-  {path: 'user', component: UserComponent}
+  {path: 'admin-lots/new', component: NewLotComponent , canActivate: [ AuthAsyncGuardGuard]},
+  {path: 'admin-lots/:id/edit', component: EditLotComponent , canActivate: [ AuthAsyncGuardGuard]},
+  {path: 'admin-lots/:id', component: LotComponent , canActivate: [ AuthAsyncGuardGuard]},
+  {path: 'user', component: UserComponent, canActivate: [ AuthAsyncGuardGuard]}
 
   // { path: 'signin', component: SignInEmailComponent },
   // { path: 'signup', component: SignUpEmailComponent }
