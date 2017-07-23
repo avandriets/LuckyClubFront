@@ -74,27 +74,27 @@
             </div>
 
             <div class="uk-text-right">
-              <button class="uk-button uk-button-primary" type="submit">Save</button>
               <a class="uk-button uk-button-default" (click)="onCancel()">Cancel</a>
+              <button class="uk-button uk-button-primary" type="submit">Save</button>
             </div>
           </form>
         </div>
-        <div class="uk-background-muted uk-padding ">
+        <div class="uk-background-muted uk-padding uk-form-grid-horizontal">
 
 
           <form role="form" [formGroup]="lotImgFG" (ngSubmit)="onSubmitImage()">
 
-            <div class="uk-margin uk-grid-small uk-grid uk-form-grid-horizontal" uk-grid>
+            <div class="uk-margin uk-grid-small uk-grid " uk-grid>
               <label class="uk-form-label uk-width-1-5@s uk-first-column">Изображение</label>
               <div class="uk-form-controls uk-width-4-5@s">
                 <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
                   <div class="uk-width-expand uk-first-column">
                     <img *ngIf="fileToShow" class="uk-icon uk-icon-image" src="{{fileToShow}}" alt="">
-                    <div uk-form-custom="target: true">
+                    <div uk-form-custom="target: true" class="uk-form-controls">
                       <input type="file"
                              (change)="onFileChange($event)"
                              accept="image/*">
-                      <input class="uk-input uk-form-width-medium"
+                      <input class="uk-input"
                              formControlName="imageFile"
                              type="text" placeholder="Select file" disabled>
                     </div>
@@ -121,26 +121,28 @@
             </div>
 
             <div class="uk-text-right uk-margin ">
+              <a class="uk-button uk-button-default" (click)="onImageClear()">Cancel</a>
               <button class="uk-button uk-button-primary" type="submit">Save</button>
             </div>
 
           </form>
 
-          <!--<div class="uk-child-width-1-5" uk-grid>-->
-            <!--<div *ngFor="let picture of lot.pictures">-->
-              <!--<div class="uk-link-muted uk-text-center">-->
-                <!--<figure>-->
-                  <!--<img src="{{picture.picture_url}}" alt="{{picture.description}}">-->
-                  <!--<figcaption class="uk-flex uk-flex-between uk-flex-middle">-->
-                    <!--{{picture.description}}-->
-                    <!--<button type="button" (click)="onDeletePicture()" class="uk-button uk-button-default">-->
-                      <!--<span uk-icon="icon: close"></span>-->
-                    <!--</button>-->
-                  <!--</figcaption>-->
-                <!--</figure>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
+  <div class="uk-child-width-1-5" uk-grid>
+    <div *ngFor="let picture of lot.pictures">
+      <div class="uk-link-muted uk-text-center">
+        <figure>
+          <img src="{{picture.picture_url}}" alt="{{picture.description}}">
+          <figcaption class="uk-flex uk-flex-between uk-flex-middle">
+            {{picture.description}}
+            <button type="button" (click)="onDeletePicture(picture)" class="uk-button uk-button-default">
+              <span uk-icon="icon: close"></span>
+            </button>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
 
 
         </div>

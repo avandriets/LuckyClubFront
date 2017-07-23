@@ -13,26 +13,43 @@ import {CategoriesCollection, Category} from "../categories/categories.model";
 export class LotsComponent implements OnInit {
   id: number = 0;
   lots: Lot[] = [];
+  dr_lots: Lot[] = [];
+  del_lots: Lot[] = [];
   private subscription: Subscription;
 
-  constructor(
-    private lotSrv: LotsServiseService,
-    private router: Router,
-    private route: ActivatedRoute) {
+  constructor(private lotSrv: LotsServiseService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.subscription = this.lotSrv.invokeEvent
       .subscribe(
-        (lots: Lot[]) => {
-          this.lots = lots;
+        () => {
+          this.getData();
         }
       );
 
-    this.lotSrv.getDrafts().subscribe(
+    this.getData();
+  }
+
+  getData() {
+    this.lotSrv.getLots().subscribe(
       (data: Lot[]) => {
         this.lots = data;
-        //console.log(this.lots);
+        console.log(this.lots);
+      }
+    );
+    this.lotSrv.getDrafts().subscribe(
+      (data: Lot[]) => {
+        this.dr_lots = data;
+        console.log(this.dr_lots);
+      }
+    );
+    this.lotSrv.getDeleted().subscribe(
+      (data: Lot[]) => {
+        this.del_lots = data;
+        console.log(this.del_lots);
       }
     );
   }
@@ -41,15 +58,45 @@ export class LotsComponent implements OnInit {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
-  onDestroy(kkk) {
-    //console.log('kkk: ' + kkk);
-    this.lotSrv.deleteLot(kkk).subscribe(
+  onPush(id) {
+   this.lotSrv.publishLot(id).subscribe(
+      (data) => { },
+      (error) => {
+        console.log(error)
+      }
+    );
+  }
+  onUnPush(id){
+     this.lotSrv.unPublishLot(id).subscribe(
+      (data) => {},
+      (error) => {
+        console.log(error)
+      }
+    );
+  }
+  onRecommendedLot(id){
+     this.lotSrv.recommendedLot(id).subscribe(
       (data) => {
-
-          //this.lots[kkk].deleted = data;
-        console.log(data);
-
+        console.log('0:'  + data)
       },
+      (error) => {
+        console.log(error)
+      }
+    );
+  }
+
+  onDelete(id) {
+    this.lotSrv.deleteLot(id).subscribe(
+      (data) => {},
+      (error) => {
+        console.log(error)
+      }
+    );
+  }
+
+  onUnDelete(id){
+    this.lotSrv.unDeleteLot(id).subscribe(
+      (data) => {},
       (error) => {
         console.log(error)
       }

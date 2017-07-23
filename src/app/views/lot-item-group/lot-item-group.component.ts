@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Lot} from "../lots/lots.model";
+import {Subscription} from "rxjs";
+import {LotsServiseService} from "../lots/lots-servise.service";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'lucky-lot-item-group',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LotItemGroupComponent implements OnInit {
 
+ @Input('headline') headline: string = "";
+ @Input('lot') lot: Lot = new Lot();
+ @Output('onMore') moreEvent = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onMore(){
+    this.moreEvent.emit();
+  }
 }

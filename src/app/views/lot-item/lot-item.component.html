@@ -4,8 +4,8 @@
       <p class="uk-progress-value uk-width-1-4 uk-text-muted">50/100</p>
       <p class="uk-width-1-2 uk-text-center uk-lot-name-card"><span>Collectible card</span></p>
       <p class="uk-width-1-4 uk-text-right">
-        <!--<a class="uk-icon-link uk-icon" uk-icon="icon: star"></a>-->
-        <a class="uk-icon uk-icon-image uk-icon-full-star"></a>
+        <a *ngIf="!isFavorite()" class="uk-icon-link uk-icon" uk-icon="icon: star" (click)="onFavorite(item_lot.id)"></a>
+        <a *ngIf="isFavorite()" class="uk-icon uk-icon-image uk-icon-full-star" (click)="onFavorite(item_lot.id)"></a>
       </p>
     </div>
     <div class="uk-card-body uk-padding-remove-top uk-padding-remove-bottom">
@@ -14,15 +14,15 @@
         <div class="empty_circle"></div>
       </div>
       <div class="uk-background-cover uk-position-relative uk-light"
-           *ngIf="current_lot.getFirstPicture()"
-           [ngStyle]="{'background-image': 'url(' + current_lot.getFirstPicture().picture_url + ')' }">
-        <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{current_lot.name}}</h3>
+           *ngIf="item_lot.getFirstPicture()"
+           [ngStyle]="{'background-image': 'url(' + item_lot.getFirstPicture().picture_url + ')' }">
+        <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{item_lot.name}}</h3>
         <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
         <img alt="won" class="uk-position-absolute uk-position-bottom-right " src="assets/images/stamp/won.png">
       </div>
       <div class="uk-background-cover uk-position-relative uk-light"
-           *ngIf="!current_lot.pictures">
-        <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{current_lot.name}}</h3>
+           *ngIf="!item_lot.getFirstPicture()">
+        <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{item_lot.name}}</h3>
         <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
         <img alt="played" class="uk-position-absolute uk-position-bottom-right " src="assets/images/stamp/played.png">
       </div>
@@ -31,7 +31,7 @@
       <div class="uk-lot-tagline">
         <small>Drems come true</small>
       </div>
-      <div class="uk-lot-prise">{{current_lot.getPrice()}}</div>
+      <div class="uk-lot-prise">{{item_lot.getPrice()}}</div>
       <div class="uk-lot-logo-sm">
         <img src="assets/images/luckymarket.svg" alt="">
       </div>
@@ -40,6 +40,6 @@
   </div>
   <div class="uk-post-card-small">
     <span class="uk-text-muted">Ожидаемая дата розыгрыша:</span><br>
-    <strong>{{current_lot.getFinished_at() | date: 'dd.MM.yyyy'}}</strong>
+    <strong>{{item_lot.getFinished_at() | date: 'dd.MM.yyyy'}}</strong>
   </div>
 </div>

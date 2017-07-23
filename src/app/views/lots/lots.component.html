@@ -1,68 +1,140 @@
 <div class="uk-offcanvas-content">
-    <div class="uk-container">
-        <div class="uk-section-default">
-            <div class="uk-padding-small">
-                <div class="uk-overflow-auto">
-                    <table class="uk-table uk-table-responsive uk-table-divider uk-table-hover">
-                        <thead>
-                        <tr>
-                            <th class="uk-table-shrink">id</th>
-                            <th class="uk-table-shrink">img</th>
-                            <th>Название / Описание / Детальное описание</th>
-                            <th class="uk-table-shrink">Категория</th>
-                            <th class="uk-table-shrink">Число участников</th>
-                            <th class="uk-table-shrink uk-text-nowrap">Цена</th>
-                            <th class="uk-table-shrink uk-text-nowrap">Дата с по</th>
-                            <th class="uk-table-shrink uk-text-nowrap">Статус</th>
-                            <th class="uk-table-shrink uk-text-nowrap">Действия</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr *ngFor="let lot of lots">
-                            <td>{{lot.id}}</td>
-                            <td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}" width="40" alt="">
-                            </td>
-                            <td class="uk-table-link">
-                                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a></h2>
-                                <p>{{lot.description}}</p>
-                                {{lot.full-description}}
-                            </td>
-                            <td>{{lot.category_id}}</td>
-                            <td>{{lot.count_participants}}</td>
-                            <td>{{lot.price}}</td>
-                            <td>{{lot.created_at | date: 'dd.MM.yyyy'}} - {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>
-                            <td class="uk-text-nowrap">
-                                <!--{{lot.published}}<br>-->
-                                {{lot.deleted}}
-                                <div *ngIf="lot.published">Опубликованно</div>
-                                <div *ngIf="!lot.published">Не опубликованно</div>
-                                <div *ngIf="lot.deleted">Удалено</div>
-                            </td>
-                            <td>
-                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
-                                   routerLink='{{lot.id}}/edit'>
-                                    <span uk-icon="icon: pencil" class="uk-margin-small-right uk-icon"></span> Редактироать</a>
-                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left">
-                                    <span uk-icon="icon: laptop" class="uk-margin-small-right uk-icon"></span> Oпубликовать</a>
-                                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
-                                   (click)="onDestroy(lot.id)">
-                                    <span uk-icon="icon: close" class="uk-margin-small-right uk-icon"></span> Удалить</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  <div class="uk-container">
+    <div class="uk-section-default">
+      <div class="uk-padding-small">
+        <div class="uk-overflow-auto">
+          <table class="uk-table uk-table-responsive uk-table-divider uk-table-hover">
+            <thead>
+            <tr>
+              <th class="uk-table-shrink">id</th>
+              <th class="uk-table-shrink">img</th>
+              <th>Название / Описание / Детальное описание</th>
+              <th class="uk-table-shrink">Категория</th>
+              <th class="uk-table-shrink">Число участников</th>
+              <th class="uk-table-shrink uk-text-nowrap">Цена</th>
+              <th class="uk-table-shrink uk-text-nowrap">Дата с по</th>
+              <th class="uk-table-shrink uk-text-nowrap">Статус</th>
+              <th class="uk-table-shrink uk-text-nowrap">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let lot of lots">
+              <td>{{lot.id}}</td>
+              <td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}"
+                       width="40" alt="">
+              </td>
+              <td class="uk-table-link">
+                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a></h2>
+                <p>{{lot.description}}</p>
+                {{lot.full_description}}
+              </td>
+              <td>{{lot.category_id}}</td>
+              <td>{{lot.count_participants}}</td>
+              <td>{{lot.price}}</td>
+              <td>{{lot.created_at | date: 'dd.MM.yyyy'}} - {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>
+              <td class="uk-text-nowrap">
+                <div *ngIf="lot.published">Опубликованно</div>
+                <div *ngIf="lot.deleted">Удалено</div>
+                <div *ngIf="lot.recommend">Рекомендовано</div>
+                <div *ngIf="!lot.recommend">Не рекомендовано</div>
+              </td>
+              <td>
+                <a *ngIf="lot.published"
+                   class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   (click)="onUnPush(lot.id)">
+                  Снять с публикации</a>
+                <a *ngIf="!lot.recommend"
+                   class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   (click)="onRecommendedLot(lot.id)">
+                  Рекомендовать</a>
+                <a *ngIf="lot.recommend"
+                   class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   (click)="onRecommendedLot(lot.id)">
+                  Не рекомендовать</a>
+              </td>
+            </tr>
+            <tr *ngFor="let lot of dr_lots">
+              <td>{{lot.id}}</td>
+              <td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}"
+                       width="40" alt="">
+              </td>
+              <td class="uk-table-link">
+                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a></h2>
+                <p>{{lot.description}}</p>
+                {{lot.full_description}}
+              </td>
+              <td>{{lot.category_id}}</td>
+              <td>{{lot.count_participants}}</td>
+              <td>{{lot.price}}</td>
+              <td>{{lot.created_at | date: 'dd.MM.yyyy'}} - {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>
+              <td class="uk-text-nowrap">
+                <!--{{lot.published}}<br>-->
+                {{lot.deleted}}
+                <div *ngIf="lot.published">Опубликованно</div>
+                <div *ngIf="!lot.published">Не опубликованно</div>
+                <div *ngIf="lot.deleted">Удалено</div>
+              </td>
+              <td>
+                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   routerLink='{{lot.id}}/edit'>
+                  <span uk-icon="icon: pencil" class="uk-margin-small-right uk-icon"></span> Редактироать</a>
+                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   (click)="onPush(lot.id)">
+                  <span uk-icon="icon: laptop" class="uk-margin-small-right uk-icon"></span> Oпубликовать</a>
+                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   (click)="onDelete(lot.id)">
+                  <span uk-icon="icon: close" class="uk-margin-small-right uk-icon"></span> Удалить</a>
+              </td>
+            </tr>
+            <tr *ngFor="let lot of del_lots">
+              <td>{{lot.id}}</td>
+              <td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}"
+                       width="40" alt="">
+              </td>
+              <td class="uk-table-link">
+                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a></h2>
+                <p>{{lot.description}}</p>
+                {{lot.full_description}}
+              </td>
+              <td>{{lot.category_id}}</td>
+              <td>{{lot.count_participants}}</td>
+              <td>{{lot.price}}</td>
+              <td>{{lot.created_at | date: 'dd.MM.yyyy'}} - {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>
+              <td class="uk-text-nowrap">
+                <div *ngIf="lot.published">Опубликованно</div>
+                <div *ngIf="!lot.published">Не опубликованно</div>
+                <div *ngIf="lot.deleted">Удалено</div>
+              </td>
+              <td>
+                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   routerLink='{{lot.id}}/edit'>
+                  <span uk-icon="icon: pencil" class="uk-margin-small-right uk-icon"></span> Редактироать</a>
+                <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   (click)="onPush(lot.id)">
+                  <span uk-icon="icon: laptop" class="uk-margin-small-right uk-icon"></span> Oпубликовать</a>
+                <a *ngIf="!lot.deleted" class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   (click)="onDelete(lot.id)">
+                  <span uk-icon="icon: close" class="uk-margin-small-right uk-icon"></span> Удалить</a>
+                <a *ngIf="lot.deleted" class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
+                   (click)="onUnDelete(lot.id)">
+                  <span uk-icon="icon: close" class="uk-margin-small-right uk-icon"></span> Отменить удаление</a>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
         </div>
-        <div class="uk-section-default">
-            <div class="uk-padding-small">
-                <div class="uk-button-group uk-text-right">
-                    <button (click)="onNewLot()" class="uk-button uk-button-primary">
-                        <span uk-icon="icon: plus-circle"></span> Добавить лот
-                    </button>
-                </div>
-                <!--<router-outlet></router-outlet>-->
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="uk-section-default">
+      <div class="uk-padding-small">
+        <div class="uk-button-group uk-text-right">
+          <button (click)="onNewLot()" class="uk-button uk-button-primary">
+            <span uk-icon="icon: plus-circle"></span> Добавить лот
+          </button>
+        </div>
+        <!--<router-outlet></router-outlet>-->
+      </div>
+    </div>
+  </div>
 </div>

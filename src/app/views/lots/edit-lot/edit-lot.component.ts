@@ -5,6 +5,7 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Lot, Picture} from "../lots.model";
 import {CategoriesService} from "../../categories/categories-service.service";
 import {CategoriesCollection, Category} from "../../categories/categories.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'lucky-edit-lot',
@@ -13,19 +14,19 @@ import {CategoriesCollection, Category} from "../../categories/categories.model"
 })
 export class EditLotComponent implements OnInit {
   id: number = null;
-  lot: Lot = null;
+  lot: Lot = new Lot();
   lotEditFG: FormGroup = null;
   lotImgFG: FormGroup = null;
-  file:any = null;
+  file: any = null;
   private fileToShow: any;
 
   private categoriesList: Category[] = [];
+  private subscription: Subscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
               private lotSrv: LotsServiseService,
-              private carSrv: CategoriesService
-  ) {
+              private carSrv: CategoriesService) {
 
     this.lotEditFG = new FormGroup({
       name: new FormControl(null),
@@ -44,6 +45,12 @@ export class EditLotComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscription = this.lotSrv.invokeEvent
+      .subscribe(
+        () => {
+          this.getLot(this.id);
+        }
+      );
 
     this.route.params.subscribe(
       (params: Params) => {
@@ -53,35 +60,14 @@ export class EditLotComponent implements OnInit {
           (categories: Category[]) => {
 
             this.categoriesList = new CategoriesCollection(categories).getParentCategories();
-
-            this.lotSrv.getLotByIdForAdmin(this.id)
-              .subscribe(
-                (data) => {
-
-                  this.lot = data;
-
-                  this.lotEditFG.patchValue(
-                    {
-                      name: data.name,
-                      description: data.description,
-                      full_description: data.full_description,
-                      category_id: data.category_id,
-                      count_participants: data.count_participants,
-                      price: data.price
-                    }
-                  );
-                },
-                (error) => {
-                  console.log(error);
-                }
-              );
-
+            this.getLot(this.id);
           }
         );
       }
     );
 
   }
+
 
   onSubmit() {
     let data: Lot = new Lot();
@@ -104,13 +90,13 @@ export class EditLotComponent implements OnInit {
   }
 
   onCancel() {
-   this.router.navigate(['admin-lots', this.id]);
+    this.router.navigate(['admin-lots', this.id]);
   }
 
   onFileChange(e) {
     let upFile = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
 
-    if(!upFile){
+    if (!upFile) {
       return;
     }
 
@@ -133,12 +119,12 @@ export class EditLotComponent implements OnInit {
     this.fileToShow = reader.result;
   }
 
-  onImageClear(){
+  onImageClear() {
     this.file = null;
     this.lotImgFG.get('imageFile').setValue(null);
   }
 
-  onSubmitImage(){
+  onSubmitImage() {
     let data = {
       description: this.lotImgFG.get('description').value,
       file: this.file
@@ -149,22 +135,46 @@ export class EditLotComponent implements OnInit {
         // this.router.navigate([`../${outputData.id}`], {relativeTo:this.route});
         // console.log(outputData);
       },
-      (error) =>{
+      (error) => {
         console.log(error)
       }
     );
   }
-  onDeletePicture(){
-    // this.lotSrv.deletePicture(this.lot.pictures).subscribe(
-    //     (outputData: Picture) => {
-    //       // this.router.navigate([`../${outputData.id}`], {relativeTo:this.route});
-    //       // console.log(outputData);
-    //     },
-    //     (error) =>{
-    //       console.log(error)
-    //     }
-    // );
-    console.log("ijoj");
+
+  onDeletePicture(picture) {
+    this.lotSrv.deletePicture(picture).subscribe(
+      (outputData: Picture) => {
+        //this.router.navigate([`../${outputData.id}`], {relativeTo:this.route});
+        console.log(outputData);
+        // if(outputData)
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
   }
 
+  private getLot(id: number) {
+    this.lotSrv.getLotByIdForAdmin(this.id)
+      .subscribe(
+        (data) => {
+
+          this.lot = data;
+
+          this.lotEditFG.patchValue(
+            {
+              name: data.name,
+              description: data.description,
+              full_description: data.full_description,
+              category_id: data.category_id,
+              count_participants: data.count_participants,
+              price: data.price
+            }
+          );
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 }

@@ -7,6 +7,7 @@ export class Lot {
   published: boolean;
   finished: boolean;
   deleted: boolean;
+  recommend: boolean;
   winner_id: number;
   count_participants: number;
   price: number;
@@ -17,7 +18,7 @@ export class Lot {
   owner_profile: number;
 
   getFirstPicture() {
-    if (!this.pictures || this.pictures.length==0 ) {
+    if (!this.pictures || this.pictures.length == 0 ) {
       return null;
     }
     return this.pictures[0];
@@ -47,6 +48,7 @@ constructor(parameter?: Lot) {
       this.published = parameter.published;
       this.finished = parameter.finished;
       this.deleted = parameter.deleted;
+      this.recommend = parameter.recommend;
       this.winner_id = parameter.winner_id;
       this.count_participants = parameter.count_participants;
       this.owner_id = parameter.owner_id;
@@ -74,7 +76,6 @@ export class Picture {
   user_id: number;
   created_at: string;
   updated_at: string;
-
 
   constructor(parameter?: Picture) {
     if (parameter) {

@@ -20,6 +20,7 @@ export class NewLotComponent implements OnInit {
     this.lotCreateFG = new FormGroup({
       name: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
+      full_description: new FormControl(null, Validators.required),
       category_id: new FormControl(null, Validators.required),
       count_participants: new FormControl(null, Validators.required),
       price: new FormControl(null, Validators.required)
@@ -41,6 +42,7 @@ export class NewLotComponent implements OnInit {
     let data: Lot = new Lot();
     data.name = this.lotCreateFG.get('name').value;
     data.description = this.lotCreateFG.get('description').value;
+    data.full_description = this.lotCreateFG.get('full_description').value;
     data.category_id = this.lotCreateFG.get('category_id').value;
     data.count_participants = this.lotCreateFG.get('count_participants').value;
     data.price = this.lotCreateFG.get('price').value;

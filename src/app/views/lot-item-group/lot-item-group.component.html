@@ -7,15 +7,12 @@
         <option>Option 02</option>
       </select>
     </div>
-    <h4 class="uk-heading-divider uk-margin-remove-vertical">Рекомендуемые</h4>
+    <h4 class="uk-heading-divider uk-margin-remove-vertical">{{headline}}</h4>
   </div>
 </div>
 <div class="uk-background-default uk-padding-small uk-padding-remove-bottom">
   <div class="uk-grid">
-    <lucky-lot-item></lucky-lot-item>
-    <lucky-lot-item></lucky-lot-item>
-    <lucky-lot-item></lucky-lot-item>
-    <lucky-lot-item></lucky-lot-item>
+    <lucky-lot-item *ngFor="let lot of lot" [lot]="lot"></lucky-lot-item>
   </div>
-  <div class="uk-text-center"><span uk-icon="ratio: 2; icon: chevron-down"></span></div>
+  <div class="uk-text-center"><a uk-icon="ratio: 2; icon: chevron-down" (click)="onMore()"></a></div>
 </div>

@@ -11,6 +11,8 @@ export class LotsServiseService {
 
   lots: Lot[] = [];
   invokeEvent: Subject<any> = new Subject();
+  private lotsRecommend: Lot[] = [];
+  private lotsFavorite: Lot[] = [];
 
   constructor(private authService: AuthHttpService) {
   }
@@ -19,6 +21,15 @@ export class LotsServiseService {
     this.invokeEvent.next();
   }
 
+  isLotFavorite(lot: Lot): boolean{
+    for(let i of this.lotsFavorite){
+      if (i.id === lot.id) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 
   getLotByIdForAdmin(id: number): Observable<Lot> {
     return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}${id}`, {}).map(
@@ -63,6 +74,27 @@ export class LotsServiseService {
     return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}get-favorites`).map(
       (inputData: Response) => {
 
+        console.log(inputData.json());
+        let lotsArray: Lot[] = [];
+        let lotObj = inputData.json();
+
+        for (let i of lotObj.objects) {
+          console.log(i);
+          lotsArray.push(new Lot(i));
+        }
+
+        this.lotsFavorite = lotsArray;
+
+        console.log(lotsArray);
+        return lotsArray;
+      }
+    );
+  }
+
+  getRecommend(): Observable<Lot[]> {
+    return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}get-recommend`).map(
+      (inputData: Response) => {
+
         let lotsArray: Lot[] = [];
         let lotObj = inputData.json();
 
@@ -70,7 +102,7 @@ export class LotsServiseService {
           lotsArray.push(new Lot(i));
         }
 
-        this.lots = lotsArray;
+        this.lotsRecommend = lotsArray;
         return lotsArray;
       }
     );
@@ -161,6 +193,7 @@ export class LotsServiseService {
 
     return this.authService.delete(urlString).map(
       (data: Response) => {
+        this.dataChange();
         return data.json();
       }
     ).catch((error: Response) => {
@@ -200,6 +233,7 @@ export class LotsServiseService {
 
     return this.authService.post(urlString, {}).map(
       (data: Response) => {
+        this.dataChange();
         return data.json();
       }
     ).catch((error: Response) => {
@@ -212,6 +246,7 @@ export class LotsServiseService {
 
     return this.authService.post(urlString, {}).map(
       (data: Response) => {
+        this.dataChange();
         return data.json();
       }
     ).catch((error: Response) => {
@@ -224,6 +259,20 @@ export class LotsServiseService {
 
     return this.authService.post(urlString, {}).map(
       (data: Response) => {
+        this.dataChange();
+        return data.json();
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
+  }
+
+  recommendedLot(id: number): Observable<any> {
+    let urlString = `${environment.hostUrl}${Utils.lotsUrl}${id}/set-recommend`;
+
+    return this.authService.post(urlString, {}).map(
+      (data: Response) => {
+        this.dataChange();
         return data.json();
       }
     ).catch((error: Response) => {
@@ -260,6 +309,7 @@ export class LotsServiseService {
 
     return this.authService.post(urlString, {}).map(
       (data: Response) => {
+        this.dataChange();
         return data.json();
       }
     ).catch((error: Response) => {

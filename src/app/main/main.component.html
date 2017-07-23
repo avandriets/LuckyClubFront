@@ -1,3 +1,3 @@
-<lucky-lot-item-group></lucky-lot-item-group>
-<lucky-lot-item-group></lucky-lot-item-group>
-<lucky-lot-item-group></lucky-lot-item-group>
+<lucky-lot-item-group *ngIf="recommend_lots && recommend_lots.length" (onMore)="onMoreRecommend()" [headline]="'Рекомендуемые'" [lot]="recommend_lots"></lucky-lot-item-group>
+<lucky-lot-item-group *ngIf="lots && lots.length" (onMore)="onMoreLot()"  [headline]="'Новые'" [lot]="lots"></lucky-lot-item-group>
+<lucky-lot-item-group *ngIf="favorite_lots && favorite_lots.length" (onMore)="onMoreFavorite()"  [headline]="'Избранные'" [lot]="favorite_lots"></lucky-lot-item-group>
