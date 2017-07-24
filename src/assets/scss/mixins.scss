@@ -926,18 +926,21 @@
     // Default
     //
 
-    .uk-nav-default > li > a {
+    .uk-nav-default > li > a {background: yellow;
         color: $inverse-nav-default-item-color;
         @if(mixin-exists(hook-inverse-nav-default-item)) {@include hook-inverse-nav-default-item();}
     }
 
     .uk-nav-default > li > a:hover,
     .uk-nav-default > li > a:focus {
+            background: blue;
+
         color: $inverse-nav-default-item-hover-color;
         @if(mixin-exists(hook-inverse-nav-default-item-hover)) {@include hook-inverse-nav-default-item-hover();}
     }
 
     .uk-nav-default > li.uk-active > a {
+      background: red;
         color: $inverse-nav-default-item-active-color;
         @if(mixin-exists(hook-inverse-nav-default-item-active)) {@include hook-inverse-nav-default-item-active();}
     }
