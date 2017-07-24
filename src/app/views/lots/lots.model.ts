@@ -16,6 +16,7 @@ export class Lot {
   updated_at: string;
   pictures: Picture[];
   owner_profile: number;
+  count_joined: number;
 
   getFirstPicture() {
     if (!this.pictures || this.pictures.length == 0 ) {
@@ -55,6 +56,7 @@ constructor(parameter?: Lot) {
       this.created_at = parameter.created_at;
       this.updated_at = parameter.updated_at;
       this.owner_profile = parameter.owner_profile;
+      this.count_joined = parameter.count_joined;
 
       this.price = Number(parameter.price);
 

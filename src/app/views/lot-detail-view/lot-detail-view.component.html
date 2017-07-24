@@ -5,6 +5,9 @@
         <div class="uk-grid-medium uk-grid" uk-grid>
           <div class="uk-width-auto@m uk-first-column">
             <lucky-lot-item [lot]="lot"></lucky-lot-item>
+             <button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/buy.svg"></button>
+             <button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/played.svg"></button>
+             <button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/purc.svg"></button>
           </div>
           <div class="uk-width-expand@m">
             <div class="uk-card uk-background-muted uk-card-body ">
@@ -28,10 +31,10 @@
               </div>
             </div>
             <p>{{lot.description}}</p>
-            <p>{{lot.full_description}}</p>
             <div class="uk-child-width-1-5" uk-grid uk-lightbox>
               <div *ngFor="let picture of lot.getGallery()">
-                <a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}" type="image">
+                <a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}"
+                   type="image">
                   <figure>
                     <img src="{{picture.picture_url}}" width="400" alt="">
                     <figcaption class="uk-margin-small">{{picture.description}}</figcaption>
@@ -43,5 +46,28 @@
         </div>
       </div>
     </div>
+    <!--<ul class="uk-subnav uk-subnav-pill uk-padding-small uk-padding-remove-bottom"-->
+        <!--uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">-->
+      <!--<li><a href="#">Характеристики</a></li>-->
+      <!--<li><a href="#">Обсуждение</a></li>-->
+      <!--<li><a href="#">Обратная связь</a></li>-->
+      <!--<li><a href="#">Статистика</a></li>-->
+    <!--</ul>-->
+    <!--<ul class="uk-switcher uk-margin">-->
+      <!--<li class="uk-padding-small">-->
+        <!--{{lot.full_description}}-->
+      <!--</li>-->
+      <!--<li class="uk-padding-small">-->
+        <!--Обсуждение-->
+      <!--</li>-->
+      <!--<li class="uk-padding-small">-->
+        <!--Обратная связь-->
+      <!--</li>-->
+      <!--<li class="uk-padding-small">-->
+        <!--44-->
+      <!--</li>-->
+    <!--</ul>-->
+    <lucky-lot-item-group *ngIf="recommend_lots && recommend_lots.length" (onMore)="onMoreRecommend()"
+                          [headline]="'Рекомендуемые'" [lot]="recommend_lots"></lucky-lot-item-group>
   </div>
 </div>
