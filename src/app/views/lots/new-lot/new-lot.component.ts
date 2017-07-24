@@ -6,6 +6,7 @@ import {Lot} from "../lots.model";
 import {Category, CategoriesCollection} from "../../categories/categories.model";
 import {CategoriesService} from "../../categories/categories-service.service";
 
+
 @Component({
   selector: 'lucky-new-lot',
   templateUrl: './new-lot.component.html',
@@ -16,7 +17,10 @@ export class NewLotComponent implements OnInit {
   file: any = null;
   categoriesCollection: Category[] = [];
 
-  constructor(private lotSrv: LotsServiseService, private catSrv: CategoriesService, private router: Router, private route: ActivatedRoute) {
+  constructor(private lotSrv: LotsServiseService,
+              private catSrv: CategoriesService,
+              private router: Router,
+              private route: ActivatedRoute) {
     this.lotCreateFG = new FormGroup({
       name: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
@@ -46,7 +50,6 @@ export class NewLotComponent implements OnInit {
     data.category_id = this.lotCreateFG.get('category_id').value;
     data.count_participants = this.lotCreateFG.get('count_participants').value;
     data.price = this.lotCreateFG.get('price').value;
-  console.log(data.price);
 
     this.lotSrv.createLot(data).subscribe(
       (outputData: Lot) => {

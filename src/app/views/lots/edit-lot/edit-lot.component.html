@@ -89,7 +89,7 @@
               <div class="uk-form-controls uk-width-4-5@s">
                 <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
                   <div class="uk-width-expand uk-first-column">
-                    <img *ngIf="fileToShow" class="uk-icon uk-icon-image" src="{{fileToShow}}" alt="">
+                    <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="">
                     <div uk-form-custom="target: true" class="uk-form-controls">
                       <input type="file"
                              (change)="onFileChange($event)"

@@ -4,6 +4,7 @@ import {CategoriesService} from "../categories-service.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Category} from "../categories.model";
 import {CategoriesCollection} from "../categories.model";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'lucky-new-category',
@@ -16,9 +17,12 @@ export class NewCategoryComponent implements OnInit {
   file:any = null;
 
   parentCategoriesList: Category[] = [];
-  private fileToShow: any;
+  private fileToShow: string;
 
-  constructor(private catSrv: CategoriesService, private router: Router, private route: ActivatedRoute) {
+  constructor(private catSrv: CategoriesService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private domSanitizer: DomSanitizer) {
     this.categoryCreateFG = new FormGroup({
       parentCategory: new FormControl(null),
       imageFile: new FormControl(null),
@@ -49,18 +53,19 @@ export class NewCategoryComponent implements OnInit {
     }
 
     reader.onload = this._handleReaderLoaded.bind(this);
+
     reader.readAsDataURL(upFile);
     this.file = upFile;
   }
 
   _handleReaderLoaded(e) {
-    var reader = e.target;
-    this.fileToShow = reader.result;
+    const reader = e.target;
+    this.fileToShow =  reader.result;
   }
 
   onImageClear(){
     this.file = null;
-    this.fileToShow = null;
+    this.fileToShow = "";
     this.categoryCreateFG.get('imageFile').setValue(null);
   }
 
