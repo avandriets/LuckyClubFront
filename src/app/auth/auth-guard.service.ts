@@ -3,7 +3,7 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular
 import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {LoginStatusEnum} from "./auth.model";
-import Promise = firebase.Promise;
+
 
 @Injectable()
 export class AuthGuardService implements CanActivate{
