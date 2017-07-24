@@ -1,15 +1,14 @@
-<div class="uk-padding-small">
-  <ul class="uk-nav-default uk-nav-parent-icon uk-nav" uk-nav="">
-    <li class="uk-active"><a href="#">Каталог </a></li>
-    <li *ngFor="let category of getParentCategories()" class="uk-parent">
-      <a href="#">
+<ul class="uk-nav-default uk-nav-parent-icon uk-nav" uk-nav="">
+  <li class="uk-active"><a href="#">Каталог </a></li>
+  <li *ngFor="let category of getParentCategories()" class="uk-parent">
+    <a href="#">
         <span class="uk-icon uk-icon-image uk-margin-small-right"
               [ngStyle]="{'background-image': 'url(' + category.picture_url + ')' }"></span>
-        {{category.name}}</a>
-      <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
-        <li *ngFor="let subCategory of getSubCategories(category)"><a routerLink='{{subCategory.id}}'>{{subCategory.name}}</a>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</div>
+      {{category.name}}</a>
+    <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
+      <li *ngFor="let subCategory of getSubCategories(category)"><a
+        routerLink='{{subCategory.id}}'>{{subCategory.name}}</a>
+      </li>
+    </ul>
+  </li>
+</ul>
