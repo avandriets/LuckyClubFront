@@ -95,9 +95,9 @@
 </ul>
 <ul class="uk-switcher uk-margin">
   <li>
-   <lucky-lot-item-group></lucky-lot-item-group>
+    <lucky-lot-item-group *ngIf="favorite_lots && favorite_lots.length" (onMore)="onMoreFavorite()"  [headline]="'&nbsp;'" [lot]="favorite_lots"></lucky-lot-item-group>
   </li>
   <li>
-    <lucky-lot-item-group></lucky-lot-item-group>
+    <lucky-lot-item-group *ngIf="favorite_lots && favorite_lots.length" (onMore)="onMoreFavorite()"  [headline]="'&nbsp;'" [lot]="favorite_lots"></lucky-lot-item-group>
   </li>
 </ul>
