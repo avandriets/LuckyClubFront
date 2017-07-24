@@ -30,20 +30,20 @@ const routes: Routes = [
   {path: 'lots/:id', component: LotDetailViewComponent},
 
   {
-      path: 'admin-categories', component: CategoriesComponent, canActivate: [ AuthAsyncGuardGuard], children: [
+      path: 'admin-categories', component: CategoriesComponent, canActivate: [ AuthGuardService], children: [
         {path: 'new', component: NewCategoryComponent},
         {path: ':id/edit', component: EditCategoryComponent},
         {path: ':id', component: CategoryComponent}
     ]
   },
   {
-      path: 'admin-lots', component: LotsComponent, canActivate: [ AuthAsyncGuardGuard]
+      path: 'admin-lots', component: LotsComponent, canActivate: [ AuthGuardService]
   },
 
-  {path: 'admin-lots/new', component: NewLotComponent , canActivate: [ AuthAsyncGuardGuard]},
-  {path: 'admin-lots/:id/edit', component: EditLotComponent , canActivate: [ AuthAsyncGuardGuard]},
-  {path: 'admin-lots/:id', component: LotComponent , canActivate: [ AuthAsyncGuardGuard]},
-  {path: 'user', component: UserComponent, canActivate: [ AuthAsyncGuardGuard]}
+  {path: 'admin-lots/new', component: NewLotComponent , canActivate: [ AuthGuardService]},
+  {path: 'admin-lots/:id/edit', component: EditLotComponent , canActivate: [ AuthGuardService]},
+  {path: 'admin-lots/:id', component: LotComponent , canActivate: [ AuthGuardService]},
+  {path: 'user', component: UserComponent, canActivate: [ AuthGuardService]}
 
   // { path: 'signin', component: SignInEmailComponent },
   // { path: 'signup', component: SignUpEmailComponent }
