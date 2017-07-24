@@ -19,6 +19,7 @@
 //                  `uk-logo`
 //                  `uk-svg`
 //                  `uk-blend-*`
+//                  `uk-transform-*`
 //                  `uk-transform-origin-*`
 //
 // States:          `uk-disabled`
@@ -188,7 +189,9 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
  * 2. Create position context
  * 3. Prevent content overflow
  * 4. Behave like most inline-block elements
- * 5. Clip child elements
+ * 5. Force hardware acceleration without creating a new stacking context
+ *    to fix 1px glitch when combined with overlays and transitions in Webkit
+ * 6. Clip child elements
  */
 
 [class*='uk-inline'] {
@@ -200,10 +203,12 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
     max-width: 100%;
     /* 4 */
     vertical-align: middle;
+    /* 5 */
+    -webkit-backface-visibility: hidden;
 }
 
 .uk-inline-clip {
-    /* 5 */
+    /* 6 */
     overflow: hidden;
 }
 
@@ -430,10 +435,6 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
     /* 1 */
     text-decoration: none;
     @if(mixin-exists(hook-logo)) {@include hook-logo();}
-    img{
-      width: 140px;
-      height: 70px;
-    }
 }
 
 /* Hover + Focus */
@@ -520,6 +521,15 @@ $dragover-box-shadow:                            0 0 20px rgba(100,100,100,0.3) 
 .uk-blend-saturation { mix-blend-mode: saturation; }
 .uk-blend-color { mix-blend-mode: color; }
 .uk-blend-luminosity { mix-blend-mode: luminosity; }
+
+
+/* Transform
+========================================================================== */
+
+.uk-transform-center {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
 
 /* Transform Origin

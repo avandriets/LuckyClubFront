@@ -11,7 +11,6 @@
 
 $background-default-background:                  $global-background !default;
 $background-muted-background:                    $global-muted-background !default;
-$background-muted-dark-background:               $global-muted-dark-background !default;
 $background-primary-background:                  $global-primary-background !default;
 $background-secondary-background:                $global-secondary-background !default;
 
@@ -26,7 +25,6 @@ $background-secondary-background:                $global-secondary-background !d
 
 .uk-background-default { background-color: $background-default-background; }
 .uk-background-muted { background-color: $background-muted-background; }
-.uk-background-muted-dark { background-color: $background-muted-dark-background; }
 .uk-background-primary { background-color: $background-primary-background; }
 .uk-background-secondary { background-color: $background-secondary-background; }
 

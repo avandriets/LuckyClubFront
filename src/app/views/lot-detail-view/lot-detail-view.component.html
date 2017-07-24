@@ -46,27 +46,27 @@
         </div>
       </div>
     </div>
-    <!--<ul class="uk-subnav uk-subnav-pill uk-padding-small uk-padding-remove-bottom"-->
-        <!--uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">-->
-      <!--<li><a href="#">Характеристики</a></li>-->
-      <!--<li><a href="#">Обсуждение</a></li>-->
-      <!--<li><a href="#">Обратная связь</a></li>-->
-      <!--<li><a href="#">Статистика</a></li>-->
-    <!--</ul>-->
-    <!--<ul class="uk-switcher uk-margin">-->
-      <!--<li class="uk-padding-small">-->
-        <!--{{lot.full_description}}-->
-      <!--</li>-->
-      <!--<li class="uk-padding-small">-->
-        <!--Обсуждение-->
-      <!--</li>-->
-      <!--<li class="uk-padding-small">-->
-        <!--Обратная связь-->
-      <!--</li>-->
-      <!--<li class="uk-padding-small">-->
-        <!--44-->
-      <!--</li>-->
-    <!--</ul>-->
+    <ul class="uk-subnav uk-subnav-pill uk-padding-small uk-padding-remove-bottom"
+        uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
+      <li><a href="#">Характеристики</a></li>
+      <li><a href="#">Обсуждение</a></li>
+      <li><a href="#">Обратная связь</a></li>
+      <li><a href="#">Статистика</a></li>
+    </ul>
+    <ul class="uk-switcher uk-margin">
+      <li class="uk-padding-small">
+        {{lot.full_description}}
+      </li>
+      <li class="uk-padding-small">
+        Обсуждение
+      </li>
+      <li class="uk-padding-small">
+        Обратная связь
+      </li>
+      <li class="uk-padding-small">
+        44
+      </li>
+    </ul>
     <lucky-lot-item-group *ngIf="recommend_lots && recommend_lots.length" (onMore)="onMoreRecommend()"
                           [headline]="'Рекомендуемые'" [lot]="recommend_lots"></lucky-lot-item-group>
   </div>

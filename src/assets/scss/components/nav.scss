@@ -152,8 +152,8 @@ ul.uk-nav-sub {
 
 .uk-nav-header {
     padding: $nav-header-padding-vertical $nav-header-padding-horizontal;
-    //text-transform: $nav-header-text-transform;
-    //font-size: $nav-header-font-size;
+    text-transform: $nav-header-text-transform;
+    font-size: $nav-header-font-size;
     @if(mixin-exists(hook-nav-header)) {@include hook-nav-header();}
 }
 
