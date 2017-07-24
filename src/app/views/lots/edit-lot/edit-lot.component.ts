@@ -6,6 +6,7 @@ import {Lot, Picture} from "../lots.model";
 import {CategoriesService} from "../../categories/categories-service.service";
 import {CategoriesCollection, Category} from "../../categories/categories.model";
 import {Subscription} from "rxjs";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'lucky-edit-lot',
@@ -26,7 +27,8 @@ export class EditLotComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private lotSrv: LotsServiseService,
-              private carSrv: CategoriesService) {
+              private carSrv: CategoriesService,
+              private domSanitizer: DomSanitizer) {
 
     this.lotEditFG = new FormGroup({
       name: new FormControl(null),
@@ -121,6 +123,7 @@ export class EditLotComponent implements OnInit {
 
   onImageClear() {
     this.file = null;
+    this.fileToShow = "";
     this.lotImgFG.get('imageFile').setValue(null);
   }
 
