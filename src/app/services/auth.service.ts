@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 import {Http, RequestOptions, Headers, URLSearchParams, Response} from "@angular/http";
 import {Observable} from "rxjs";
-import {Users, LoginStatusEnum} from "./auth.model";
+import {Users, LoginStatusEnum} from "../auth/auth.model";
 import 'rxjs/add/operator/mergeMap';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';

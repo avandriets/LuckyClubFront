@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Params, ActivatedRoute, Router} from "@angular/router";
-import {CategoriesService} from "../categories-service.service";
+import {CategoriesService} from "../../../services/categories-service.service";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Category, CategoriesCollection} from "../categories.model";
 

@@ -1,7 +1,7 @@
 import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {Users, LoginStatusEnum} from "../../auth/auth.model";
-import {AuthService} from "../../auth/auth.service";
-import {LotsServiseService} from "../lots/lots-servise.service";
+import {AuthService} from "../../services/auth.service";
+import {LotsServiseService} from "../../services/lots-servise.service";
 import {Lot} from "../lots/lots.model";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";

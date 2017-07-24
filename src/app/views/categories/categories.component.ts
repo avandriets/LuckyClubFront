@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoriesService} from "./categories-service.service";
+import {CategoriesService} from "../../services/categories-service.service";
 import {Category, CategoriesCollection} from "./categories.model";
 import {Router, ActivatedRoute, Params} from "@angular/router";
 

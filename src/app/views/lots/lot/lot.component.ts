@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Lot} from "../lots.model";
 import {Params, ActivatedRoute, Router} from "@angular/router";
-import {LotsServiseService} from "../lots-servise.service";
+import {LotsServiseService} from "../../../services/lots-servise.service";
 
 @Component({
     selector: 'lucky-lot',

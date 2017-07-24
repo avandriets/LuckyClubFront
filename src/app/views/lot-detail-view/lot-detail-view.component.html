@@ -5,9 +5,9 @@
         <div class="uk-grid-medium uk-grid" uk-grid>
           <div class="uk-width-auto@m uk-first-column">
             <lucky-lot-item [lot]="lot"></lucky-lot-item>
-             <button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/buy.svg"></button>
-             <button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/played.svg"></button>
-             <button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/purc.svg"></button>
+             <button *ngIf="!lotWasBought()" class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/buy.svg"></button>
+             <!--<button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/played.svg"></button>-->
+             <button *ngIf="lotWasBought()" class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/purc.svg"></button>
           </div>
           <div class="uk-width-expand@m">
             <div class="uk-card uk-background-muted uk-card-body ">
@@ -23,8 +23,8 @@
                       розыгрыша
                     </div>
                     <div class="uk-card-footer uk-background-primary uk-light uk-padding uk-panel">
-                      <p class="uk-h1">{{lot.getFinished_at() | date: 'dd'}}</p>
-                      {{lot.getFinished_at() | date: 'MMMM y'}}
+                      <p class="uk-h1">{{lot.getDueDate() | date: 'dd'}}</p>
+                      {{lot.getDueDate() | date: 'MMMM y'}}
                     </div>
                   </div>
                 </div>

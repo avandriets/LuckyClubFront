@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {AuthHttpService} from "../../helpers/auth-http.service";
-import {Category} from "./categories.model";
+import {AuthHttpService} from "../helpers/auth-http.service";
+import {Category} from "../views/categories/categories.model";
 import {Observable, Subject} from "rxjs";
-import {environment} from "../../../environments/environment";
-import {Utils} from "../../helpers/utilities";
+import {environment} from "../../environments/environment";
+import {Utils} from "../helpers/utilities";
 import {Response, RequestOptionsArgs, RequestOptions, Headers, RequestMethod} from "@angular/http";
 
 

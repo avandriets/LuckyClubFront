@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Lot} from "../lots/lots.model";
 import {Subscription} from "rxjs";
-import {LotsServiseService} from "../lots/lots-servise.service";
+import {LotsServiseService} from "../../services/lots-servise.service";
 import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({

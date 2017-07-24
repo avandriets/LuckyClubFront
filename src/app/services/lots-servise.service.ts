@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Subject, Observable} from "rxjs";
-import {AuthHttpService} from "../../helpers/auth-http.service";
-import {Lot, Picture} from "./lots.model";
-import {environment} from "../../../environments/environment";
-import {Utils} from "../../helpers/utilities";
+import {AuthHttpService} from "../helpers/auth-http.service";
+import {Lot, Picture} from "../views/lots/lots.model";
+import {environment} from "../../environments/environment";
+import {Utils} from "../helpers/utilities";
 import {Response, RequestOptions, Headers, RequestMethod} from "@angular/http";
 
 @Injectable()
@@ -54,7 +54,7 @@ export class LotsServiseService {
   }
 
   getLots(pageNumber: number = 1): Observable<Lot[]> {
-    return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}/page/${pageNumber}`).map(
+    return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}`).map(
       (inputData: Response) => {
 
         let lotsArray: Lot[] = [];
@@ -316,6 +316,22 @@ export class LotsServiseService {
     });
   }
 
+  getUserLots(): Observable<Lot[]>{
+    return this.authService.post(`${environment.hostUrl}${Utils.lotsUrl}users_lot`, {}).map(
+      (inputData: Response) => {
+
+        let lotsArray: Lot[] = [];
+        let lotObj = inputData.json();
+
+        for (let i of lotObj) {
+          lotsArray.push(new Lot(i));
+        }
+
+        this.lots = lotsArray;
+        return lotsArray;
+      }
+    );
+  }
+
 }
 
-//TODO edit lot, delete undelete lot, favorite, publish unpublish, getUsersLots, join lot

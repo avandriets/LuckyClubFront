@@ -39,6 +39,30 @@ export class Lot {
     return this.updated_at;
   }
 
+  getDueDate(){
+    let daysCount = 0;
+
+    if(this.count_joined > 50 && this.count_joined <= 100) {
+      daysCount = 1;
+    } else if(this.count_joined > 100 && this.count_joined <= 200) {
+      daysCount = 4;
+    } else if(this.count_joined > 500) {
+      daysCount = 7;
+    }
+
+    let new_date = new Date();
+    new_date.setDate(new_date.getDate() + daysCount);
+    return new_date;
+  }
+
+  getPercentage(){
+    if (this.count_participants > 0) {
+      return this.count_joined*100/this.count_participants;
+    } else {
+      return 0;
+    }
+  }
+
 constructor(parameter?: Lot) {
     if (parameter) {
       this.id = parameter.id;

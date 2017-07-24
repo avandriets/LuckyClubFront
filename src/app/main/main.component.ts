@@ -1,9 +1,9 @@
 import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {Lot} from "../views/lots/lots.model";
 import {Subscription} from "rxjs";
-import {LotsServiseService} from "../views/lots/lots-servise.service";
+import {LotsServiseService} from "../services/lots-servise.service";
 import {Router, ActivatedRoute} from "@angular/router";
-import {AuthService} from "../auth/auth.service";
+import {AuthService} from "../services/auth.service";
 import {LoginStatusEnum} from "../auth/auth.model";
 
 @Component({

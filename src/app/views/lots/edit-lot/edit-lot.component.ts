@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Params, ActivatedRoute, Router} from "@angular/router";
-import {LotsServiseService} from "../lots-servise.service";
+import {LotsServiseService} from "../../../services/lots-servise.service";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {Lot, Picture} from "../lots.model";
-import {CategoriesService} from "../../categories/categories-service.service";
+import {CategoriesService} from "../../../services/categories-service.service";
 import {CategoriesCollection, Category} from "../../categories/categories.model";
 import {Subscription} from "rxjs";
 import {DomSanitizer} from "@angular/platform-browser";

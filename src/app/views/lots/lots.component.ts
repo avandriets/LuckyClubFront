@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, Params} from "@angular/router";
-import {LotsServiseService} from "./lots-servise.service";
+import {LotsServiseService} from "../../services/lots-servise.service";
 import {Lot} from "./lots.model";
 import {Subscription} from "rxjs";
 import {CategoriesCollection, Category} from "../categories/categories.model";

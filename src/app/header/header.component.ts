@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, ApplicationRef, ChangeDetectorRef} from '@angular/core';
-import {AuthService} from "../auth/auth.service";
+import {AuthService} from "../services/auth.service";
 import {SignInPopUpComponent} from "../auth/sign-in-pop-up/sign-in-pop-up.component";
 import {LoginStatusEnum, Users} from "../auth/auth.model";
 declare var UIkit: any;

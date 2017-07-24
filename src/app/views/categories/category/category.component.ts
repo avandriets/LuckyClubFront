@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, Params} from "@angular/router";
 import {Subscription} from "rxjs/Subscription";
 import {Category} from "../categories.model";
-import {CategoriesService} from "../categories-service.service";
+import {CategoriesService} from "../../../services/categories-service.service";
 
 @Component({
     selector: 'lucky-category',

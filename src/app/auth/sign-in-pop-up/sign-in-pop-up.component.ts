@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {AuthService} from "../auth.service";
+import {AuthService} from "../../services/auth.service";
 import {LoginStatusEnum, Users} from "../auth.model";
 declare var UIkit: any;
 

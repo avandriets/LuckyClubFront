@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
-import {LotsServiseService} from "../lots-servise.service";
+import {LotsServiseService} from "../../../services/lots-servise.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Lot} from "../lots.model";
 import {Category, CategoriesCollection} from "../../categories/categories.model";
-import {CategoriesService} from "../../categories/categories-service.service";
+import {CategoriesService} from "../../../services/categories-service.service";
 
 
 @Component({
