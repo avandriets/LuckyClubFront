@@ -1,12 +1,11 @@
 <div class="uk-padding-small">
-  <form class="uk-grid-small" uk-grid uk-grid [formGroup]="UserEditFG" (ngSubmit)="onSubmit()">
+  <form class="uk-grid-small" uk-grid [formGroup]="UserEditFG" (ngSubmit)="onSubmit()">
     <div class="uk-width-small">
       <div>
         <div class="uk-text-center">
           <img *ngIf="!fileToShow" src="http://placehold.it/135x158" class="uk-margin-bottom">
           <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="" class="uk-margin-bottom">
         </div>
-
         <div uk-form-custom="target: true" class="uk-form-controls">
           <input type="file"
                  (change)="onFileChange($event)"
@@ -15,18 +14,13 @@
                  [(ngModel)]="iFile"
                  type="text" placeholder="Select file" disabled>
         </div>
-
         <div class="uk-width-auto uk-padding-remove">
           <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
             <span uk-icon="icon: close"></span>
           </button>
         </div>
-
-
       </div>
     </div>
-
-
     <div class="uk-width-expand@s">
       <div class="uk-card uk-card-primary uk-card-body uk-margin">
         <h3 class="">{{currentUser?.screen_name}}
@@ -34,8 +28,7 @@
         </h3>
       </div>
       <div class="uk-card uk-card-body uk-background-muted">
-        <div class="uk-grid-small uk-form-blank">
-
+        <div class="uk-grid-small uk-form-blank" uk-grid>
           <input class="uk-input"
                  formControlName="imageFile"
                  type="text" placeholder="Select file" hidden>
