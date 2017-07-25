@@ -8,13 +8,13 @@
             <tr>
               <th class="uk-table-shrink">id</th>
               <th class="uk-table-shrink">img</th>
-              <th>Название / Описание / Детальное описание</th>
+              <th>Название</th>
+              <th>Описание</th>
               <th class="uk-table-shrink">Категория</th>
-              <th class="uk-table-shrink">Число участников</th>
+              <th class="uk-table-shrink">№</th>
               <th class="uk-table-shrink uk-text-nowrap">Цена</th>
               <th class="uk-table-shrink uk-text-nowrap">Дата с по</th>
-              <th class="uk-table-shrink uk-text-nowrap">Статус</th>
-              <th class="uk-table-shrink uk-text-nowrap">Действия</th>
+              <th class="uk-table-shrink uk-text-nowrap">Статус / Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -24,10 +24,9 @@
                        width="40" alt="">
               </td>
               <td class="uk-table-link">
-                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a></h2>
-                <p>{{lot.description}}</p>
-                {{lot.full_description}}
+                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name | slice:0:15}}</a></h2>
               </td>
+              <td>{{lot.description | slice:0:15}}</td>
               <td>{{lot.category_id}}</td>
               <td>{{lot.count_participants}}</td>
               <td>{{lot.price}}</td>
@@ -37,8 +36,6 @@
                 <div *ngIf="lot.deleted">Удалено</div>
                 <div *ngIf="lot.recommend">Рекомендовано</div>
                 <div *ngIf="!lot.recommend">Не рекомендовано</div>
-              </td>
-              <td>
                 <a *ngIf="lot.published"
                    class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
                    (click)="onUnPush(lot.id)">
@@ -59,10 +56,9 @@
                        width="40" alt="">
               </td>
               <td class="uk-table-link">
-                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a></h2>
-                <p>{{lot.description}}</p>
-                {{lot.full_description}}
+                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name | slice:0:15}}</a></h2>
               </td>
+              <td>{{lot.description | slice:0:15}}</td>
               <td>{{lot.category_id}}</td>
               <td>{{lot.count_participants}}</td>
               <td>{{lot.price}}</td>
@@ -73,8 +69,6 @@
                 <div *ngIf="lot.published">Опубликованно</div>
                 <div *ngIf="!lot.published">Не опубликованно</div>
                 <div *ngIf="lot.deleted">Удалено</div>
-              </td>
-              <td>
                 <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
                    routerLink='{{lot.id}}/edit'>
                   <span uk-icon="icon: pencil" class="uk-margin-small-right uk-icon"></span> Редактироать</a>
@@ -92,10 +86,9 @@
                        width="40" alt="">
               </td>
               <td class="uk-table-link">
-                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name}}</a></h2>
-                <p>{{lot.description}}</p>
-                {{lot.full_description}}
+                <h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name | slice:0:15}}</a></h2>
               </td>
+              <td>{{lot.description | slice:0:15}}</td>
               <td>{{lot.category_id}}</td>
               <td>{{lot.count_participants}}</td>
               <td>{{lot.price}}</td>
@@ -104,8 +97,6 @@
                 <div *ngIf="lot.published">Опубликованно</div>
                 <div *ngIf="!lot.published">Не опубликованно</div>
                 <div *ngIf="lot.deleted">Удалено</div>
-              </td>
-              <td>
                 <a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"
                    routerLink='{{lot.id}}/edit'>
                   <span uk-icon="icon: pencil" class="uk-margin-small-right uk-icon"></span> Редактироать</a>
