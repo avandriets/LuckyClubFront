@@ -1,11 +1,14 @@
-<div class="uk-panel uk-panel-lot">
+<div class="uk-panel uk-panel-lot uk-margin-bottom">
   <div class="uk-card uk-card-small uk-card-default">
     <div class="uk-card-header uk-grid-match uk-child-width-1-4 uk-grid uk-padding-remove-bottom">
-      <p class="uk-progress-value uk-width-1-4 uk-text-muted">{{item_lot.count_joined}}/{{item_lot.count_participants}}</p>
+      <p class="uk-progress-value uk-width-1-4 uk-text-muted">
+        {{item_lot.count_joined}}/{{item_lot.count_participants}}</p>
       <p class="uk-width-1-2 uk-text-center uk-lot-name-card"><span>Collectible card</span></p>
       <p class="uk-width-1-4 uk-text-right">
-        <a *ngIf="!isFavorite()" class="uk-icon-link uk-icon" uk-icon="icon: star" (click)="onFavorite(item_lot)"></a>
-        <a *ngIf="isFavorite()" class="uk-icon uk-icon-image uk-icon-full-star" (click)="onFavorite(item_lot)"></a>
+        <span>
+          <a *ngIf="!isFavorite()" title="Добавить в избранное" class="uk-icon-link uk-icon" uk-icon="icon: star" (click)="onFavorite(item_lot)"></a>
+          <a *ngIf="isFavorite()" title="Извлечь из избранного" class="uk-icon uk-icon-image uk-icon-full-star" (click)="onFavorite(item_lot)"></a>
+        </span>
       </p>
     </div>
     <div class="uk-card-body uk-padding-remove-top uk-padding-remove-bottom">
@@ -22,8 +25,10 @@
         <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
 
         <div class="wrapper-browser-content" [ngSwitch]="getLotState()">
-          <img *ngSwitchCase="1" alt="won" class="uk-position-absolute uk-position-bottom-right " src="assets/images/stamp/won.png">
-          <img *ngSwitchCase="1" alt="played" class="uk-position-absolute uk-position-bottom-right " src="assets/images/stamp/played.png">
+          <img *ngSwitchCase="1" alt="won" class="uk-position-absolute uk-position-bottom-right "
+               src="assets/images/stamp/won.png">
+          <img *ngSwitchCase="1" alt="played" class="uk-position-absolute uk-position-bottom-right "
+               src="assets/images/stamp/played.png">
         </div>
       </a>
 

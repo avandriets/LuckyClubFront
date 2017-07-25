@@ -1,38 +1,3 @@
-// Name:            Nav
-// Description:     Defines styles for list navigations
-//
-// Component:       `uk-nav`
-//
-// Sub-objects:     `uk-nav-header`
-//                  `uk-nav-divider`
-//                  `uk-nav-sub`
-//
-// Modifiers:       `uk-nav-parent-icon`
-//                  `uk-nav-default`
-//                  `uk-nav-primary`
-//                  `uk-nav-center`
-//
-// States:          `uk-active`
-//                  `uk-parent`
-//                  `uk-open`
-//                  `uk-touch`
-//
-// ========================================================================
-
-
-// Variables
-// ========================================================================
-
-$nav-item-padding-vertical:                      5px !default;
-$nav-item-padding-horizontal:                    15px !default;
-
-$nav-parent-icon-width:                          ($global-line-height * 1em) !default;
-$nav-parent-icon-height:                         $nav-parent-icon-width !default;
-$nav-parent-icon-color:                          $global-color !default;
-
-
-$nav-default-item-hover-color:                   red !default;
-$nav-default-item-active-color:                  $global-inverse-color !default;
 
 $nav-default-item-hover-background:               $global-primary-background !default;
 $nav-default-item-active-background:              $global-primary-background !default;
@@ -41,19 +6,30 @@ $nav-default-item-active-background:              $global-primary-background !de
  * Items
  */
 
-.uk-nav-default > li > a {
-    padding:  5px 15px;
-}
+
 
 /* Hover + Focus */
 .uk-nav-default > li > a:hover,
 .uk-nav-default > li > a:focus {
-    color: $global-inverse-color;
+  color: $nav-default-item-hover-color;
   background: $nav-default-item-hover-background;
 }
 
 /* Active */
 .uk-nav-default > li.uk-active > a {
-    color: $global-inverse-color;
+  color: $nav-default-item-active-color;
   background: $nav-default-item-active-background;
+}
+
+.uk-nav-default .uk-nav-sub a {
+  padding: $nav-sublist-item-padding-vertical $nav-sublist-item-padding-horizontal;
+  &:hover,
+  &:focus {
+    color: $nav-default-item-hover-color;
+    background: $nav-default-item-hover-background;
+  }
+}
+.uk-nav-sub .uk-active a {
+  color: $nav-default-item-hover-color;
+  background: $nav-default-item-hover-background;
 }
