@@ -36,6 +36,7 @@ import { LuckyBoardComponent } from './views/lucky-board/lucky-board.component';
 import { LotItemGroupComponent } from './views/lot-item-group/lot-item-group.component';
 import {AuthAsyncGuardGuard} from "./auth/auth-async-guard.guard";
 import { LotDetailViewComponent } from './views/lot-detail-view/lot-detail-view.component';
+import { BuyPopUpComponent } from './views/lot-detail-view/buy-pop-up/buy-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { LotDetailViewComponent } from './views/lot-detail-view/lot-detail-view.
     CategoriesFilterComponent,
     LuckyBoardComponent,
     LotItemGroupComponent,
-    LotDetailViewComponent
+    LotDetailViewComponent,
+    BuyPopUpComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

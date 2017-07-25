@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Lot} from "../lots/lots.model";
 import {ActivatedRoute, Router, Params} from "@angular/router";
 import {LotsServiseService} from "../../services/lots-servise.service";
 import {Subscription} from "rxjs";
+import {BuyPopUpComponent} from "./buy-pop-up/buy-pop-up.component";
 
 @Component({
   selector: 'lucky-lot-detail-view',
@@ -11,6 +12,7 @@ import {Subscription} from "rxjs";
 })
 export class LotDetailViewComponent implements OnInit {
 
+  @ViewChild(BuyPopUpComponent) buyDialog: BuyPopUpComponent;
   id: number = 0;
   lot: Lot = new Lot();
   recommend_lots: Lot[] = [];
@@ -82,4 +84,8 @@ export class LotDetailViewComponent implements OnInit {
     console.log('onMoreRecommend');
   }
 
+
+  openBuyDialog() {
+    this.buyDialog.openDialog();
+  }
 }

@@ -1,3 +1,4 @@
+<lucky-buy-pop-up></lucky-buy-pop-up>
 <div class="uk-offcanvas-content">
   <div class="uk-container">
     <div class="uk-section-default">
@@ -5,7 +6,7 @@
         <div class="uk-grid-medium uk-grid" uk-grid>
           <div class="uk-width-auto@m uk-first-column">
             <lucky-lot-item [lot]="lot"></lucky-lot-item>
-             <button *ngIf="!lotWasBought()" class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/buy.svg"></button>
+             <button *ngIf="!lotWasBought()"  (click)="openBuyDialog()" class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/buy.svg"></button>
              <!--<button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/played.svg"></button>-->
              <button *ngIf="lotWasBought()" class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/purc.svg"></button>
           </div>
