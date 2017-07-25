@@ -1,9 +1,9 @@
 <div class="uk-padding-small">
-  <div class="uk-grid-small" uk-grid>
-    <div class="uk-width-auto@s">
+  <form class="uk-grid-small" uk-grid uk-grid [formGroup]="UserEditFG" (ngSubmit)="onSubmit()">
+    <div class="uk-width-small">
       <div>
-        <div class="uk-flex uk-flex-center">
-          <img *ngIf="!fileToShow" src="http://placehold.it/160x200" class="uk-margin-bottom">
+        <div class="uk-text-center">
+          <img *ngIf="!fileToShow" src="http://placehold.it/135x158" class="uk-margin-bottom">
           <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="" class="uk-margin-bottom">
         </div>
 
@@ -34,7 +34,7 @@
         </h3>
       </div>
       <div class="uk-card uk-card-body uk-background-muted">
-        <form class="uk-grid-small uk-form-blank" uk-grid [formGroup]="UserEditFG" (ngSubmit)="onSubmit()">
+        <div class="uk-grid-small uk-form-blank">
 
           <input class="uk-input"
                  formControlName="imageFile"
@@ -136,11 +136,11 @@
             <button class="uk-button uk-button-default uk-modal-close" type="button" (click)="onCancel()">Отменить</button>
             <button [disabled]="!UserEditFG.valid" class="uk-button uk-button-primary" type="submit">Сохранить</button>
           </div>
-        </form>
+        </div>
 
       </div>
     </div>
-  </div>
+  </form>
 </div>
 <ul class="uk-subnav uk-subnav-pill uk-padding-small uk-padding-remove-bottom"
     uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
