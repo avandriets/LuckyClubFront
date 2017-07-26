@@ -8,10 +8,10 @@
       <ng-template [ngIf]="currentLoginStatus==loginStatus.LoggedIn">
         <ul class="uk-subnav uk-width-auto uk-flex-middle">
           <li><a href="#"><span class="uk-label">Favorite</span> <span
-            class="uk-badge uk-text-top">3</span></a>
+            class="uk-badge uk-text-top">{{getFavoritesCount()}}</span></a>
           </li>
           <li><a href="#"><span class="uk-label uk-label-success">Success</span> <span
-            class="uk-badge uk-text-top uk-label-success">4</span></a>
+            class="uk-badge uk-text-top uk-label-success">{{getWInCount()}}</span></a>
           </li>
         </ul>
       </ng-template>

@@ -23,7 +23,6 @@ export class LotPanelComponent implements OnInit {
     if (item) {
       this.lotSrv.setFavorite(item.id).subscribe(
         (data) => {
-          console.log(data);
         },
         (error) => {
           console.log(error);

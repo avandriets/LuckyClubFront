@@ -9,9 +9,10 @@
         <div uk-form-custom="target: true" class="uk-form-controls">
           <input type="file"
                  (change)="onFileChange($event)"
-                 accept="image/*">
+                 accept="image/*"
+                 formControlName="imageFile2">
           <input class="uk-input"
-                 [(ngModel)]="iFile"
+                 formControlName="imageFile"
                  type="text" placeholder="Select file" disabled>
         </div>
         <div class="uk-width-auto uk-padding-remove">
@@ -142,7 +143,7 @@
 </ul>
 <ul class="uk-switcher uk-margin">
   <li>
-    <lucky-lot-item-group *ngIf="favorite_lots && favorite_lots.length" (onMore)="onMoreFavorite()" [headline]="'&nbsp;'" [lot]="favorite_lots"></lucky-lot-item-group>
+    <lucky-lot-item-group *ngIf="user_lots && user_lots.length" (onMore)="onMoreFavorite()" [headline]="'&nbsp;'" [lot]="user_lots"></lucky-lot-item-group>
   </li>
   <li>
     <lucky-lot-item-group *ngIf="favorite_lots && favorite_lots.length" (onMore)="onMoreFavorite()" [headline]="'&nbsp;'" [lot]="favorite_lots"></lucky-lot-item-group>

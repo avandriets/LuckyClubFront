@@ -1,13 +1,18 @@
 <ul class="uk-nav-default uk-nav-parent-icon uk-nav" uk-nav="">
-  <li class="uk-active"><a href="#">Каталог </a></li>
+  <li class="uk-active"><a (click)="onFilter()">Каталог (все) </a></li>
   <li *ngFor="let category of getParentCategories()" class="uk-parent">
-    <a href="#">
+
+    <a (click)="onFilter(category)">
         <span class="uk-icon uk-icon-image uk-margin-small-right"
-              [ngStyle]="{'background-image': 'url(' + category.picture_url + ')' }"></span>
-      {{category.name}}</a>
+              [ngStyle]="{'background-image': 'url(' + category.picture_url + ')' }">
+
+        </span>
+      {{category.name}}
+    </a>
+
     <ul class="uk-nav-sub" hidden="hidden" aria-hidden="true">
-      <li *ngFor="let subCategory of getSubCategories(category)"><a
-        routerLink='{{subCategory.id}}'>{{subCategory.name}}</a>
+      <li *ngFor="let subCategory of getSubCategories(category)">
+        <a (click)="onFilter(subCategory)">{{subCategory.name}}</a>
       </li>
     </ul>
   </li>
