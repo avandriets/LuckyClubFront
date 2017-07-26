@@ -37,19 +37,16 @@ export class LotsComponent implements OnInit {
     this.lotSrv.getLots().subscribe(
       (data: Lot[]) => {
         this.lots = data;
-        console.log(this.lots);
       }
     );
     this.lotSrv.getDrafts().subscribe(
       (data: Lot[]) => {
         this.dr_lots = data;
-        console.log(this.dr_lots);
       }
     );
     this.lotSrv.getDeleted().subscribe(
       (data: Lot[]) => {
         this.del_lots = data;
-        console.log(this.del_lots);
       }
     );
   }

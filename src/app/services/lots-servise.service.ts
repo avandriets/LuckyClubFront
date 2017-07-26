@@ -4,7 +4,7 @@ import {AuthHttpService} from "../helpers/auth-http.service";
 import {Lot, Picture} from "../views/lots/lots.model";
 import {environment} from "../../environments/environment";
 import {Utils} from "../helpers/utilities";
-import {Response, RequestOptions, Headers, RequestMethod} from "@angular/http";
+import {Response, RequestOptions, Headers, RequestMethod, URLSearchParams} from "@angular/http";
 
 @Injectable()
 export class LotsServiseService {
@@ -53,8 +53,26 @@ export class LotsServiseService {
     });
   }
 
-  getLots(pageNumber: number = 1): Observable<Lot[]> {
-    return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}`).map(
+  getLots(category?: string): Observable<Lot[]> {
+
+    let headers = new Headers(
+      {
+        'Content-Type': 'application/json',
+        'Accept': '*/*'
+      }
+    );
+
+    let options = new RequestOptions({headers: headers});
+    options.url = `${environment.hostUrl}${Utils.lotsUrl}`;
+    options.method = RequestMethod.Get;
+
+    if (category) {
+      let params: URLSearchParams = new URLSearchParams();
+      params.set('category', category);
+      options.params = params;
+    }
+
+    return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}`, options).map(
       (inputData: Response) => {
 
         let lotsArray: Lot[] = [];

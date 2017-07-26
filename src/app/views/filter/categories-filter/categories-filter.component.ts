@@ -36,4 +36,11 @@ export class CategoriesFilterComponent implements OnInit {
   getSubCategories(category: Category): Category[]{
     return this.categoriesCollection.getChildrenCategories(category);
   }
+
+  onFilter(category?: Category){
+    if (category)
+      this.router.navigate(['/main'], { relativeTo: this.route, queryParams: { 'category': category.id } });
+    else
+      this.router.navigate(['/main']);
+  }
 }

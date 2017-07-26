@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {Router} from "@angular/router";
-import {Http, RequestOptions, Headers, URLSearchParams, Response} from "@angular/http";
+import {Http, RequestOptions, Headers, URLSearchParams, Response, RequestMethod} from "@angular/http";
 import {Observable} from "rxjs";
 import {Users, LoginStatusEnum} from "../auth/auth.model";
 import 'rxjs/add/operator/mergeMap';
@@ -9,6 +9,7 @@ import * as firebase from 'firebase/app';
 import {Subject} from 'rxjs/Subject';
 import {environment} from "../../environments/environment";
 import {Utils} from "../helpers/utilities";
+import {AuthHttpService} from "../helpers/auth-http.service";
 
 @Injectable()
 export class AuthService {
@@ -25,7 +26,10 @@ export class AuthService {
   lucky_access_token: string;
   current_user: Users = null;
 
-  constructor(private route: Router, private http: Http, public afAuth: AngularFireAuth) {
+  constructor(private route: Router,
+              private http: Http,
+              public afAuth: AngularFireAuth,
+              private authSrv: AuthHttpService) {
   }
 
   signUpUser(email: string, password: string) {
@@ -88,6 +92,24 @@ export class AuthService {
   }
 
   getUserInfoFromServer(): Observable<Users> {
+    // let headers = new Headers(
+    //   {
+    //     'Content-Type': 'application/json',
+    //     'Accept': '*/*',
+    //     'Authorization': "Bearer " + this.lucky_access_token
+    //   }
+    // );
+    //
+    // let options = new RequestOptions({headers: headers});
+    //
+    // return this.http.get(environment.hostUrl + Utils.profileMeUrl, options)
+    //   .map((request: Response) => {
+    //     return request.json() as Users;
+    //   })
+    //   .catch((error: Response) => {
+    //     return Observable.throw(error);
+    //   });
+
     let headers = new Headers(
       {
         'Content-Type': 'application/json',
@@ -98,7 +120,7 @@ export class AuthService {
 
     let options = new RequestOptions({headers: headers});
 
-    return this.http.get(environment.hostUrl + Utils.profileMeUrl, options)
+    return this.authSrv.get(environment.hostUrl + Utils.profileMeUrl)
       .map((request: Response) => {
         return request.json() as Users;
       })
@@ -165,5 +187,43 @@ export class AuthService {
     } else {
       return null;
     }
+  }
+
+  updateProfile(data: any) : Observable<Users> {
+
+    let input = new FormData();
+
+    if(data.file){
+      input.append('file', data.file);
+    }
+
+    input.append('first_name', data.first_name);
+    input.append('last_name', data.last_name);
+    input.append('screen_name', data.screen_name);
+    input.append('email', data.email);
+    input.append('bank_card', data.bank_card);
+    input.append('phone', data.phone);
+
+    let headers = new Headers(
+      {
+        'Accept': '*/*'
+      }
+    );
+
+    let urlString = `${environment.hostUrl}${Utils.profileMeUrl}`;
+
+    let options = new RequestOptions({headers: headers});
+    options.body = input;
+    options.url = urlString;
+    options.method = RequestMethod.Put;
+
+    return this.authSrv.put(urlString, input, options).map(
+      (data: Response) => {
+        this.callComponent(LoginStatusEnum.LoggedIn);
+        return data.json() as Users;
+      }
+    ).catch((error: Response) => {
+      return Observable.throw(error);
+    });
   }
 }

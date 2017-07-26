@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import {Users, LoginStatusEnum} from "../../auth/auth.model";
 import {AuthService} from "../../services/auth.service";
 import {LotsServiseService} from "../../services/lots-servise.service";
@@ -6,6 +6,7 @@ import {Lot} from "../lots/lots.model";
 import {Subscription} from "rxjs";
 import {FormControl, Validators, FormGroup} from "@angular/forms";
 import {DomSanitizer} from "@angular/platform-browser";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,12 +14,20 @@ import {DomSanitizer} from "@angular/platform-browser";
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
+  ngOnDestroy(): void {
+
+    if(this.authStatusSubscription)
+      this.authStatusSubscription.unsubscribe();
+
+    if(this.subscription)
+      this.subscription.unsubscribe();
+  }
 
   currentUser: Users = null;
 
   id: number = 0;
-  recommend_lots: Lot[] = [];
+  user_lots: Lot[] = [];
   favorite_lots: Lot[] = [];
 
   file: any = null;
@@ -32,14 +41,17 @@ export class UserComponent implements OnInit {
   constructor(private lotSrv: LotsServiseService,
               private authSrv: AuthService,
               private changeDetection: ChangeDetectorRef,
-              private domSanitizer: DomSanitizer) {
+              private domSanitizer: DomSanitizer,
+              private router: Router) {
     this.createForm();
   }
+
 
   createForm() {
 
     this.UserEditFG = new FormGroup({
       imageFile: new FormControl(null),
+      imageFile2: new FormControl(null),
       email: new FormControl(null, Validators.required),
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
@@ -50,9 +62,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUser = this.authSrv.getCurrentUser();
-
-
     this.subscription = this.lotSrv.invokeEvent
       .subscribe(
         () => {
@@ -63,6 +72,9 @@ export class UserComponent implements OnInit {
     this.authStatusSubscription = this.authSrv.invokeEvent.subscribe(
       (statusValue: LoginStatusEnum) => {
         this.getData();
+        if (statusValue == LoginStatusEnum.LoggedOut) {
+          this.router.navigate([`main`]);
+        }
       }
     );
 
@@ -72,7 +84,7 @@ export class UserComponent implements OnInit {
   initValues() {
     this.UserEditFG.patchValue(
       {
-        imageFile: this.currentUser.photo_url,
+        // imageFile: this.currentUser.photo_url,
         firstName: this.currentUser.first_name,
         lastName: this.currentUser.last_name,
         nikName: this.currentUser.screen_name,
@@ -81,6 +93,7 @@ export class UserComponent implements OnInit {
         phoneNumber: ''
       }
     );
+    this.fileToShow = this.currentUser.photo_url;
   }
 
   onFileChange(e) {
@@ -115,14 +128,16 @@ export class UserComponent implements OnInit {
     this.file = null;
     this.fileToShow = "";
     this.UserEditFG.get('imageFile').setValue(null);
+    this.UserEditFG.get('imageFile2').setValue(null);
+
     this.iFile = '';
   }
 
   getData() {
 
-    this.lotSrv.getRecommend().subscribe(
+    this.lotSrv.getUserLots().subscribe(
       (data: Lot[]) => {
-        this.recommend_lots = data;
+        this.user_lots = data;
       }
     );
 
@@ -136,7 +151,14 @@ export class UserComponent implements OnInit {
       }
     );
 
-    this.initValues();
+    this.authSrv.getUserInfoFromServer().subscribe(
+      (user: Users) => {
+        // console.log(user);
+        this.currentUser = user;
+        this.initValues();
+      }
+    );
+
   }
 
   onMoreRecommend() {
@@ -149,23 +171,25 @@ export class UserComponent implements OnInit {
 
   onSubmit(){
 
-    // let data: Lot = new Lot();
-    // data.id = this.id;
-    // data.name = this.lotEditFG.get('name').value;
-    // data.description = this.lotEditFG.get('description').value;
-    // data.full_description = this.lotEditFG.get('full_description').value;
-    // data.category_id = this.lotEditFG.get('category_id').value;
-    // data.count_participants = this.lotEditFG.get('count_participants').value;
-    // data.price = this.lotEditFG.get('price').value;
-    //
-    // this.lotSrv.updateLot(data).subscribe(
-    //   (outputData: Lot) => {
-    //     this.router.navigate([`../`], {relativeTo: this.route});
-    //   },
-    //   (error) => {
-    //     console.log(error)
-    //   }
-    // );
+   let data = {
+      file: this.file,
+      first_name: this.UserEditFG.get('firstName').value,
+      last_name: this.UserEditFG.get('lastName').value,
+      screen_name: this.UserEditFG.get('nikName').value,
+      email: this.UserEditFG.get('email').value,
+      bank_card: this.UserEditFG.get('bankCard').value,
+      phone: this.UserEditFG.get('phoneNumber').value
+    };
+
+    this.authSrv.updateProfile(data).subscribe(
+      (user: Users) => {
+        this.currentUser = user;
+        this.initValues();
+      },
+      (error) =>{
+        console.log(error)
+      }
+    );
 
   }
 

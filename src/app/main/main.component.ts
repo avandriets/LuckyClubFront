@@ -1,8 +1,8 @@
-import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef, AfterViewInit, OnDestroy} from '@angular/core';
 import {Lot} from "../views/lots/lots.model";
 import {Subscription} from "rxjs";
 import {LotsServiseService} from "../services/lots-servise.service";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 import {AuthService} from "../services/auth.service";
 import {LoginStatusEnum} from "../auth/auth.model";
 
@@ -11,7 +11,7 @@ import {LoginStatusEnum} from "../auth/auth.model";
   templateUrl: './main.component.html',
   styleUrls: ['main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy{
 
   id: number = 0;
   lots: Lot[] = [];
@@ -28,7 +28,37 @@ export class MainComponent implements OnInit {
               private changeDetection: ChangeDetectorRef) {
   }
 
+  ngOnDestroy(): void {
+
+    if(this.authStatusSubscription)
+      this.authStatusSubscription.unsubscribe();
+
+    if(this.subscription)
+      this.subscription.unsubscribe();
+  }
+
   ngOnInit() {
+
+    this.route.queryParams.subscribe(
+      (queryParam: Params) => {
+        if ('category' in queryParam) {
+          this.lotSrv.getLots(queryParam['category']).subscribe(
+            (data: Lot[]) => {
+              this.lots = data;
+            }
+          );
+        } else {
+
+          this.lotSrv.getLots().subscribe(
+            (data: Lot[]) => {
+              this.lots = data;
+            }
+          );
+
+        }
+      },
+    );
+
     this.subscription = this.lotSrv.invokeEvent
       .subscribe(
         () => {

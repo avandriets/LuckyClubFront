@@ -61,7 +61,7 @@ export class EditLotComponent implements OnInit {
         this.carSrv.getCategories().subscribe(
           (categories: Category[]) => {
 
-            this.categoriesList = new CategoriesCollection(categories).getParentCategories();
+            this.categoriesList = new CategoriesCollection(categories).categories;
             this.getLot(this.id);
           }
         );

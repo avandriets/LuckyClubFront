@@ -2,6 +2,9 @@ import {Component, OnInit, ViewChild, ApplicationRef, ChangeDetectorRef} from '@
 import {AuthService} from "../services/auth.service";
 import {SignInPopUpComponent} from "../auth/sign-in-pop-up/sign-in-pop-up.component";
 import {LoginStatusEnum, Users} from "../auth/auth.model";
+import {Router} from "@angular/router";
+import {LotsServiseService} from "../services/lots-servise.service";
+import {Lot} from "../views/lots/lots.model";
 declare var UIkit: any;
 
 @Component({
@@ -17,13 +20,21 @@ export class HeaderComponent implements OnInit {
   loginStatus = LoginStatusEnum;
   currentLoginStatus: LoginStatusEnum = LoginStatusEnum.LoggedOut;
 
-  constructor(private authService: AuthService/*, private app: ApplicationRef*/, private changeDetection: ChangeDetectorRef) {
+  user_lots: Lot[] = [];
+  favorite_lots: Lot[] = [];
+
+
+  constructor(private authService: AuthService/*, private app: ApplicationRef*/,
+              private changeDetection: ChangeDetectorRef,
+              private lotSrv: LotsServiseService) {
     this.currentLoginStatus = authService.isAuthenticated();
     this.authService.invokeEvent.subscribe(value => this.loginProcessStateChange(value));
+    this.lotSrv.invokeEvent.subscribe(()=> this.getData());
   }
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
+    this.getData();
   }
 
   onLogOut() {
@@ -47,5 +58,41 @@ export class HeaderComponent implements OnInit {
     // this.app.tick();
 
     this.changeDetection.detectChanges();
+  }
+
+  getData() {
+
+    this.lotSrv.getUserLots().subscribe(
+      (data: Lot[]) => {
+        this.user_lots = data;
+      }
+    );
+
+    this.lotSrv.getFavorites().subscribe(
+      (data: Lot[]) => {
+        this.favorite_lots = data;
+        this.changeDetection.detectChanges();
+      },
+      (error) => {
+        this.favorite_lots = [];
+      }
+    );
+  }
+
+  getFavoritesCount(): number {
+    return this.favorite_lots.length;
+  }
+
+  getWInCount(): number {
+    let sum = 0;
+    if(this.authService.current_user){
+     for(let i of this.user_lots) {
+      if(i.winner_id == this.authService.current_user.id) {
+        sum ++;
+      }
+     }
+    }
+
+    return sum;
   }
 }

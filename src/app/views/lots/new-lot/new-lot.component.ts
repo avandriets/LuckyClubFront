@@ -34,7 +34,7 @@ export class NewLotComponent implements OnInit {
   ngOnInit() {
     this.catSrv.getCategories().subscribe(
       (dataCat: Category[]) => {
-        this.categoriesCollection = new CategoriesCollection(dataCat).getParentCategories();
+        this.categoriesCollection = new CategoriesCollection(dataCat).categories;
       },
       (error) => {
         console.log(error)
