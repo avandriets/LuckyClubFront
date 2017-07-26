@@ -40,7 +40,11 @@ const routes: Routes = [
   {path: 'admin-lots', component: LotsComponent, canActivate: [ AuthAsyncGuardGuard]},
   {path: 'admin-lots/new', component: NewLotComponent , canActivate: [ AuthAsyncGuardGuard]},
   {path: 'admin-lots/:id/edit', component: EditLotComponent , canActivate: [ AuthAsyncGuardGuard]},
-  {path: 'admin-lots/:id', component: LotComponent , canActivate: [ AuthAsyncGuardGuard]}
+  {path: 'admin-lots/:id', component: LotComponent , canActivate: [ AuthAsyncGuardGuard]},
+  {
+    path: '**',
+    component: MainComponent,
+  }
 
   // { path: 'signin', component: SignInEmailComponent },
   // { path: 'signup', component: SignUpEmailComponent }
