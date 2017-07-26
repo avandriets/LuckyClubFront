@@ -26,7 +26,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService/*, private app: ApplicationRef*/,
               private changeDetection: ChangeDetectorRef,
-              private lotSrv: LotsServiseService) {
+              private lotSrv: LotsServiseService,
+              private router: Router) {
     this.currentLoginStatus = authService.isAuthenticated();
     this.authService.invokeEvent.subscribe(value => this.loginProcessStateChange(value));
     this.lotSrv.invokeEvent.subscribe(()=> this.getData());
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit {
 
   onLogOut() {
     this.authService.logOut();
+    this.router.navigate([`main`]);
   }
 
   openAuthDialog() {
