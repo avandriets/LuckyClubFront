@@ -9,7 +9,7 @@ import {Users, LoginStatusEnum} from "../auth/auth.model";
   styleUrls: ['main-menu.component.scss']
 })
 export class MainMenuComponent implements OnInit {
-  private currentUser: Users = null;
+  currentUser: Users = null;
 
   constructor(private authSrv: AuthService) { }
 
@@ -40,5 +40,8 @@ export class MainMenuComponent implements OnInit {
         this.currentUser = null;
       }
     );
+  }
+
+  onSearch(){
   }
 }

@@ -17,7 +17,7 @@ export class NewCategoryComponent implements OnInit {
   file:any = null;
 
   parentCategoriesList: Category[] = [];
-  private fileToShow: string;
+  fileToShow: string;
 
   constructor(private catSrv: CategoriesService,
               private router: Router,

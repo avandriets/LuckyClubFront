@@ -19,9 +19,9 @@ export class EditLotComponent implements OnInit {
   lotEditFG: FormGroup = null;
   lotImgFG: FormGroup = null;
   file: any = null;
-  private fileToShow: any;
+  fileToShow: any;
 
-  private categoriesList: Category[] = [];
+  categoriesList: Category[] = [];
   private subscription: Subscription;
 
   constructor(private route: ActivatedRoute,
