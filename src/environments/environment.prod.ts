@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   firebase: {
     apiKey: "AIzaSyB9LhiF3IUAIhKtbxzP2dKW8FtVQq7BU70",
     authDomain: "luckyclub-897a7.firebaseapp.com",
@@ -8,7 +8,7 @@ export const environment = {
     storageBucket: "luckyclub-897a7.appspot.com",
     messagingSenderId: "424759080154"
   },
-  hostUrl: 'http://127.0.0.1:8000',
-  client_id: 'lKoWNvo6wqQpIMtVw1WpZ2m2xvRn60tPrk1b40ND',
-  client_secret: 'Pxxi1GeU9lVbBZxBsTRX38b3JsgRf4OXtbqbGDngeSYcC66FQz'
+  hostUrl: 'http://ditcom-dev.westeurope.cloudapp.azure.com:8090',
+  client_id: 'ass6KEM4XT09BzOaD6DrnkdKzTnWQ2fxilMq4c6R',
+  client_secret: 'IUveJpVbVVzjypieoKQOkDwjo1uXRgNWWcJWOuvuTAim1SZmuT'
 };
