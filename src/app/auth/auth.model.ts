@@ -8,6 +8,10 @@ export class Users {
   created_at: string;
   updated_at: string;
   admin_user: boolean;
+
+  email:string;
+  bank_card:string;
+  phone:string;
 }
 
 export enum LoginStatusEnum{

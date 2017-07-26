@@ -29,7 +29,7 @@ export class Lot {
     if (this.pictures && this.pictures.length > 1) {
       return this.pictures.slice(1, this.pictures.length);
     }
-    return null;
+    return [];
   }
   getPrice(){
     return Number(this.price);

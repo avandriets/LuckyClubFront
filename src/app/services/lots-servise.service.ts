@@ -45,7 +45,7 @@ export class LotsServiseService {
   getLotByIdForUser(id: number) {
     return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}${id}`, {}).map(
       (inputData: Response) => {
-        return inputData.json();
+        return new Lot(inputData.json());
       }
     ).catch((error: Response) => {
       console.log(error);

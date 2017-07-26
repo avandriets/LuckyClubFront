@@ -88,9 +88,9 @@ export class UserComponent implements OnInit, OnDestroy {
         firstName: this.currentUser.first_name,
         lastName: this.currentUser.last_name,
         nikName: this.currentUser.screen_name,
-        email: '',
-        bankCard: '',
-        phoneNumber: ''
+        email: this.currentUser.email,
+        bankCard: this.currentUser.bank_card,
+        phoneNumber: this.currentUser.phone
       }
     );
     this.fileToShow = this.currentUser.photo_url;

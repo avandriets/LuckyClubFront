@@ -28,7 +28,7 @@ export class LotDetailViewComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.lotSrv.getLotByIdForAdmin(this.id)
+        this.lotSrv.getLotByIdForUser(this.id)
           .subscribe(
             (data) => {
               this.lot = data;
