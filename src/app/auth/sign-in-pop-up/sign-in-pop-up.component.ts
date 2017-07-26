@@ -24,7 +24,7 @@ export class SignInPopUpComponent implements OnInit {
     this.modal.show();
   }
 
-  private onSignInByGoogle() {
+  onSignInByGoogle() {
     //TODO optimize invoke chain of events
     this.loginStatus.emit(LoginStatusEnum.inProcess);
     this.modal.hide();
@@ -41,7 +41,7 @@ export class SignInPopUpComponent implements OnInit {
     );
   }
 
-  private onSignInByFacebook() {
+  onSignInByFacebook() {
     this.modal.hide();
     this.authService.signInByFacebookPopUp();
   }

@@ -31,12 +31,12 @@ export class UserComponent implements OnInit, OnDestroy {
   favorite_lots: Lot[] = [];
 
   file: any = null;
-  private fileToShow: any;
+  fileToShow: any;
   iFile;
 
   private authStatusSubscription: Subscription;
   private subscription: Subscription;
-  private UserEditFG: FormGroup = null;
+  UserEditFG: FormGroup = null;
 
   constructor(private lotSrv: LotsServiseService,
               private authSrv: AuthService,
