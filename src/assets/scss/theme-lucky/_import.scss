@@ -1,0 +1,90 @@
+// Base
+//@import "variables.scss";
+@import "card";
+
+/*
+.uk-join-in{
+  background: $overlay-primary-background;
+  border: 1px solid white;
+  padding: 2px 20px;
+  text-align: center;
+}
+
+$ribbon-bg: #595959;
+$ribbon-w: 24px;
+$ribbon-tail: 6px;
+
+.uk-ribbon {
+  padding: 0 0 $ribbon-tail 0;
+  position: absolute;
+  left: calc( 50% - 12px);
+  top: -4px;
+  width: $ribbon-w;
+  z-index: 1;
+  div {
+    background: $ribbon-bg;
+    color: #fff;
+    padding: 3px 0;
+    text-align: center;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+  }
+  div:after {
+    border-left: $ribbon-w/2 solid $ribbon-bg;
+    border-right: $ribbon-w/2 solid $ribbon-bg;
+    border-bottom: $ribbon-tail solid transparent;
+    bottom:0;
+    content:'';
+    height: 0;
+    left:0;
+    position:absolute;
+    width: 0;
+  }
+}
+
+.uk-card-default.uk-card-pr-hover,
+.uk-card-default.uk-card-pr-hot-hover{
+  margin: 4px 0 8px;
+  .uk-background-cover{
+     box-shadow: 0 0 25px 25px rgba(0,0,0,.1) inset;
+  }
+}
+.uk-card-default.uk-card-pr-hover{
+  &:hover {
+    background-color: $global-muted-background;
+    box-shadow: 0px 0px 0px 4px $global-primary-background;
+  }
+}
+.uk-card-default.uk-card-pr-hot-hover{
+  &:hover {
+    background-color: $global-muted-background;
+    box-shadow: 0px 0px 0px 4px $global-danger-background;
+  }
+}
+*/
+
+.uk-icon-avatar{
+  height: 32px;
+  width: 32px;
+}
+
+.empty_circle{
+  height: 10px;
+  margin-top: -10px;
+  background-image: url("assets/images/backgrounds/empty_circle.svg");
+  background-repeat: no-repeat;
+  //background-size: auto 100%;
+  background-size: cover;
+  background-position: center center;
+}
+.yyy *{
+  outline: 1px solid red;
+}
+
+.uk-panel-lot{
+  width: 220px;
+ // outline: 1px solid red;
+  margin-bottom: $card-small-body-padding-vertical;
+}
+.uk-form-grid-horizontal .uk-grid{
+  align-items: center;
+}

@@ -1,0 +1,116 @@
+<div class="uk-offcanvas-content">
+  <div class="uk-container">
+    <div class="uk-section-default">
+      <div class="uk-padding-small">
+        <div class="uk-card uk-card-header uk-card-primary uk-margin">
+          <h3>Создание нового лота</h3>
+        </div>
+        <form role="form" [formGroup]="lotCreateFG" (ngSubmit)="onSubmit()">
+          <div class="uk-card uk-card-body uk-background-muted">
+            <div class="uk-form-grid-horizontal">
+              <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+                <label class="uk-form-label uk-width-1-5@s uk-first-column">Название</label>
+                <div class="uk-form-controls uk-width-4-5@s">
+                  <input
+                    class="uk-input"
+                    type="text"
+                    placeholder="Введите название лота"
+                    formControlName="name">
+                </div>
+                <div *ngIf="!lotCreateFG.get('name').valid && lotCreateFG.get('name').touched">
+                  Необходимо внести название лота.
+                </div>
+              </div>
+              <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+                <label class="uk-form-label uk-width-1-5@s uk-first-column">Описание</label>
+                <div class="uk-form-controls uk-width-4-5@s">
+                  <textarea
+                    class="uk-input"
+                    type="text"
+                    placeholder="Введите описание лота"
+                    rows="5"
+                    formControlName="description"></textarea>
+
+                </div>
+                <div *ngIf="!lotCreateFG.get('description').valid && lotCreateFG.get('description').touched">
+                  Необходимо внести описание лота.
+                </div>
+              </div>
+              <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+                <label class="uk-form-label uk-width-1-5@s uk-first-column">Детальное описание</label>
+                <div class="uk-form-controls uk-width-4-5@s">
+                  <textarea
+                    class="uk-input"
+                    type="text" rows="10"
+                    placeholder="Введите описание лота"
+                    formControlName="full_description"></textarea>
+
+                </div>
+                <div *ngIf="!lotCreateFG.get('description').valid && lotCreateFG.get('description').touched">
+                  Необходимо внести детальное описание лота.
+                </div>
+              </div>
+
+              <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+                <label class="uk-form-label uk-width-1-5@s uk-first-column">Категория</label>
+                <div class="uk-form-controls uk-width-4-5@s">
+                  <!--<input-->
+                  <!--class="uk-input"-->
+                  <!--type="text"-->
+                  <!--placeholder="Введите описание лота"-->
+                  <!--formControlName="category_id">-->
+
+                  <select class="uk-select"
+                          name="category_id"
+                          formControlName="category_id">
+                    <option *ngFor="let parentItem of categoriesCollection" [value]="parentItem.id">
+                      {{parentItem.name}}
+                    </option>
+                  </select>
+
+
+                </div>
+                <div *ngIf="!lotCreateFG.get('category_id').valid && lotCreateFG.get('category_id').touched">
+                  Необходимо выбрать категорию лота.
+                </div>
+              </div>
+              <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+                <label class="uk-form-label uk-width-1-5@s uk-first-column">Число участников</label>
+                <div class="uk-form-controls uk-width-4-5@s">
+                  <input
+                    class="uk-input"
+                    type="text"
+                    placeholder="Введите описание лота"
+                    formControlName="count_participants">
+
+                </div>
+                <div
+                  *ngIf="!lotCreateFG.get('count_participants').valid && lotCreateFG.get('count_participants').touched">
+                  Необходимо выбрать категорию лота.
+                </div>
+              </div>
+
+              <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+                <label class="uk-form-label uk-width-1-5@s uk-first-column">Цена</label>
+                <div class="uk-form-controls uk-width-4-5@s">
+                  <input
+                    class="uk-input"
+                    type="text"
+                    placeholder="Введите цену лота"
+                    formControlName="price">
+                </div>
+                <div *ngIf="!lotCreateFG.get('price').valid && lotCreateFG.get('price').touched">
+                  Необходимо внести цену лота.
+                </div>
+              </div>
+              <div class="uk-text-right">
+                <button [disabled]="!lotCreateFG.valid" type="submit" class="uk-button uk-button-primary">Сохранить
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

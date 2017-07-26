@@ -1,0 +1,51 @@
+<div class="uk-panel uk-panel-lot uk-margin-bottom">
+  <div class="uk-card uk-card-small uk-card-default">
+    <div class="uk-card-header uk-grid-match uk-child-width-1-4 uk-grid uk-padding-remove-bottom">
+      <p class="uk-progress-value uk-width-1-4 uk-text-muted">
+        {{item_lot.count_joined}}/{{item_lot.count_participants}}</p>
+      <p class="uk-width-1-2 uk-text-center uk-lot-name-card"><span>Collectible card</span></p>
+      <p class="uk-width-1-4 uk-text-right">
+        <span>
+          <a *ngIf="!isFavorite()" title="Добавить в избранное" class="uk-icon-link uk-icon" uk-icon="icon: star" (click)="onFavorite(item_lot)"></a>
+          <a *ngIf="isFavorite()" title="Извлечь из избранного" class="uk-icon uk-icon-image uk-icon-full-star" (click)="onFavorite(item_lot)"></a>
+        </span>
+      </p>
+    </div>
+    <div class="uk-card-body uk-padding-remove-top uk-padding-remove-bottom">
+      <div class="uk-margin-small-bottom uk-margin-small-top">
+        <progress class="uk-progress uk-margin-remove" value="{{item_lot.getPercentage()}}" max="100"></progress>
+        <div class="empty_circle"></div>
+      </div>
+
+      <a class="uk-background-cover uk-position-relative uk-light uk-display-block"
+         [ngStyle]="{'background-image': 'url(' + item_lot.getFirstPicture()?.picture_url + ')' }"
+         (click)="onDetail()">
+
+        <h3 class="uk-padding-xsmall uk-position-absolute" style="position: absolute;">{{item_lot.name}}</h3>
+        <img alt="lot_empty" class="uk-invisible uk-width-1-1" src="assets/images/lots/lot_empty.png">
+
+        <div class="wrapper-browser-content" [ngSwitch]="getLotState()">
+          <img *ngSwitchCase="1" alt="won" class="uk-position-absolute uk-position-bottom-right "
+               src="assets/images/stamp/won.png">
+          <img *ngSwitchCase="1" alt="played" class="uk-position-absolute uk-position-bottom-right "
+               src="assets/images/stamp/played.png">
+        </div>
+      </a>
+
+    </div>
+    <div class="uk-card-footer uk-flex">
+      <div class="uk-lot-tagline">
+        <small>Dreams come true</small>
+      </div>
+      <div class="uk-lot-prise">{{item_lot.getPrice()}}</div>
+      <div class="uk-lot-logo-sm">
+        <img src="assets/images/luckymarket.svg" alt="">
+      </div>
+    </div>
+
+  </div>
+  <div class="uk-post-card-small">
+    <span class="uk-text-muted">Ожидаемая дата розыгрыша:</span><br>
+    <strong>{{item_lot.getDueDate() | date: 'dd.MM.yyyy'}}</strong>
+  </div>
+</div>

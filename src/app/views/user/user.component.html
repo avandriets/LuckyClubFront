@@ -1,0 +1,151 @@
+<div class="uk-padding-small">
+  <form class="uk-grid-small" uk-grid [formGroup]="UserEditFG" (ngSubmit)="onSubmit()">
+    <div class="uk-width-small">
+      <div>
+        <div class="uk-text-center">
+          <img *ngIf="!fileToShow" src="http://placehold.it/135x158" class="uk-margin-bottom">
+          <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="" class="uk-margin-bottom">
+        </div>
+        <div uk-form-custom="target: true" class="uk-form-controls">
+          <input type="file"
+                 (change)="onFileChange($event)"
+                 accept="image/*"
+                 formControlName="imageFile2">
+          <input class="uk-input"
+                 formControlName="imageFile"
+                 type="text" placeholder="Select file" disabled>
+        </div>
+        <div class="uk-width-auto uk-padding-remove">
+          <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
+            <span uk-icon="icon: close"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="uk-width-expand@s">
+      <div class="uk-card uk-card-primary uk-card-body uk-margin">
+        <h3 class="">{{currentUser?.screen_name}}
+          <!--<a class="uk-margin-remove uk-align-right">редактировать</a>-->
+        </h3>
+      </div>
+      <div class="uk-card uk-card-body uk-background-muted">
+        <div class="uk-grid-small uk-form-blank" uk-grid>
+          <input class="uk-input"
+                 formControlName="imageFile"
+                 type="text" placeholder="Select file" hidden>
+
+          <div class="uk-width-2-5@l uk-form-grid-horizontal">
+
+            <div class="uk-margin uk-grid-small" uk-grid>
+              <label class="uk-form-label uk-width-1-5@s">Email</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <input class="uk-input uk-form-blank"
+                       type="email"
+                       formControlName="email"
+                       placeholder="Email">
+              </div>
+              <div *ngIf="!UserEditFG.get('email').valid && UserEditFG.get('email').touched" class="uk-text-danger">
+                Необходимо ввести Email адрес.
+              </div>
+            </div>
+
+            <div class="uk-margin uk-grid-small" uk-grid>
+              <label class="uk-form-label uk-width-1-5@s">Имя</label>
+              <div class="uk-form-controls uk-width-4-5@s uk-form-blank">
+                <input class="uk-input uk-form-blank"
+                       type="text" value="Имя"
+                       formControlName="firstName"
+                       placeholder="Имя">
+              </div>
+              <div *ngIf="!UserEditFG.get('firstName').valid && UserEditFG.get('firstName').touched" class="uk-text-danger">
+                Необходимо ввести имя.
+              </div>
+            </div>
+
+            <div class="uk-margin uk-grid-small" uk-grid>
+              <label class="uk-form-label uk-width-1-5@s">Фамилия</label>
+              <div class="uk-form-controls uk-width-4-5@s uk-form-blank">
+                <input class="uk-input uk-form-blank"
+                       type="text"
+                       formControlName="lastName"
+                       placeholder="Фамилия">
+              </div>
+              <div *ngIf="!UserEditFG.get('lastName').valid && UserEditFG.get('lastName').touched" class="uk-text-danger">
+                Необходимо ввести фамилию.
+              </div>
+            </div>
+
+            <div class="uk-margin uk-grid-small" uk-grid>
+              <label class="uk-form-label uk-width-1-5@s">Ник</label>
+              <div class="uk-form-controls uk-width-4-5@s uk-form-blank">
+                <input class="uk-input uk-form-blank"
+                       type="text"
+                       formControlName="nikName"
+                       placeholder="Ник">
+              </div>
+              <div *ngIf="!UserEditFG.get('nikName').valid && UserEditFG.get('nikName').touched" class="uk-text-danger">
+                Необходимо ввести ник.
+              </div>
+            </div>
+
+          </div>
+
+          <div class="uk-width-2-5@l uk-form-grid-horizontal">
+            <div class="uk-margin uk-grid-small" uk-grid>
+              <label class="uk-form-label uk-width-1-5@s">Карта</label>
+              <div class="uk-form-controls uk-width-4-5@s uk-form-blank">
+                <input class="uk-input uk-form-blank"
+                       type="text"
+                       formControlName="bankCard"
+                       placeholder="Карта">
+              </div>
+              <div *ngIf="!UserEditFG.get('bankCard').valid && UserEditFG.get('bankCard').touched" class="uk-text-danger">
+                Необходимо внести банковскую карту.
+              </div>
+            </div>
+            <div class="uk-margin uk-grid-small" uk-grid>
+              <label class="uk-form-label uk-width-1-5@s">Телефон</label>
+              <div class="uk-form-controls uk-width-4-5@s uk-form-blank">
+                <input class="uk-input uk-form-blank"
+                       type="text"
+                       formControlName="phoneNumber"
+                       placeholder="Телефон">
+              </div>
+              <div *ngIf="!UserEditFG.get('phoneNumber').valid && UserEditFG.get('phoneNumber').touched" class="uk-text-danger">
+                Необходимо ввести номер телефона.
+              </div>
+            </div>
+
+          </div>
+          <div class="uk-width-1-5@l">
+            <div class="uk-margin">
+              <label class="uk-form-label uk-margin">Количество игр <strong>50</strong></label>
+            </div>
+            <div class="uk-margin">
+              <label class="uk-form-label"> Процент побед <span
+                class="uk-text-success"><strong>20% </strong></span></label>
+            </div>
+          </div>
+          <div class="uk-width-5-5@l uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button" (click)="onCancel()">Отменить</button>
+            <button [disabled]="!UserEditFG.valid" class="uk-button uk-button-primary" type="submit">Сохранить</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+<ul class="uk-subnav uk-subnav-pill uk-padding-small uk-padding-remove-bottom"
+    uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
+  <li><a href="#">Коллекция</a></li>
+  <li><a href="#">Избранное</a></li>
+</ul>
+<ul class="uk-switcher uk-margin">
+  <li>
+    <lucky-lot-item-group *ngIf="user_lots && user_lots.length" (onMore)="onMoreFavorite()" [headline]="'&nbsp;'" [lot]="user_lots"></lucky-lot-item-group>
+  </li>
+  <li>
+    <lucky-lot-item-group *ngIf="favorite_lots && favorite_lots.length" (onMore)="onMoreFavorite()" [headline]="'&nbsp;'" [lot]="favorite_lots"></lucky-lot-item-group>
+  </li>
+</ul>

@@ -13,18 +13,30 @@ import { RulesComponent } from './views/rules/rules.component';
 import { ContactsComponent } from './views/contacts/contacts.component';
 import { CategoriesComponent } from './views/categories/categories.component';
 import { LotsComponent } from './views/lots/lots.component';
-import {AuthService} from "./auth/auth.service";
+import {AuthService} from "./services/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import { SignInPopUpComponent } from './auth/sign-in-pop-up/sign-in-pop-up.component';
 import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
 import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 import { AngularFireModule } from 'angularfire2';
 import {AngularFireAuthModule} from "angularfire2/auth/auth.module";
-import {CategoriesServiceService} from "./views/categories/categories-service.service";
+import {CategoriesService} from "./services/categories-service.service";
 import {AuthHttpService} from "./helpers/auth-http.service";
 import { NewCategoryComponent } from './views/categories/new-category/new-category.component';
 import { EditCategoryComponent } from './views/categories/edit-category/edit-category.component';
 import { CategoryComponent } from './views/categories/category/category.component';
+import { UserComponent } from './views/user/user.component';
+import { LotComponent } from './views/lots/lot/lot.component';
+import { NewLotComponent } from './views/lots/new-lot/new-lot.component';
+import { EditLotComponent } from './views/lots/edit-lot/edit-lot.component';
+import {LotsServiseService} from "./services/lots-servise.service";
+import { LotPanelComponent } from './views/lot-item/lot-item.component';
+import { CategoriesFilterComponent } from './views/filter/categories-filter/categories-filter.component';
+import { LuckyBoardComponent } from './views/lucky-board/lucky-board.component';
+import { LotItemGroupComponent } from './views/lot-item-group/lot-item-group.component';
+import {AuthAsyncGuardGuard} from "./auth/auth-async-guard.guard";
+import { LotDetailViewComponent } from './views/lot-detail-view/lot-detail-view.component';
+import { BuyPopUpComponent } from './views/lot-detail-view/buy-pop-up/buy-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +54,17 @@ import { CategoryComponent } from './views/categories/category/category.componen
     SignInPopUpComponent,
     NewCategoryComponent,
     EditCategoryComponent,
-    CategoryComponent
+    CategoryComponent,
+    UserComponent,
+    LotComponent,
+    NewLotComponent,
+    EditLotComponent,
+    LotPanelComponent,
+    CategoriesFilterComponent,
+    LuckyBoardComponent,
+    LotItemGroupComponent,
+    LotDetailViewComponent,
+    BuyPopUpComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -53,7 +75,7 @@ import { CategoryComponent } from './views/categories/category/category.componen
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuardService, CategoriesServiceService, AuthHttpService],
+  providers: [AuthService, AuthGuardService, CategoriesService, LotsServiseService, AuthHttpService, AuthAsyncGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

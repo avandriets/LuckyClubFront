@@ -7,6 +7,7 @@ export class Users {
   user_id: number;
   created_at: string;
   updated_at: string;
+  admin_user: boolean;
 }
 
 export enum LoginStatusEnum{

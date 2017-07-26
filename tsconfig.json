@@ -17,6 +17,7 @@
       "dom"
     ],
     "types": [
+      "jasmine",
       "firebase"
     ]
   }

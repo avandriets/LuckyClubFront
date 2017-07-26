@@ -1,17 +1,17 @@
 <lucky-sign-in-pop-up (loginStatus)="loginProcessStateChange($event)"></lucky-sign-in-pop-up>
 
-<div class="uk-container uk-section-default uk-visible@s">
-  <div class="uk-padding-small uk-flex uk-flex-middle uk-flex-between">
+<div class="uk-container uk-visible@s">
+  <div class="uk-padding-small uk-flex uk-flex-middle uk-flex-between uk-section-default">
     <div class="uk-text-uppercase">New sale platform</div>
     <div class="uk-grid">
 
       <ng-template [ngIf]="currentLoginStatus==loginStatus.LoggedIn">
         <ul class="uk-subnav uk-width-auto uk-flex-middle">
           <li><a href="#"><span class="uk-label">Favorite</span> <span
-            class="uk-badge uk-text-top">3</span></a>
+            class="uk-badge uk-text-top">{{getFavoritesCount()}}</span></a>
           </li>
           <li><a href="#"><span class="uk-label uk-label-success">Success</span> <span
-            class="uk-badge uk-text-top uk-label-success">4</span></a>
+            class="uk-badge uk-text-top uk-label-success">{{getWInCount()}}</span></a>
           </li>
         </ul>
       </ng-template>
@@ -41,7 +41,7 @@
         </div>
       </a>
 
-      <a *ngIf="currentLoginStatus==loginStatus.LoggedIn" class="uk-link-reset uk-width-auto" href="#" title="Войти">
+      <a *ngIf="currentLoginStatus==loginStatus.LoggedIn" class="uk-link-reset uk-width-auto" [routerLink]="['/user']" title="Войти">
         <div class="uk-flex-middle uk-grid">
           <div class="uk-width-auto uk-first-column">
             <img class="uk-icon-avatar" src="assets/images/icons/login.svg" alt="">

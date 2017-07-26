@@ -1,3 +1,56 @@
 <lucky-header></lucky-header>
 <lucky-main-menu></lucky-main-menu>
-<router-outlet></router-outlet>
+
+<div class="uk-offcanvas-content">
+    <div class="uk-container">
+        <div>
+            <div class="uk-grid-collapse uk-child-width-1-4@m uk-child-width-1-5@l uk-grid-match uk-grid">
+                <div class="uk-first-column uk-section-default uk-visible@m">
+                    <div>
+                        <lucky-categories-filter></lucky-categories-filter>
+                        <lucky-lucky-board></lucky-lucky-board>
+                    </div>
+                </div>
+                <div class="uk-width-3-4@m  uk-width-4-5@l uk-section-default">
+                    <div>
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="offcanvas-overlay-flip-push" uk-offcanvas="mode: push; overlay: true">
+            <div class="uk-offcanvas-bar uk-flex uk-flex-column uk-text-center">
+                <button class="uk-offcanvas-close uk-close-large" type="button" uk-close></button>
+
+                <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical uk-nav-parent-icon" uk-nav>
+                    <li><a routerLink="/main">Главная</a></li>
+                    <li><a routerLink="/about">О Клубе</a></li>
+                    <li><a routerLink="/rules">Правила</a></li>
+                    <li><a [routerLink]="['/contacts']">Контакты</a></li>
+                </ul>
+
+                <div>
+                    <div class="uk-grid-small uk-child-width-auto uk-flex-inline" uk-grid>
+                        <div>
+                            <a class="uk-icon-button" href="#" uk-icon="icon: facebook"></a>
+                        </div>
+                        <div>
+                            <a class="uk-icon-button" href="#" uk-icon="icon: twitter"></a>
+                        </div>
+                        <div>
+                            <a class="uk-icon-button" href="#" uk-icon="icon: mail"></a>
+                        </div>
+                        <div>
+                            <a class="uk-icon-button" href="#" uk-icon="icon: receiver"></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,14 +1,43 @@
-<div class="uk-offcanvas-content">
-  <div class="uk-container">
+<div class="uk-card uk-card-header uk-card-primary uk-margin uk-flex uk-flex-between uk-flex-middle ">
+  <h3 class="uk-margin-remove">Элемент каталога №{{id}} </h3>
+  <div class="uk-card-media uk-margin-remove">
+    <a (click)="onNewCategory()" class="uk-button uk-button-primary uk-margin-remove">
+      <span uk-icon="icon: plus"></span>
+    </a>
+    <a (click)="onEditCategory()" class="uk-button uk-button-primary uk-margin-remove">
+      <span uk-icon="icon: pencil"></span>
+    </a>
+    <a (click)="onDeleteCategory()" class="uk-button uk-button-primary uk-margin-remove">
+      <span uk-icon="icon: trash"></span>
+    </a>
+  </div>
+</div>
 
-    <div class="uk-button-group">
-      <button (click)="onEditCategory()" class="uk-button uk-button-default"><span uk-icon="icon: pencil"></span></button>
-      <button (click)="onDeleteCategory()" class="uk-button uk-button-default"><span uk-icon="icon: trash"></span></button>
+<div class="uk-card uk-card-body uk-background-muted">
+  <div class="uk-form-grid-horizontal">
+    <div *ngIf="picture_url" class="uk-margin uk-grid-small" uk-grid>
+      <label class="uk-form-label uk-width-1-5@s">Изображение категории</label>
+      <div class="uk-form-controls uk-width-4-5@s">
+          <img src="{{picture_url}}" class="uk-icon uk-icon-image" alt="">
+      </div>
     </div>
-
-    <p>
-      category works!
-    </p>
-
+    <div *ngIf="parent_id" class="uk-margin uk-grid-small" uk-grid>
+      <label class="uk-form-label uk-width-1-5@s">Категория родителя</label>
+      <div class="uk-form-controls uk-width-4-5@s">
+        <input class="uk-input uk-form-blank" type="text" value={{parent_id}} disabled>
+      </div>
+    </div>
+    <div class="uk-margin uk-grid-small" uk-grid>
+      <label class="uk-form-label uk-width-1-5@s">Название категории</label>
+      <div class="uk-form-controls uk-width-4-5@s">
+        <input class="uk-input uk-form-blank" type="text" value={{name}} disabled>
+      </div>
+    </div>
+    <div class="uk-margin uk-grid-small" uk-grid>
+      <label class="uk-form-label uk-width-1-5@s">Описание категории</label>
+      <div class="uk-form-controls uk-width-4-5@s">
+        <input class="uk-input uk-form-blank" type="text" value={{description}} disabled>
+      </div>
+    </div>
   </div>
 </div>

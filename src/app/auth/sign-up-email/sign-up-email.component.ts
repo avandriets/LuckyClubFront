@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {AuthService} from "../auth.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'lucky-sign-up',
   templateUrl: 'sign-up-email.component.html',
-  styleUrls: ['sign-up-email.component.css']
+  styleUrls: ['sign-up-email.component.scss']
 })
 export class SignUpEmailComponent implements OnInit {
 

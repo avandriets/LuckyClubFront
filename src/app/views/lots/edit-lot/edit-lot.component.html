@@ -1,0 +1,152 @@
+<div class="uk-offcanvas-content">
+  <div class="uk-container">
+    <div class="uk-section-default">
+      <div class="uk-padding-small">
+        <div class="uk-card uk-card-header uk-card-primary uk-margin">
+          <h3>Редактирование лота {{id}}</h3>
+        </div>
+        <div class="uk-background-muted uk-padding uk-form-grid-horizontal">
+          <form role="form" [formGroup]="lotEditFG" (ngSubmit)="onSubmit()">
+
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="name">Название</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <input class="uk-input"
+                       id="name"
+                       type="text"
+                       placeholder="name"
+                       formControlName="name">
+              </div>
+            </div>
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="description">Описание</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <textarea class="uk-textarea"
+                          id="description"
+                          type="text"
+                          placeholder="Description"
+                          formControlName="description"></textarea>
+              </div>
+            </div>
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="full_description">Детальное описание</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <textarea class="uk-textarea"
+                          id="full_description"
+                          type="text"
+                          placeholder="full_description"
+                          formControlName="full_description"></textarea>
+              </div>
+            </div>
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column">Категория</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <select class="uk-select"
+                        name="category_id"
+                        formControlName="category_id">
+                  <option *ngFor="let parentItem of categoriesList" [value]="parentItem.id">
+                    {{parentItem.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="count_participants">Число участников</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <input class="uk-input"
+                       id="count_participants"
+                       type="text"
+                       placeholder="Count participants"
+                       formControlName="count_participants">
+              </div>
+            </div>
+
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="price">Цена</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <input class="uk-input"
+                       id="price"
+                       type="number"
+                       placeholder="Price"
+                       formControlName="price">
+              </div>
+            </div>
+
+            <div class="uk-text-right">
+              <a class="uk-button uk-button-default" (click)="onCancel()">Cancel</a>
+              <button class="uk-button uk-button-primary" type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+        <div class="uk-background-muted uk-padding uk-form-grid-horizontal">
+
+
+          <form role="form" [formGroup]="lotImgFG" (ngSubmit)="onSubmitImage()">
+
+            <div class="uk-margin uk-grid-small uk-grid " uk-grid>
+              <label class="uk-form-label uk-width-1-5@s uk-first-column">Изображение</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
+                  <div class="uk-width-expand uk-first-column">
+                    <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="">
+                    <div uk-form-custom="target: true" class="uk-form-controls">
+                      <input type="file"
+                             (change)="onFileChange($event)"
+                             accept="image/*">
+                      <input class="uk-input"
+                             formControlName="imageFile"
+                             type="text" placeholder="Select file" disabled>
+                    </div>
+                  </div>
+                  <div class="uk-width-auto uk-padding-remove">
+                    <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
+                      <span uk-icon="icon: close"></span>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="uk-margin uk-grid-small uk-grid">
+              <label class="uk-form-label uk-width-1-5@s uk-first-column" for="descriptionImage">Описание</label>
+              <div class="uk-form-controls uk-width-4-5@s">
+                <textarea class="uk-textarea"
+                          id="descriptionImage"
+                          type="text"
+                          placeholder="Description"
+                          formControlName="description"></textarea>
+              </div>
+            </div>
+
+            <div class="uk-text-right uk-margin ">
+              <a class="uk-button uk-button-default" (click)="onImageClear()">Cancel</a>
+              <button class="uk-button uk-button-primary" type="submit">Save</button>
+            </div>
+
+          </form>
+
+  <div class="uk-child-width-1-5" uk-grid>
+    <div *ngFor="let picture of lot.pictures">
+      <div class="uk-link-muted uk-text-center">
+        <figure>
+          <img src="{{picture.picture_url}}" alt="{{picture.description}}">
+          <figcaption class="uk-flex uk-flex-between uk-flex-middle">
+            {{picture.description}}
+            <button type="button" (click)="onDeletePicture(picture)" class="uk-button uk-button-default">
+              <span uk-icon="icon: close"></span>
+            </button>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

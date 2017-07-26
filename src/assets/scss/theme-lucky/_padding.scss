@@ -1,0 +1,16 @@
+//
+// Component: Padding
+//
+// ========================================================================
+
+
+// Variables
+// ========================================================================
+$padding-xsmall-padding:                                  5px !default;
+
+// Miscellaneous
+// ========================================================================
+
+// @mixin hook-padding-misc(){}
+
+.uk-padding-xsmall { padding: $padding-xsmall-padding; }

@@ -1,37 +1,98 @@
 <div class="uk-offcanvas-content">
   <div class="uk-container">
-
+    <div class="uk-card uk-card-header uk-card-primary uk-card-body uk-margin">
+      <h3 class="">Создание новой категории</h3>
+    </div>
     <form role="form" [formGroup]="categoryCreateFG" (ngSubmit)="onSubmit()">
-      <div>
-        <label class="uk-form-label">Название категории</label>
-        <div class="uk-form-controls">
-          <input
-            class="uk-input"
-            type="text"
-            placeholder="Введите название категории"
-            formControlName="categoryName">
-        </div>
-        <div *ngIf="!categoryCreateFG.get('categoryName').valid && categoryCreateFG.get('categoryName').touched">
-          Необходимо внести название категрии.
+      <div class="uk-card uk-card-body uk-background-muted">
+        <div class="uk-form-grid-horizontal">
+          <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+            <label class="uk-form-label uk-width-1-5@s uk-first-column">Родительская категория</label>
+            <div class="uk-form-controls uk-width-4-5@s">
+              <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
+                <div class="uk-width-expand uk-first-column">
+                  <select class="uk-select"
+                          name="mappingvalues"
+                          formControlName="parentCategory">
+                    <option *ngFor="let parentItem of parentCategoriesList" [value]="parentItem.id">
+                      {{parentItem.name}}
+                    </option>
+                  </select>
+                </div>
+                <div class="uk-width-auto uk-padding-remove">
+                  <a type="button" (click)="onParentClear()" class="uk-button uk-button-default">
+                    <span uk-icon="icon: close"></span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+            <label class="uk-form-label uk-width-1-5@s uk-first-column">Изображение</label>
+            <div class="uk-form-controls uk-width-4-5@s">
+              <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
+                <div class="uk-width-expand uk-first-column">
+                  <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="">
+                  <div uk-form-custom="target: true">
+                    <input type="file"
+                           (change)="onFileChange($event)"
+                           accept="image/*">
+                    <input class="uk-input uk-form-width-medium"
+                           formControlName="imageFile"
+                           type="text" placeholder="Select file" disabled>
+                  </div>
+
+                </div>
+                <div class="uk-width-auto uk-padding-remove">
+                  <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
+                    <span uk-icon="icon: close"></span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+            <label class="uk-form-label uk-width-1-5@s uk-first-column">Название категории</label>
+            <div class="uk-form-controls uk-width-4-5@s">
+              <input
+                class="uk-input"
+                type="text"
+                placeholder="Введите название категории"
+                formControlName="categoryName"
+              >
+            </div>
+            <div *ngIf="!categoryCreateFG.get('categoryName').valid && categoryCreateFG.get('categoryName').touched">
+              Необходимо внести название категории.
+            </div>
+          </div>
+
+
+          <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+            <label class="uk-form-label uk-width-1-5@s uk-first-column">Описание категории</label>
+            <div class="uk-form-controls uk-width-4-5@s">
+              <input
+                class="uk-input"
+                type="text"
+                placeholder="Введите описание категории"
+                formControlName="description">
+
+            </div>
+            <div *ngIf="!categoryCreateFG.get('description').valid && categoryCreateFG.get('description').touched">
+              Необходимо внести описание категрии.
+            </div>
+          </div>
+          <div class="uk-text-right">
+            <button [disabled]="!categoryCreateFG.valid" type="submit" class="uk-button uk-button-primary">Create
+              category
+            </button>
+          </div>
         </div>
       </div>
-
-      <div>
-        <div class="uk-form-controls">
-          <input
-            class="uk-input"
-            type="text"
-            placeholder="Введите описание категории"
-            formControlName="description">
-        </div>
-        <div *ngIf="!categoryCreateFG.get('description').valid && categoryCreateFG.get('description').touched">
-          Необходимо внести описание категрии.
-        </div>
-      </div>
-
-      <button [disabled]="!categoryCreateFG.valid" type="submit" class="uk-button uk-button-primary">Create category</button>
     </form>
-
   </div>
 </div>
 

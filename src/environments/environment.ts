@@ -13,7 +13,8 @@ export const environment = {
     storageBucket: "luckyclub-897a7.appspot.com",
     messagingSenderId: "424759080154"
   },
-  hostUrl: 'http://127.0.0.1:8000',
-  client_id: 'W0q9nM5We3rKT8gyHIG1Mhmu8d7B7yqgoSPrDDTr',
-  client_secret: 'UbU2pLbXVRsjCbVR0e75o31jdGCJIcnEa1rkwRZ1gq7MwREJDX'
+  hostUrl: 'http://ditcom-dev.westeurope.cloudapp.azure.com:8090',
+  client_id: 'ass6KEM4XT09BzOaD6DrnkdKzTnWQ2fxilMq4c6R',
+  client_secret: 'IUveJpVbVVzjypieoKQOkDwjo1uXRgNWWcJWOuvuTAim1SZmuT'
 };
+

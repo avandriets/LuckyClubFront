@@ -1,0 +1,18 @@
+<div class="uk-padding-small uk-padding-remove-bottom">
+  <div class=" uk-padding-remove-bottom">
+    <div class="uk-float-right">
+      <label class="uk-form-label uk-text-muted">Сортировать</label>
+      <select class="uk-select uk-form-width-small uk-form-small">
+        <option>По имени</option>
+        <option>Option 02</option>
+      </select>
+    </div>
+    <h4 class="uk-heading-divider uk-margin-remove-vertical">{{headline}}</h4>
+  </div>
+</div>
+<div class="uk-background-default uk-padding-small uk-padding-remove-bottom">
+  <div class="uk-grid">
+    <lucky-lot-item *ngFor="let lot of lot" [lot]="lot"></lucky-lot-item>
+  </div>
+  <div class="uk-text-center"><a uk-icon="ratio: 2; icon: chevron-down" (click)="onMore()"></a></div>
+</div>

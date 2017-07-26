@@ -24,7 +24,7 @@ export class AuthHttpService {
     return this._request(RequestMethod.Post, url, body, options);
   }
 
-  public put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
+  public put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
     return this._request(RequestMethod.Put, url, body, options);
   }
 

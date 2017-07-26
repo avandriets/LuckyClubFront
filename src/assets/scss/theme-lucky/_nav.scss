@@ -1,0 +1,35 @@
+
+$nav-default-item-hover-background:               $global-primary-background !default;
+$nav-default-item-active-background:              $global-primary-background !default;
+
+/*
+ * Items
+ */
+
+
+
+/* Hover + Focus */
+.uk-nav-default > li > a:hover,
+.uk-nav-default > li > a:focus {
+  color: $nav-default-item-hover-color;
+  background: $nav-default-item-hover-background;
+}
+
+/* Active */
+.uk-nav-default > li.uk-active > a {
+  color: $nav-default-item-active-color;
+  background: $nav-default-item-active-background;
+}
+
+.uk-nav-default .uk-nav-sub a {
+  padding: $nav-sublist-item-padding-vertical $nav-sublist-item-padding-horizontal;
+  &:hover,
+  &:focus {
+    color: $nav-default-item-hover-color;
+    background: $nav-default-item-hover-background;
+  }
+}
+.uk-nav-sub .uk-active a {
+  color: $nav-default-item-hover-color;
+  background: $nav-default-item-hover-background;
+}
