@@ -1,65 +1,70 @@
 <lucky-buy-pop-up></lucky-buy-pop-up>
 <div class="uk-offcanvas-content">
-  <div class="uk-container">
-    <div class="uk-section-default">
-      <div class="uk-padding-small">
-        <div class="uk-grid-medium uk-grid" uk-grid>
-          <div class="uk-width-auto@m uk-first-column">
-            <lucky-lot-item [lot]="lot"></lucky-lot-item>
-             <button *ngIf="!lotWasBought()"  (click)="openBuyDialog()" class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/buy.svg"></button>
-             <!--<button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/played.svg"></button>-->
-             <button *ngIf="lotWasBought()" class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/purc.svg"></button>
-          </div>
-          <div class="uk-width-expand@m">
-            <div class="uk-card uk-background-muted uk-card-body ">
-              <div uk-grid>
-                <div class="uk-width-expand@m">
-                  <p class="uk-text-lead">Обладатель данной коллекционной карты примет участие в бесплатном розыгыше</p>
-                  <h2 class="uk-article-title uk-grid-margin">{{lot.name}}</h2>
-                </div>
-                <div class="uk-width-auto@m">
-                  <div class="uk-width-small uk-card uk-card-small uk-card-default  uk-text-center">
-                    <div class="uk-card-header">
-                      Ожидаемая дата
-                      розыгрыша
+    <div class="uk-container">
+        <div class="uk-section-default">
+            <div class="uk-padding-small">
+                <div class="uk-grid-medium uk-grid" uk-grid>
+                    <div class="uk-width-auto@m uk-first-column">
+                        <lucky-lot-item [lot]="lot"></lucky-lot-item>
+                        <button *ngIf="!lotWasBought()" (click)="openBuyDialog()"
+                                class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/buy.svg">
+                        </button>
+                        <!--<button class="uk-button uk-button-block uk-button-svg"><img src="assets/images/button/played.svg"></button>-->
+                        <button *ngIf="lotWasBought()" class="uk-button uk-button-block uk-button-svg"><img
+                                src="assets/images/button/purc.svg"></button>
                     </div>
-                    <div class="uk-card-footer uk-background-primary uk-light uk-padding uk-panel">
-                      <p class="uk-h1">{{lot.getDueDate() | date: 'dd'}}</p>
-                      {{lot.getDueDate() | date: 'MMMM y'}}
+                    <div class="uk-width-expand@m">
+                        <div class="uk-card uk-background-muted uk-card-body ">
+                            <div uk-grid>
+                                <div class="uk-width-expand@m">
+                                    <p class="uk-text-lead">Обладатель данной коллекционной карты примет участие в
+                                        бесплатном розыгыше</p>
+                                    <h2 class="uk-article-title uk-grid-margin">{{lot.name}}</h2>
+                                </div>
+                                <div class="uk-width-auto@m">
+                                    <div class="uk-width-small uk-card uk-card-small uk-card-default  uk-text-center">
+                                        <div class="uk-card-header">
+                                            Ожидаемая дата
+                                            розыгрыша
+                                        </div>
+                                        <div class="uk-card-footer uk-background-primary uk-light uk-padding uk-panel">
+                                            <p class="uk-h1">{{lot.getDueDate() | date: 'dd'}}</p>
+                                            {{lot.getDueDate() | date: 'MMMM y'}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>{{lot.description}}</p>
+                        <div class="uk-child-width-1-5" uk-grid uk-lightbox>
+                            <div *ngFor="let picture of lot.getGallery()">
+                                <a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}"
+                                   title="{{picture.description}}"
+                                   type="image">
+                                    <figure>
+                                        <img src="{{picture.picture_url}}" width="400" alt="">
+                                        <figcaption class="uk-margin-small">{{picture.description}}</figcaption>
+                                    </figure>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-            <p>{{lot.description}}</p>
-            <div class="uk-child-width-1-5" uk-grid uk-lightbox>
-              <div *ngFor="let picture of lot.getGallery()">
-                <a class="uk-link-muted uk-text-center" href="{{picture.picture_url}}" title="{{picture.description}}"
-                   type="image">
-                  <figure>
-                    <img src="{{picture.picture_url}}" width="400" alt="">
-                    <figcaption class="uk-margin-small">{{picture.description}}</figcaption>
-                  </figure>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <ul class="uk-subnav uk-subnav-pill uk-padding-small uk-padding-remove-bottom"
-        uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
-      <li><a href="#">Характеристики</a></li>
-      <li><a href="#">Обсуждение</a></li>
-      <li><a href="#">Обратная связь</a></li>
-      <li><a href="#">Статистика</a></li>
-    </ul>
-    <ul class="uk-switcher uk-margin">
-      <li class="uk-padding-small">
-        {{lot.full_description}}
-      </li>
-      <li class="uk-padding-small">
-        <ul class="uk-comment-list">
+        <ul class="uk-subnav uk-subnav-pill uk-padding-small uk-padding-remove-bottom"
+            uk-switcher="animation: uk-animation-slide-left-medium, uk-animation-slide-right-medium">
+            <li><a href="#">Характеристики</a></li>
+            <li><a href="#">Обсуждение</a></li>
+            <li><a href="#">Обратная связь</a></li>
+            <li><a href="#">Статистика</a></li>
+        </ul>
+        <ul class="uk-switcher uk-margin">
+            <li class="uk-padding-small">
+                {{lot.full_description}}
+            </li>
+            <li class="uk-padding-small">
+                <ul class="uk-comment-list">
                     <li>
                         <article class="uk-comment">
                             <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
@@ -67,7 +72,8 @@
                                     <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
                                 </div>
                                 <div class="uk-width-expand">
-                                    <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
+                                    <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a>
+                                    </h4>
                                     <ul class="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
                                         <li><a href="#">12 days ago</a></li>
                                         <li><a href="#">Reply</a></li>
@@ -75,7 +81,10 @@
                                 </div>
                             </header>
                             <div class="uk-comment-body">
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                                    eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                    takimata sanctus est Lorem ipsum dolor sit amet.</p>
                             </div>
                         </article>
                     </li>
@@ -84,17 +93,24 @@
                             <header class="uk-comment-header uk-position-relative">
                                 <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                     <div class="uk-width-auto">
-                                        <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
+                                        <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50"
+                                             alt="">
                                     </div>
                                     <div class="uk-width-expand">
-                                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                                        <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+                                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a>
+                                        </h4>
+                                        <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset"
+                                                                                           href="#">12 days ago</a></p>
                                     </div>
                                 </div>
-                                <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                                <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a
+                                        class="uk-link-muted" href="#">Reply</a></div>
                             </header>
                             <div class="uk-comment-body">
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                                    eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                    takimata sanctus est Lorem ipsum dolor sit amet.</p>
                             </div>
                         </article>
                         <ul>
@@ -103,17 +119,27 @@
                                     <header class="uk-comment-header uk-position-relative">
                                         <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                             <div class="uk-width-auto">
-                                                <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
+                                                <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg"
+                                                     width="50" alt="">
                                             </div>
                                             <div class="uk-width-expand">
-                                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                                                <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+                                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset"
+                                                                                                 href="#">Author</a>
+                                                </h4>
+                                                <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset"
+                                                                                                   href="#">12 days
+                                                    ago</a></p>
                                             </div>
                                         </div>
-                                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a
+                                                class="uk-link-muted" href="#">Reply</a></div>
                                     </header>
                                     <div class="uk-comment-body">
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                                            clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+                                            amet.</p>
                                     </div>
                                 </article>
                                 <ul>
@@ -122,17 +148,25 @@
                                             <header class="uk-comment-header uk-position-relative">
                                                 <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                                     <div class="uk-width-auto">
-                                                        <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
+                                                        <img class="uk-comment-avatar"
+                                                             src="assets/images/lots/user1.jpg" width="50" alt="">
                                                     </div>
                                                     <div class="uk-width-expand">
-                                                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                                                        <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+                                                        <h4 class="uk-comment-title uk-margin-remove"><a
+                                                                class="uk-link-reset" href="#">Author</a></h4>
+                                                        <p class="uk-comment-meta uk-margin-remove-top"><a
+                                                                class="uk-link-reset" href="#">12 days ago</a></p>
                                                     </div>
                                                 </div>
-                                                <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                                                <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a
+                                                        class="uk-link-muted" href="#">Reply</a></div>
                                             </header>
                                             <div class="uk-comment-body">
-                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                                                    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+                                                    erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                                                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                                                    Lorem ipsum dolor sit amet.</p>
                                             </div>
                                         </article>
                                         <ul>
@@ -141,17 +175,27 @@
                                                     <header class="uk-comment-header uk-position-relative">
                                                         <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                                             <div class="uk-width-auto">
-                                                                <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
+                                                                <img class="uk-comment-avatar"
+                                                                     src="assets/images/lots/user1.jpg" width="50"
+                                                                     alt="">
                                                             </div>
                                                             <div class="uk-width-expand">
-                                                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                                                                <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+                                                                <h4 class="uk-comment-title uk-margin-remove"><a
+                                                                        class="uk-link-reset" href="#">Author</a></h4>
+                                                                <p class="uk-comment-meta uk-margin-remove-top"><a
+                                                                        class="uk-link-reset" href="#">12 days ago</a>
+                                                                </p>
                                                             </div>
                                                         </div>
-                                                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                                                        <div class="uk-position-top-right uk-position-small uk-hidden-hover">
+                                                            <a class="uk-link-muted" href="#">Reply</a></div>
                                                     </header>
                                                     <div class="uk-comment-body">
-                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                                                            diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                            aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                                                            justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                                                            sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
                                                     </div>
                                                 </article>
                                             </li>
@@ -164,17 +208,27 @@
                                     <header class="uk-comment-header uk-position-relative">
                                         <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                             <div class="uk-width-auto">
-                                                <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
+                                                <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg"
+                                                     width="50" alt="">
                                             </div>
                                             <div class="uk-width-expand">
-                                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                                                <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+                                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset"
+                                                                                                 href="#">Author</a>
+                                                </h4>
+                                                <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset"
+                                                                                                   href="#">12 days
+                                                    ago</a></p>
                                             </div>
                                         </div>
-                                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a
+                                                class="uk-link-muted" href="#">Reply</a></div>
                                     </header>
                                     <div class="uk-comment-body">
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                                            clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+                                            amet.</p>
                                     </div>
                                 </article>
                             </li>
@@ -186,17 +240,24 @@
                             <header class="uk-comment-header uk-position-relative">
                                 <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                     <div class="uk-width-auto">
-                                        <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
+                                        <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50"
+                                             alt="">
                                     </div>
                                     <div class="uk-width-expand">
-                                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                                        <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+                                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a>
+                                        </h4>
+                                        <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset"
+                                                                                           href="#">12 days ago</a></p>
                                     </div>
                                 </div>
-                                <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                                <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a
+                                        class="uk-link-muted" href="#">Reply</a></div>
                             </header>
                             <div class="uk-comment-body">
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                                    eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                    takimata sanctus est Lorem ipsum dolor sit amet.</p>
                             </div>
                         </article>
                     </li>
@@ -205,17 +266,24 @@
                             <header class="uk-comment-header uk-position-relative">
                                 <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                     <div class="uk-width-auto">
-                                        <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
+                                        <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50"
+                                             alt="">
                                     </div>
                                     <div class="uk-width-expand">
-                                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                                        <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+                                        <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a>
+                                        </h4>
+                                        <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset"
+                                                                                           href="#">12 days ago</a></p>
                                     </div>
                                 </div>
-                                <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                                <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a
+                                        class="uk-link-muted" href="#">Reply</a></div>
                             </header>
                             <div class="uk-comment-body">
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                                    eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                    takimata sanctus est Lorem ipsum dolor sit amet.</p>
                             </div>
                         </article>
                         <ul>
@@ -224,32 +292,42 @@
                                     <header class="uk-comment-header uk-position-relative">
                                         <div class="uk-grid-medium uk-flex-middle" uk-grid>
                                             <div class="uk-width-auto">
-                                                <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg" width="50" alt="">
+                                                <img class="uk-comment-avatar" src="assets/images/lots/user1.jpg"
+                                                     width="50" alt="">
                                             </div>
                                             <div class="uk-width-expand">
-                                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">Author</a></h4>
-                                                <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset" href="#">12 days ago</a></p>
+                                                <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset"
+                                                                                                 href="#">Author</a>
+                                                </h4>
+                                                <p class="uk-comment-meta uk-margin-remove-top"><a class="uk-link-reset"
+                                                                                                   href="#">12 days
+                                                    ago</a></p>
                                             </div>
                                         </div>
-                                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a class="uk-link-muted" href="#">Reply</a></div>
+                                        <div class="uk-position-top-right uk-position-small uk-hidden-hover"><a
+                                                class="uk-link-muted" href="#">Reply</a></div>
                                     </header>
                                     <div class="uk-comment-body">
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                                            clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+                                            amet.</p>
                                     </div>
                                 </article>
                             </li>
                         </ul>
                     </li>
                 </ul>
-      </li>
-      <li class="uk-padding-small">
-        Обратная связь
-      </li>
-      <li class="uk-padding-small">
-        44
-      </li>
-    </ul>
-    <lucky-lot-item-group *ngIf="recommend_lots && recommend_lots.length" (onMore)="onMoreRecommend()"
-                          [headline]="'Рекомендуемые'" [lot]="recommend_lots"></lucky-lot-item-group>
-  </div>
+            </li>
+            <li class="uk-padding-small">
+                <!--<lucky-feedback></lucky-feedback>-->
+            </li>
+            <li class="uk-padding-small">
+                44
+            </li>
+        </ul>
+        <lucky-lot-item-group *ngIf="recommend_lots && recommend_lots.length" (onMore)="onMoreRecommend()"
+                              [headline]="'Рекомендуемые'" [lot]="recommend_lots"></lucky-lot-item-group>
+    </div>
 </div>

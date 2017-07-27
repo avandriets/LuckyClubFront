@@ -1,0 +1,56 @@
+<form role="form" [formGroup]="feedback" (ngSubmit)="onSubmit()">
+  <div class="uk-card uk-card-body uk-background-muted">
+    <div class="uk-margin uk-grid-small uk-grid" uk-grid>
+      <div class="uk-width-1-2@s uk-first-column">
+        <div class="uk-margin" >
+          <label class="uk-display-block uk-margin">Your Email</label>
+          <div class="uk-form-controls">
+            <input
+                    class="uk-input"
+                    type="email"
+                    placeholder="Your Email"
+                    formControlName="email">
+          </div>
+          <div *ngIf="!feedbackForm.get('email').valid && feedbackForm.get('email').touched">
+            Необходимо внести Your Email.
+          </div>
+        </div>
+        <div class="uk-margin">
+          <label class="uk-display-block uk-margin">Subject</label>
+          <div class="uk-form-controls">
+                  <textarea
+                          class="uk-textarea"
+                          type="text"
+                          placeholder="subject"
+                          rows="5"
+                          formControlName="Subject"></textarea>
+          </div>
+          <div *ngIf="!feedbackForm.get('subject').valid && feedbackForm.get('subject').touched">
+            Необходимо внести Subject.
+          </div>
+        </div>
+      </div>
+      <div class="uk-width-1-2@s">
+        <div class="uk-margin" >
+          <label class="uk-display-block uk-margin">Message</label>
+          <div class="uk-form-controls">
+                  <textarea
+                          class="uk-textarea"
+                          type="text" rows="9"
+                          placeholder="Message"
+                          formControlName="message"></textarea>
+
+          </div>
+          <div *ngIf="!feedbackForm.get('message').valid && feedbackForm.get('message').touched">
+            Необходимо внести message.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="uk-text-right">
+      <button [disabled]="!feedbackForm.valid" type="submit"
+              class="uk-button uk-button-danger">Send Message
+      </button>
+    </div>
+  </div>
+</form>

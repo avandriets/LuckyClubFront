@@ -12,6 +12,7 @@ import {BuyPopUpComponent} from "./buy-pop-up/buy-pop-up.component";
 })
 export class LotDetailViewComponent implements OnInit {
 
+
   @ViewChild(BuyPopUpComponent) buyDialog: BuyPopUpComponent;
   id: number = 0;
   lot: Lot = new Lot();
@@ -22,6 +23,7 @@ export class LotDetailViewComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private lotSrv: LotsServiseService) {
+
   }
 
   ngOnInit() {
@@ -88,4 +90,5 @@ export class LotDetailViewComponent implements OnInit {
   openBuyDialog() {
     this.buyDialog.openDialog();
   }
+
 }
