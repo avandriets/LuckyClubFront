@@ -1,4 +1,4 @@
-<form role="form" [formGroup]="feedback" (ngSubmit)="onSubmit()">
+<form role="form" [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
   <div class="uk-card uk-card-body uk-background-muted">
     <div class="uk-margin uk-grid-small uk-grid" uk-grid>
       <div class="uk-width-1-2@s uk-first-column">
@@ -23,7 +23,7 @@
                           type="text"
                           placeholder="subject"
                           rows="5"
-                          formControlName="Subject"></textarea>
+                          formControlName="subject"></textarea>
           </div>
           <div *ngIf="!feedbackForm.get('subject').valid && feedbackForm.get('subject').touched">
             Необходимо внести Subject.
