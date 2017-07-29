@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef, OnDestroy} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import {Users, LoginStatusEnum} from "../../auth/auth.model";
 import {AuthService} from "../../services/auth.service";
 import {LotsServiseService} from "../../services/lots-servise.service";
@@ -40,7 +40,7 @@ export class UserComponent implements OnInit, OnDestroy {
 
   constructor(private lotSrv: LotsServiseService,
               private authSrv: AuthService,
-              private changeDetection: ChangeDetectorRef,
+              // private changeDetection: ChangeDetectorRef,
               private domSanitizer: DomSanitizer,
               private router: Router) {
     this.createForm();
@@ -144,7 +144,7 @@ export class UserComponent implements OnInit, OnDestroy {
     this.lotSrv.getFavorites().subscribe(
       (data: Lot[]) => {
         this.favorite_lots = data;
-        this.changeDetection.detectChanges();
+        // this.changeDetection.detectChanges();
       },
       (error) => {
         this.favorite_lots = [];

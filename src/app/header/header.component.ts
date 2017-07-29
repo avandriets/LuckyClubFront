@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ApplicationRef, ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ApplicationRef} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {SignInPopUpComponent} from "../auth/sign-in-pop-up/sign-in-pop-up.component";
 import {LoginStatusEnum, Users} from "../auth/auth.model";
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(private authService: AuthService/*, private app: ApplicationRef*/,
-              private changeDetection: ChangeDetectorRef,
+              // private changeDetection: ChangeDetectorRef,
               private lotSrv: LotsServiseService,
               private router: Router) {
     this.currentLoginStatus = authService.isAuthenticated();
@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
     this.currentUser = this.authService.getCurrentUser();
     // this.app.tick();
 
-    this.changeDetection.detectChanges();
+    // this.changeDetection.detectChanges();
   }
 
   getData() {
@@ -75,7 +75,7 @@ export class HeaderComponent implements OnInit {
     this.lotSrv.getFavorites().subscribe(
       (data: Lot[]) => {
         this.favorite_lots = data;
-        this.changeDetection.detectChanges();
+        // this.changeDetection.detectChanges();
       },
       (error) => {
         this.favorite_lots = [];
