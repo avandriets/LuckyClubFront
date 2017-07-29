@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, NgZone} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {LoginStatusEnum, Users} from "../auth.model";
 declare var UIkit: any;
@@ -13,7 +13,7 @@ export class SignInPopUpComponent implements OnInit {
   @Output() loginStatus = new EventEmitter<LoginStatusEnum>();
   private modal: any = null;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private ngZone: NgZone) {
   }
 
   ngOnInit() {
@@ -30,15 +30,35 @@ export class SignInPopUpComponent implements OnInit {
     this.modal.hide();
 
 
-    this.authService.signInByGooglePopUp().subscribe(
-      (data: Users) => {
-        this.loginStatus.emit(LoginStatusEnum.LoggedIn);
-        window.location.reload();
-      },
-      (error) => {
-        this.loginStatus.emit(LoginStatusEnum.FinishError);
-      }
-    );
+    this.ngZone.runOutsideAngular(() => {
+
+      this.authService.signInByGooglePopUp().subscribe(
+        (data: Users) => {
+          this.ngZone.run(() => {
+            // this.loginStatus.emit(LoginStatusEnum.FinishError);
+            this.loginStatus.emit(LoginStatusEnum.LoggedIn);
+          });
+          // window.location.reload();
+        },
+        (error) => {
+          this.ngZone.run(() => {
+            this.loginStatus.emit(LoginStatusEnum.FinishError);
+          });
+
+        }
+      );
+
+    });
+
+    // this.authService.signInByGooglePopUp().subscribe(
+    //   (data: Users) => {
+    //     this.loginStatus.emit(LoginStatusEnum.LoggedIn);
+    //     // window.location.reload();
+    //   },
+    //   (error) => {
+    //     this.loginStatus.emit(LoginStatusEnum.FinishError);
+    //   }
+    // );
   }
 
   onSignInByFacebook() {

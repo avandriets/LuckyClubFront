@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectorRef, AfterViewInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
 import {Lot} from "../views/lots/lots.model";
 import {Subscription} from "rxjs";
 import {LotsServiseService} from "../services/lots-servise.service";
@@ -24,8 +24,7 @@ export class MainComponent implements OnInit, OnDestroy{
   constructor(private lotSrv: LotsServiseService,
               private router: Router,
               private route: ActivatedRoute,
-              private authSrv: AuthService,
-              private changeDetection: ChangeDetectorRef) {
+              private authSrv: AuthService) {
   }
 
   ngOnDestroy(): void {
@@ -91,7 +90,7 @@ export class MainComponent implements OnInit, OnDestroy{
     this.lotSrv.getFavorites().subscribe(
       (data: Lot[]) => {
         this.favorite_lots = data;
-        this.changeDetection.detectChanges();
+        // this.changeDetection.detectChanges();
       },
       (error) => {
         this.favorite_lots = [];
