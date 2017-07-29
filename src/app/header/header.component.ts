@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ApplicationRef} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {SignInPopUpComponent} from "../auth/sign-in-pop-up/sign-in-pop-up.component";
 import {LoginStatusEnum, Users} from "../auth/auth.model";
