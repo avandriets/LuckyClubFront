@@ -1,26 +1,27 @@
 <div class="uk-padding-small">
   <form class="uk-grid-small" uk-grid [formGroup]="UserEditFG" (ngSubmit)="onSubmit()">
     <div class="uk-width-small">
-      <div>
         <div class="uk-text-center">
           <img *ngIf="!fileToShow" src="http://placehold.it/135x158" class="uk-margin-bottom">
-          <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="" class="uk-margin-bottom">
+          <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)"
+               alt="" class="uk-margin-bottom">
         </div>
-        <div uk-form-custom="target: true" class="uk-form-controls">
-          <input type="file"
-                 (change)="onFileChange($event)"
-                 accept="image/*"
-                 formControlName="imageFile2">
-          <input class="uk-input"
-                 formControlName="imageFile"
-                 type="text" placeholder="Select file" disabled>
+        <div class="uk-flex">
+          <div uk-form-custom="target: true" class="uk-form-controls">
+            <input type="file"
+                   (change)="onFileChange($event)"
+                   accept="image/*"
+                   formControlName="imageFile2">
+            <input class="uk-input"
+                   formControlName="imageFile"
+                   type="text" placeholder="Select file" disabled>
+          </div>
+          <div class="uk-width-auto uk-padding-remove">
+            <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
+              <span uk-icon="icon: close"></span>
+            </button>
+          </div>
         </div>
-        <div class="uk-width-auto uk-padding-remove">
-          <button type="button" (click)="onImageClear()" class="uk-button uk-button-default">
-            <span uk-icon="icon: close"></span>
-          </button>
-        </div>
-      </div>
     </div>
     <div class="uk-width-expand@s">
       <div class="uk-card uk-card-primary uk-card-body uk-margin">
@@ -57,7 +58,8 @@
                        formControlName="firstName"
                        placeholder="Имя">
               </div>
-              <div *ngIf="!UserEditFG.get('firstName').valid && UserEditFG.get('firstName').touched" class="uk-text-danger">
+              <div *ngIf="!UserEditFG.get('firstName').valid && UserEditFG.get('firstName').touched"
+                   class="uk-text-danger">
                 Необходимо ввести имя.
               </div>
             </div>
@@ -70,7 +72,8 @@
                        formControlName="lastName"
                        placeholder="Фамилия">
               </div>
-              <div *ngIf="!UserEditFG.get('lastName').valid && UserEditFG.get('lastName').touched" class="uk-text-danger">
+              <div *ngIf="!UserEditFG.get('lastName').valid && UserEditFG.get('lastName').touched"
+                   class="uk-text-danger">
                 Необходимо ввести фамилию.
               </div>
             </div>
@@ -99,7 +102,8 @@
                        formControlName="bankCard"
                        placeholder="Карта">
               </div>
-              <div *ngIf="!UserEditFG.get('bankCard').valid && UserEditFG.get('bankCard').touched" class="uk-text-danger">
+              <div *ngIf="!UserEditFG.get('bankCard').valid && UserEditFG.get('bankCard').touched"
+                   class="uk-text-danger">
                 Необходимо внести банковскую карту.
               </div>
             </div>
@@ -111,7 +115,8 @@
                        formControlName="phoneNumber"
                        placeholder="Телефон">
               </div>
-              <div *ngIf="!UserEditFG.get('phoneNumber').valid && UserEditFG.get('phoneNumber').touched" class="uk-text-danger">
+              <div *ngIf="!UserEditFG.get('phoneNumber').valid && UserEditFG.get('phoneNumber').touched"
+                   class="uk-text-danger">
                 Необходимо ввести номер телефона.
               </div>
             </div>
@@ -127,7 +132,8 @@
             </div>
           </div>
           <div class="uk-width-5-5@l uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button" (click)="onCancel()">Отменить</button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button" (click)="onCancel()">Отменить
+            </button>
             <button [disabled]="!UserEditFG.valid" class="uk-button uk-button-primary" type="submit">Сохранить</button>
           </div>
         </div>
@@ -143,9 +149,11 @@
 </ul>
 <ul class="uk-switcher uk-margin">
   <li>
-    <lucky-lot-item-group *ngIf="user_lots && user_lots.length" (onMore)="onMoreFavorite()" [headline]="'&nbsp;'" [lot]="user_lots"></lucky-lot-item-group>
+    <lucky-lot-item-group *ngIf="user_lots && user_lots.length" (onMore)="onMoreFavorite()" [headline]="'&nbsp;'"
+                          [lot]="user_lots"></lucky-lot-item-group>
   </li>
   <li>
-    <lucky-lot-item-group *ngIf="favorite_lots && favorite_lots.length" (onMore)="onMoreFavorite()" [headline]="'&nbsp;'" [lot]="favorite_lots"></lucky-lot-item-group>
+    <lucky-lot-item-group *ngIf="favorite_lots && favorite_lots.length" (onMore)="onMoreFavorite()"
+                          [headline]="'&nbsp;'" [lot]="favorite_lots"></lucky-lot-item-group>
   </li>
 </ul>
