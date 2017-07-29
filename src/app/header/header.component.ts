@@ -59,9 +59,6 @@ export class HeaderComponent implements OnInit {
     }
 
     this.currentUser = this.authService.getCurrentUser();
-    // this.app.tick();
-
-    // this.changeDetection.detectChanges();
   }
 
   getData() {
