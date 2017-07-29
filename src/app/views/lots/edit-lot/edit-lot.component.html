@@ -2,8 +2,15 @@
   <div class="uk-container">
     <div class="uk-section-default">
       <div class="uk-padding-small">
+        <div class="uk-alert-danger uk-alert" *ngIf="lot.deleted">
+          <p>Это удаленный лот его нельзя редактировать</p>
+        </div>
+        <div class="uk-alert-danger uk-alert" *ngIf="lot.published">
+          <p>Это опубликованный лот его нельзя редактировать</p>
+        </div>
+
         <div class="uk-card uk-card-header uk-card-primary uk-margin">
-          <h3>Редактирование лота {{id}}</h3>
+          <h3>Редактирование лота №{{id}}</h3>
         </div>
         <div class="uk-background-muted uk-padding uk-form-grid-horizontal">
           <form role="form" [formGroup]="lotEditFG" (ngSubmit)="onSubmit()">
@@ -89,14 +96,18 @@
               <div class="uk-form-controls uk-width-4-5@s">
                 <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
                   <div class="uk-width-expand uk-first-column">
-                    <img *ngIf="fileToShow" class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="">
-                    <div uk-form-custom="target: true" class="uk-form-controls">
-                      <input type="file"
-                             (change)="onFileChange($event)"
-                             accept="image/*">
-                      <input class="uk-input"
-                             formControlName="imageFile"
-                             type="text" placeholder="Select file" disabled>
+                    <div class="uk-margin-small uk-grid-small uk-grid" uk-grid>
+                      <div class="uk-width-auto" *ngIf="fileToShow">
+                        <img class="uk-icon uk-icon-image" [src]="domSanitizer.bypassSecurityTrustUrl(fileToShow)" alt="">
+                      </div>
+                      <div uk-form-custom="target: true" class="uk-form-controls uk-width-expand">
+                        <input type="file"
+                               (change)="onFileChange($event)"
+                               accept="image/*">
+                        <input class="uk-input"
+                               formControlName="imageFile"
+                               type="text" placeholder="Select file" disabled>
+                      </div>
                     </div>
                   </div>
                   <div class="uk-width-auto uk-padding-remove">
@@ -105,10 +116,8 @@
                     </button>
                   </div>
                 </div>
-
               </div>
             </div>
-
             <div class="uk-margin uk-grid-small uk-grid">
               <label class="uk-form-label uk-width-1-5@s uk-first-column" for="descriptionImage">Описание</label>
               <div class="uk-form-controls uk-width-4-5@s">
@@ -119,9 +128,7 @@
                           formControlName="description"></textarea>
               </div>
             </div>
-
             <div class="uk-text-right uk-margin ">
-              <a class="uk-button uk-button-default" (click)="onImageClear()">Cancel</a>
               <button class="uk-button uk-button-primary" type="submit">Save</button>
             </div>
 

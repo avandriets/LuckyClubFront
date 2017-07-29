@@ -142,6 +142,7 @@ export class EditLotComponent implements OnInit {
         console.log(error)
       }
     );
+    this.onImageClear();
   }
 
   onDeletePicture(picture) {

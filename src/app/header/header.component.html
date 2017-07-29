@@ -7,11 +7,17 @@
 
       <ng-template [ngIf]="currentLoginStatus==loginStatus.LoggedIn">
         <ul class="uk-subnav uk-width-auto uk-flex-middle">
-          <li><a href="#"><span class="uk-label">Favorite</span> <span
-            class="uk-badge uk-text-top">{{getFavoritesCount()}}</span></a>
+          <li>
+            <a class="uk-margin-right">
+              <span class="uk-label">Favorite</span>
+              <span class="uk-badge uk-text-top">{{getFavoritesCount()}}</span>
+            </a>
           </li>
-          <li><a href="#"><span class="uk-label uk-label-success">Success</span> <span
-            class="uk-badge uk-text-top uk-label-success">{{getWInCount()}}</span></a>
+          <li>
+            <a>
+              <span class="uk-label uk-label-success">Success</span>
+              <span class="uk-badge uk-text-top uk-label-success">{{getWInCount()}}</span>
+            </a>
           </li>
         </ul>
       </ng-template>
