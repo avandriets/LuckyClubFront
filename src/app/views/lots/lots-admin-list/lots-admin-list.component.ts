@@ -9,7 +9,8 @@ import {Lot} from "../lots.model";
 })
 export class LotsAdminListComponent implements OnInit {
   @Input('lot') lots: Lot = new Lot();
-  //@Input('lot') item_lot: Lot = new Lot();
+  @Input('type') type: number = 0;
+
 
   constructor(private lotSrv: LotsServiseService) {
   }

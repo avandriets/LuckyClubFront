@@ -11,123 +11,15 @@
           </ul>
           <ul class="uk-switcher uk-margin">
             <li>
-              <lucky-lots-admin-list [lot]="lots"></lucky-lots-admin-list>
+              <lucky-lots-admin-list [lot]="lots" [type]="'1'"></lucky-lots-admin-list>
             </li>
             <li class="">
-              <lucky-lots-admin-list [lot]="dr_lots"></lucky-lots-admin-list>
+              <lucky-lots-admin-list [lot]="dr_lots" [type]="'2'"></lucky-lots-admin-list>
             </li>
             <li class="">
-              <lucky-lots-admin-list [lot]="del_lots"></lucky-lots-admin-list>
+              <lucky-lots-admin-list [lot]="del_lots" [type]="'3'"></lucky-lots-admin-list>
             </li>
           </ul>
-
-
-          <!--<table class="uk-table uk-table-responsive uk-table-divider uk-table-hover">-->
-            <!--<thead>-->
-            <!--<tr>-->
-              <!--<th class="uk-table-shrink">id</th>-->
-              <!--<th class="uk-table-shrink">img</th>-->
-              <!--<th>Название</th>-->
-              <!--<th>Описание</th>-->
-              <!--<th class="uk-table-shrink">Категория</th>-->
-              <!--<th class="uk-table-shrink">№</th>-->
-              <!--<th class="uk-table-shrink uk-text-nowrap">Цена</th>-->
-              <!--<th class="uk-table-shrink uk-text-nowrap">Дата с по</th>-->
-              <!--<th class="uk-table-shrink uk-text-nowrap">О</th>-->
-              <!--<th class="uk-table-shrink uk-text-nowrap">Р</th>-->
-              <!--<th class="uk-table-shrink uk-text-nowrap">У</th>-->
-            <!--</tr>-->
-            <!--</thead>-->
-            <!--<tbody>-->
-            <!--<tr *ngFor="let lot of lots">-->
-              <!--<td>{{lot.id}}</td>-->
-              <!--<td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}"-->
-                       <!--width="40" alt="">-->
-              <!--</td>-->
-              <!--<td class="uk-table-link">-->
-                <!--<h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name | slice:0:15}}</a></h2>-->
-              <!--</td>-->
-              <!--<td>{{lot.description | slice:0:15}}</td>-->
-              <!--<td>{{lot.category_id}}</td>-->
-              <!--<td>{{lot.count_participants}}</td>-->
-              <!--<td>{{lot.price}}</td>-->
-              <!--<td>{{lot.created_at | date: 'dd.MM.yyyy'}} - {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>-->
-              <!--<td class="uk-text-nowrap">-->
-                <!--<label><input class="uk-checkbox" type="checkbox" [(ngModel)]="lot.published"-->
-                              <!--(click)="onUnPush(lot.id)"></label>-->
-              <!--</td>-->
-              <!--<td class="uk-text-nowrap">-->
-                <!--<label><input class="uk-checkbox" type="checkbox" [(ngModel)]="lot.recommend"-->
-                              <!--(click)="onRecommendedLot(lot.id)"></label>-->
-              <!--</td>-->
-              <!--<td class="uk-text-nowrap">-->
-                <!--<label><input class="uk-checkbox" type="checkbox" [(ngModel)]="lot.deleted" (click)="onDelete(lot.id)"></label>-->
-              <!--</td>-->
-            <!--</tr>-->
-            <!--<tr *ngFor="let lot of dr_lots">-->
-              <!--<td>{{lot.id}}</td>-->
-              <!--<td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}"-->
-                       <!--width="40" alt="">-->
-              <!--</td>-->
-              <!--<td class="uk-table-link">-->
-                <!--<h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name | slice:0:15}}</a></h2>-->
-              <!--</td>-->
-              <!--<td>{{lot.description | slice:0:15}}</td>-->
-              <!--<td>{{lot.category_id}}</td>-->
-              <!--<td>{{lot.count_participants}}</td>-->
-              <!--<td>{{lot.price}}</td>-->
-              <!--<td>{{lot.created_at | date: 'dd.MM.yyyy'}} - {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>-->
-              <!--<td class="uk-text-nowrap">-->
-                <!--&lt;!&ndash;{{lot.published}}<br>&ndash;&gt;-->
-                <!--{{lot.deleted}}-->
-                <!--<div *ngIf="lot.published">Опубликованно</div>-->
-                <!--<div *ngIf="!lot.published">Не опубликованно</div>-->
-                <!--<div *ngIf="lot.deleted">Удалено</div>-->
-                <!--<a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"-->
-                   <!--routerLink='{{lot.id}}/edit'>-->
-                  <!--<span uk-icon="icon: pencil" class="uk-margin-small-right uk-icon"></span> Редактироать</a>-->
-                <!--<a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"-->
-                   <!--(click)="onPush(lot.id)">-->
-                  <!--<span uk-icon="icon: laptop" class="uk-margin-small-right uk-icon"></span> Oпубликовать</a>-->
-                <!--<a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"-->
-                   <!--(click)="onDelete(lot.id)">-->
-                  <!--<span uk-icon="icon: close" class="uk-margin-small-right uk-icon"></span> Удалить</a>-->
-              <!--</td>-->
-            <!--</tr>-->
-            <!--<tr *ngFor="let lot of del_lots">-->
-              <!--<td>{{lot.id}}</td>-->
-              <!--<td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}"-->
-                       <!--width="40" alt="">-->
-              <!--</td>-->
-              <!--<td class="uk-table-link">-->
-                <!--<h2><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name | slice:0:15}}</a></h2>-->
-              <!--</td>-->
-              <!--<td>{{lot.description | slice:0:15}}</td>-->
-              <!--<td>{{lot.category_id}}</td>-->
-              <!--<td>{{lot.count_participants}}</td>-->
-              <!--<td>{{lot.price}}</td>-->
-              <!--<td>{{lot.created_at | date: 'dd.MM.yyyy'}} - {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>-->
-              <!--<td class="uk-text-nowrap">-->
-                <!--<div *ngIf="lot.published">Опубликованно</div>-->
-                <!--<div *ngIf="!lot.published">Не опубликованно</div>-->
-                <!--<div *ngIf="lot.deleted">Удалено</div>-->
-                <!--<a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"-->
-                   <!--routerLink='{{lot.id}}/edit'>-->
-                  <!--<span uk-icon="icon: pencil" class="uk-margin-small-right uk-icon"></span> Редактироать</a>-->
-                <!--<a class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"-->
-                   <!--(click)="onPush(lot.id)">-->
-                  <!--<span uk-icon="icon: laptop" class="uk-margin-small-right uk-icon"></span> Oпубликовать</a>-->
-                <!--<a *ngIf="!lot.deleted" class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"-->
-                   <!--(click)="onDelete(lot.id)">-->
-                  <!--<span uk-icon="icon: close" class="uk-margin-small-right uk-icon"></span> Удалить</a>-->
-                <!--<a *ngIf="lot.deleted" class="uk-button uk-button-default uk-text-nowrap uk-display-block uk-text-left"-->
-                   <!--(click)="onUnDelete(lot.id)">-->
-                  <!--<span uk-icon="icon: close" class="uk-margin-small-right uk-icon"></span> Отменить удаление</a>-->
-              <!--</td>-->
-            <!--</tr>-->
-
-            <!--</tbody>-->
-          <!--</table>-->
         </div>
       </div>
     </div>
