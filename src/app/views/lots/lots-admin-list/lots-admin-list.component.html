@@ -1,0 +1,49 @@
+<table class="uk-table uk-table-responsive uk-table-divider uk-table-hover">
+  <thead>
+  <tr>
+    <th class="uk-table-shrink">id</th>
+    <th class="uk-table-shrink">img</th>
+    <th>Название</th>
+    <th>Описание</th>
+    <th class="uk-table-shrink">Категория</th>
+    <th class="uk-table-shrink">№</th>
+    <th class="uk-table-shrink uk-text-nowrap">Цена</th>
+    <th class="uk-table-shrink uk-text-nowrap">Дата создания<br> Дата изменения</th>
+    <th class="uk-table-shrink uk-text-nowrap uk-background-muted">О</th>
+    <th class="uk-table-shrink uk-text-nowrap uk-background-muted">Р</th>
+    <th class="uk-table-shrink uk-text-nowrap uk-background-muted">У</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let lot of lots" class="">
+    <td>{{lot.id}}</td>
+    <td><img *ngIf="lot.pictures[0]" class="uk-preserve-width" src="{{lot.getFirstPicture().picture_url}}"
+             width="40" alt="">
+    </td>
+    <td class="uk-table-link">
+      <h4><a class="uk-link-reset" routerLink='{{lot.id}}'>{{lot.name | slice:0:15}}</a></h4>
+    </td>
+    <td>{{lot.description | slice:0:15}}</td>
+    <td>{{lot.category_id}}</td>
+    <td>{{lot.count_participants}}</td>
+    <td>{{lot.price}}</td>
+    <td>{{lot.created_at | date: 'dd.MM.yyyy'}} {{lot.updated_at | date: 'dd.MM.yyyy'}}</td>
+    <td class="uk-text-nowrap uk-background-muted">
+      <label *ngIf="!lot.published"><input class="uk-checkbox" type="checkbox" [(ngModel)]="lot.published"
+                                           (click)="onPush(lot.id)"></label>
+      <label *ngIf="lot.published"><input class="uk-checkbox" type="checkbox" [(ngModel)]="lot.published"
+                                           (click)="onUnPush(lot.id)"></label>
+    </td>
+    <td class="uk-text-nowrap uk-background-muted">
+      <label><input class="uk-checkbox" type="checkbox" [(ngModel)]="lot.recommend"
+                    (click)="onRecommendedLot(lot.id)"></label>
+    </td>
+    <td class="uk-text-nowrap uk-background-muted">
+      <label *ngIf="!lot.deleted"><input class="uk-checkbox" type="checkbox" [(ngModel)]="lot.deleted"
+                                         (click)="onDelete(lot.id)"></label>
+      <label *ngIf="lot.deleted"><input class="uk-checkbox" type="checkbox" [(ngModel)]="lot.deleted"
+                                        (click)="onUnDelete(lot.id)"></label>
+    </td>
+  </tr>
+  </tbody>
+</table>

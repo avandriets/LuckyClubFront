@@ -54,49 +54,4 @@ export class LotsComponent implements OnInit {
   onNewLot() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
-
-  onPush(id) {
-   this.lotSrv.publishLot(id).subscribe(
-      (data) => { },
-      (error) => {
-        console.log(error)
-      }
-    );
-  }
-  onUnPush(id){
-     this.lotSrv.unPublishLot(id).subscribe(
-      (data) => {},
-      (error) => {
-        console.log(error)
-      }
-    );
-  }
-  onRecommendedLot(id){
-     this.lotSrv.recommendedLot(id).subscribe(
-      (data) => {
-        console.log('0:'  + data)
-      },
-      (error) => {
-        console.log(error)
-      }
-    );
-  }
-
-  onDelete(id) {
-    this.lotSrv.deleteLot(id).subscribe(
-      (data) => {},
-      (error) => {
-        console.log(error)
-      }
-    );
-  }
-
-  onUnDelete(id){
-    this.lotSrv.unDeleteLot(id).subscribe(
-      (data) => {},
-      (error) => {
-        console.log(error)
-      }
-    );
-  }
 }

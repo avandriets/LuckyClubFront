@@ -38,6 +38,7 @@ import {AuthAsyncGuardGuard} from "./auth/auth-async-guard.guard";
 import { LotDetailViewComponent } from './views/lot-detail-view/lot-detail-view.component';
 import { BuyPopUpComponent } from './views/lot-detail-view/buy-pop-up/buy-pop-up.component';
 import { FeedbackComponent } from './views/feedback/feedback.component';
+import { LotsAdminListComponent } from './views/lots/lots-admin-list/lots-admin-list.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { FeedbackComponent } from './views/feedback/feedback.component';
     LotItemGroupComponent,
     LotDetailViewComponent,
     BuyPopUpComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    LotsAdminListComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
