@@ -29,7 +29,8 @@ export class AuthService {
   constructor(private route: Router,
               private http: Http,
               public afAuth: AngularFireAuth,
-              private authSrv: AuthHttpService) {
+              private authSrv: AuthHttpService,
+              private ngZone: NgZone) {
   }
 
   signUpUser(email: string, password: string) {
@@ -173,11 +174,30 @@ export class AuthService {
   }
 
   logOut() {
-    this.afAuth.auth.signOut();
-    this.current_user = null;
-    localStorage.removeItem('token');
-    localStorage.removeItem('current_user');
-    this.callComponent(LoginStatusEnum.LoggedOut);
+
+    this.ngZone.runOutsideAngular(() => {
+
+      this.afAuth.auth.signOut().then(
+        () => {
+
+          this.ngZone.run(() => {
+            this.current_user = null;
+            localStorage.removeItem('token');
+            localStorage.removeItem('current_user');
+            this.callComponent(LoginStatusEnum.LoggedOut);
+          });
+        }
+      );
+    });
+
+    // this.afAuth.auth.signOut().then(
+    //   () => {
+    //     this.current_user = null;
+    //     localStorage.removeItem('token');
+    //     localStorage.removeItem('current_user');
+    //     this.callComponent(LoginStatusEnum.LoggedOut);
+    //   }
+    // );
   }
 
   getCurrentUser(): Users {
