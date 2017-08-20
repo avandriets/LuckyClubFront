@@ -19,7 +19,6 @@ import { SignInPopUpComponent } from './auth/sign-in-pop-up/sign-in-pop-up.compo
 import {SignUpEmailComponent} from "./auth/sign-up-email/sign-up-email.component";
 import {SignInEmailComponent} from "./auth/sign-in-email/sign-in-email.component";
 import { AngularFireModule } from 'angularfire2';
-import {AngularFireAuthModule} from "angularfire2/auth/auth.module";
 import {CategoriesService} from "./services/categories-service.service";
 import {AuthHttpService} from "./helpers/auth-http.service";
 import { NewCategoryComponent } from './views/categories/new-category/new-category.component';
@@ -72,7 +71,6 @@ import { LotsAdminListComponent } from './views/lots/lots-admin-list/lots-admin-
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
     BrowserModule,
     FormsModule,
     HttpModule,
