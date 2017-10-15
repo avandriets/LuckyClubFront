@@ -10,7 +10,7 @@ import {Subject} from 'rxjs/Subject';
 import {environment} from "../../environments/environment";
 import {Utils} from "../helpers/utilities";
 import {AuthHttpService} from "../helpers/auth-http.service";
-import Promise = firebase.Promise;
+
 
 @Injectable()
 export class AuthService {
