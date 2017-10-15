@@ -66,11 +66,13 @@ export class LotsServiseService {
     options.url = `${environment.hostUrl}${Utils.lotsUrl}`;
     options.method = RequestMethod.Get;
 
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('per_page', '200');
+
     if (category) {
-      let params: URLSearchParams = new URLSearchParams();
       params.set('category', category);
-      options.params = params;
     }
+    options.params = params;
 
     return this.authService.get(`${environment.hostUrl}${Utils.lotsUrl}`, options).map(
       (inputData: Response) => {
